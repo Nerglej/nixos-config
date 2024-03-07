@@ -7,6 +7,7 @@
     ../../system/hardware/printing.nix
     ../../system/hardware/bluetooth.nix
     ../../system/config/locale.nix
+    ( import ../../system/apps/docker.nix { inherit userSettings lib; } )
   ];
 
   # Fix nix path
