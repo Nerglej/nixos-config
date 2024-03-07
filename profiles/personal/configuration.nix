@@ -6,6 +6,7 @@
     ../../system/hardware/time.nix
     ../../system/hardware/printing.nix
     ../../system/hardware/bluetooth.nix
+    ../../system/hardware/fingerprint-reader.nix
     ../../system/config/locale.nix
     ( import ../../system/apps/docker.nix { inherit userSettings lib; } )
   ];
