@@ -7,45 +7,41 @@
 
   programs.neovim = {
     enable = true;
-    extraLuaConfig = lib.fileContents ./neovim/init.lua;
   };
 
- # programs.nixvim = {
- #   enable = true;
+  xdg.configFile.nvim.source = ./neovim-config;
 
- #   colorschemes.gruvbox.enable = true;
- #   plugins = {
- #     lightline.enable = true;
+  # programs.nixvim = {
+  #   enable = true;
 
- #     telescope = {
- #       enable = true;
+  #   colorschemes.gruvbox.enable = true;
+  #   plugins = {
+  #     lightline.enable = true;
 
- #       extensions = {
- #         fzf-native.enable = true;
- #         file_browser.enable = true;
- #       };
- #     };
+  #     telescope = {
+  #       enable = true;
 
- #     treesitter.enable = true;
- #   };
- #   
- #   options = {
- #     relativenumber = true;
- #     number = true;
+  #       extensions = {
+  #         fzf-native.enable = true;
+  #         file_browser.enable = true;
+  #       };
+  #     };
 
- #     expandtab = true;
- #     shiftwidth = 2;
- #     smartindent = true;
- #     tabstop = 2;
- #   };
+  #     treesitter.enable = true;
+  #   };
+  #   
+  #   options = {
+  #     relativenumber = true;
+  #     number = true;
 
- #   globals = {
- #     mapleader = " ";
- #   };
- # };
+  #     expandtab = true;
+  #     shiftwidth = 2;
+  #     smartindent = true;
+  #     tabstop = 2;
+  #   };
 
-  xdg.configFile.nvim = {
-    source = "./neovim/init.lua";
-    recursive = true;
-  };
+  #   globals = {
+  #     mapleader = " ";
+  #   };
+  # };
 }
