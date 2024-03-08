@@ -9,7 +9,7 @@
   imports = [
     ../../home/apps/git.nix
     ../../home/apps/gh.nix
-    ../../home/apps/neovim/default.nix
+    ../../home/apps/neovim.nix
     ../../home/apps/browser/firefox.nix
     ../../home/config/shell.nix
   ];
