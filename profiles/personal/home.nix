@@ -10,7 +10,6 @@
     ../../user/apps/git.nix
     ../../user/apps/gh.nix
     ../../user/apps/neovim.nix
-    inputs.nixvim.homeManagerModules.nixvim
     ../../user/config/shell.nix
     ../../user/apps/browser/firefox.nix
   ];

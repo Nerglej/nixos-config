@@ -1,12 +1,16 @@
 { config, pkgs, userSettings, inputs, ... }:
 
 {
+  imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+  ];
+
   programs.nixvim = {
     enable = true;
 
     colorschemes.gruvbox.enable = true;
     plugins = {
-      lightline.enable = true;
+      # lightline.enable = true;
 
       telescope = {
         enable = true;

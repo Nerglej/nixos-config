@@ -1,0 +1,3 @@
+[submodule "user/apps/neovim"]
+	path = user/apps/neovim
+	url = https://github.com/Nerglej/neovim-config.git
