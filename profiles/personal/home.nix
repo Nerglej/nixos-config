@@ -7,11 +7,11 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ../../user/apps/git.nix
-    ../../user/apps/gh.nix
-    ../../user/apps/neovim.nix
-    ../../user/config/shell.nix
-    ../../user/apps/browser/firefox.nix
+    ../../home/apps/git.nix
+    ../../home/apps/gh.nix
+    ../../home/apps/neovim/default.nix
+    ../../home/apps/browser/firefox.nix
+    ../../home/config/shell.nix
   ];
 
   home.stateVersion = systemSettings.stateVersion;
