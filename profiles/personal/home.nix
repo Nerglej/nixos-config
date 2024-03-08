@@ -25,7 +25,7 @@
   xdg.mimeApps.enable = true;
 
   home.sessionVariables = {
-    # EDITOR = userSettings.editor;
+    EDITOR = userSettings.editor;
     # SPAWNEDITOR = userSettings.spawnEditor;
     # TERM = userSettings.term;
     # BROWSER = userSettings.browser;

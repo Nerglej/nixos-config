@@ -28,6 +28,7 @@
       username = "williamj";
       name = "William Jelgren";
       email = "william@jelgren.dk";
+      editor = "nvim";
       shellAliases = {
         ll = "ls -l";
       };
