@@ -9,7 +9,9 @@
     enable = true;
   };
 
-  xdg.configFile.nvim.source = ./config;
+  xdg.configFile.nvim = { 
+    source = ./config; 
+  };
 
   # programs.nixvim = {
   #   enable = true;

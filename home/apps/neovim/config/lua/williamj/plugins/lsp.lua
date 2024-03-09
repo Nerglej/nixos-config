@@ -29,7 +29,7 @@ return {
           cancel_installation = "<C-c>",
         }
       }
-    }
+    },
     config = function(_, opts)
       require("mason").setup(opts)
     end,
@@ -72,7 +72,7 @@ return {
     event = {'BufReadPre', 'BufNewFile'},
     dependencies = {
       {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'}
+      {'williamboman/mason-lspconfig.nvim'},
       {'hrsh7th/cmp-nvim-lsp'},
     },
     opts = {
