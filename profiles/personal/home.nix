@@ -8,7 +8,6 @@
 
   imports = [
     ../../home/apps/git.nix
-    ../../home/apps/gh.nix
     ../../home/apps/neovim/neovim.nix
     ../../home/apps/browser/firefox.nix
     ../../home/config/shell.nix

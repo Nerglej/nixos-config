@@ -50,6 +50,9 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
+    curl
+    gzip
+    unzip
     git
     home-manager
   ];
