@@ -11,6 +11,7 @@
     ( import ../../system/apps/docker.nix { inherit userSettings lib; } )
     ../../system/apps/spotify.nix
     ../../system/apps/steam.nix
+    ../../system/apps/zoom.nix
   ];
 
   # Fix nix path
