@@ -6,8 +6,11 @@
     ../../system/hardware/time.nix
     ../../system/hardware/printing.nix
     ../../system/hardware/bluetooth.nix
+    ../../system/hardware/power.nix
     # ../../system/hardware/fingerprint-reader.nix
+
     ../../system/config/locale.nix
+
     ( import ../../system/apps/docker.nix { inherit userSettings lib; } )
     ../../system/apps/spotify.nix
     ../../system/apps/steam.nix
