@@ -12,6 +12,7 @@
     ../../system/apps/spotify.nix
     ../../system/apps/steam.nix
     ../../system/apps/zoom.nix
+    ../../system/apps/discord.nix
   ];
 
   # Fix nix path
