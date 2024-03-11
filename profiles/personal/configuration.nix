@@ -9,6 +9,8 @@
     # ../../system/hardware/fingerprint-reader.nix
     ../../system/config/locale.nix
     ( import ../../system/apps/docker.nix { inherit userSettings lib; } )
+    ../../system/apps/spotify.nix
+    ../../system/apps/steam.nix
   ];
 
   # Fix nix path
