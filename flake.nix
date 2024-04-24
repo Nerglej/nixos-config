@@ -1,5 +1,5 @@
 {
-  description = "Willjams NixOS";
+  description = "Williams NixOS";
   
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";

@@ -3,6 +3,9 @@
 {
   programs.neovim = {
     enable = true;
+    plugins = [
+      pkgs.vimPlugins.nvim-treesitter.withAllGrammers
+    ];
   };
   
   # xdg.configFile.nvim = {
