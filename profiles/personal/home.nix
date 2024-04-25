@@ -9,7 +9,6 @@
   imports = [
     ../../home/apps/git.nix
     ../../home/apps/neovim/neovim.nix
-    ../../home/apps/tmux.nix
     ../../home/apps/zellij.nix
     ../../home/apps/browser/firefox.nix
     ../../home/apps/browser/chrome.nix
