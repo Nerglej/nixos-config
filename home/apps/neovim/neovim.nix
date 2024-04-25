@@ -4,7 +4,7 @@
   programs.neovim = {
     enable = true;
     plugins = [
-      pkgs.vimPlugins.nvim-treesitter.withAllGrammers
+      pkgs.vimPlugins.nvim-treesitter.withAllGrammars
     ];
   };
   
