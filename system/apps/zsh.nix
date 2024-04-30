@@ -9,11 +9,8 @@
       enable = true;
       theme = "robbyrussell";
       plugins = [
-        "git"
         "history"
         "rust"
-        "docker"
-        "docker-compose"
       ];
     };
   };
