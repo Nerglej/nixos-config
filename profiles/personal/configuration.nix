@@ -12,6 +12,7 @@
     ../../system/config/locale.nix
     
     ../../system/apps/zsh.nix
+    ../../system/apps/direnv.nix
     ( import ../../system/apps/docker.nix { inherit userSettings lib; } )
     ../../system/apps/spotify.nix
     ../../system/apps/steam.nix
