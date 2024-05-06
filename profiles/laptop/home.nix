@@ -1,4 +1,4 @@
-{ pkgs, systemSettings, userSettings, inputs, ... }:
+{ systemSettings, userSettings, ... }:
 
 {
   home.username = userSettings.username;
@@ -7,19 +7,17 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ../../home/apps/git.nix
+    ../../home/apps/zellij
+    ../../home/apps/git
     ../../home/apps/neovim
-    ../../home/apps/zellij.nix
-    ../../home/apps/browser/firefox.nix
-    ../../home/apps/browser/chrome.nix
+    ../../home/apps/firefox
+    ../../home/apps/chrome
+    ../../home/apps/zoom
+    ../../home/apps/discord
     ../../home/config/shell.nix
   ];
 
   home.stateVersion = systemSettings.stateVersion;
-
-  home.packages = with pkgs; [
-    git
-  ];
 
   xdg.enable = true;
   xdg.mime.enable = true;

@@ -17,7 +17,7 @@
     systemSettings = {
       system = "x86_64-linux";
       hostname = "system";
-      profile = "personal";
+      profile = "laptop";
       timezone = "Europe/Copenhagen";
       locale = "en_DK.UTF-8";
       stateVersion = "23.11";

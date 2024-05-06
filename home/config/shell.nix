@@ -1,4 +1,4 @@
-{ userSettings, home, ... }:
+{ userSettings, ... }:
 
 {
   home.shellAliases = userSettings.shellAliases;

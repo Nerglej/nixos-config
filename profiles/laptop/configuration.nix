@@ -2,7 +2,8 @@
 
 {
   imports = [       
-    ../../system/hardware-configuration.nix
+    ./hardware-configuration.nix
+
     ../../system/hardware/time.nix
     ../../system/hardware/printing.nix
     ../../system/hardware/bluetooth.nix
@@ -16,8 +17,6 @@
     ( import ../../system/apps/docker.nix { inherit userSettings lib; } )
     ../../system/apps/spotify.nix
     ../../system/apps/steam.nix
-    ../../system/apps/zoom.nix
-    ../../system/apps/discord.nix
   ];
 
   # Fix nix path
