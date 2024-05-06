@@ -75,20 +75,5 @@
         };
       };
     };
-
-    packages = forAllSystems (system:
-      let pkgs = nixpkgsFor.${system}; in {
-        default = self.packages.${system}.install;
-        install = pkgs.writeScriptBin "install" ./install.sh;
-      });
-
-    apps = forAllSystems (system: {
-      default = self.apps.${system}.install;
-     
-      install = {
-        type = "app";
-        program = "${self.packages.${system}.install}/bin/install";
-      };
-    });
   };
 }
