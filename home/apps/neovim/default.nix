@@ -14,9 +14,14 @@
 
   home.packages = with pkgs; [
     # LSP's
-    rust-analyzer
     lua-language-server
     nil
+
+    rust-analyzer
+    csharp-ls
+
+    # eslint (js and ts), css, html markdown and json
+    vscode-langservers-extracted    
   ];
 
   home.file."./.config/nvim/" = {

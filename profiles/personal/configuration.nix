@@ -64,6 +64,7 @@
     unzip
     git
     home-manager
+    foot
   ];
 
   # Enable the X11 windowing system.
@@ -75,6 +76,11 @@
 
   services.xserver.displayManager.defaultSession = "plasmawayland";
   services.xserver.displayManager.sddm.wayland.enable = true;
+
+  services.xserver.excludePackages = [ pkgs.xterm ];
+  environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+    oxygen
+  ];
 
   # Configure keymap in X11
   services.xserver = {

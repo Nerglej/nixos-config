@@ -2,7 +2,7 @@ return {
   {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v3.x",
-    dependencies = { 
+    dependencies = {
       -- LSP
       {"neovim/nvim-lspconfig"},
 
@@ -19,17 +19,21 @@ return {
       lsp_zero.on_attach(function(client, bufnr)
         lsp_zero.default_keymaps({buffer = bufnr})
       end)
-      
+
       local lspconfig = require('lspconfig')
-      lspconfig.rust_analyzer.setup({})
 
       lspconfig.lua_ls.setup({})
       lspconfig.nil_ls.setup({})
 
-      -- Javascript I guess
-      lspconfig.tsserver.setup({})
-      lspconfig.svelte.setup({})
+      lspconfig.rust_analyzer.setup({})
+      lspconfig.csharp_ls.setup({})
 
+      -- Javascript I guess
+      -- lspconfig.tsserver.setup({})
+      -- lspconfig.svelte.setup({})
+
+      -- VSCode lsp's
+      lspconfig.eslint.setup({})
       lspconfig.html.setup({})
       lspconfig.cssls.setup({})
       lspconfig.jsonls.setup({})

@@ -27,8 +27,8 @@
 
   home.sessionVariables = {
     EDITOR = userSettings.editor;
+    TERMINAL = userSettings.terminal;
     # SPAWNEDITOR = userSettings.spawnEditor;
-    # TERM = userSettings.term;
     # BROWSER = userSettings.browser;
   };
 }
