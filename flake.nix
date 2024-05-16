@@ -1,79 +1,80 @@
 {
-  description = "Williams NixOS";
+  description = "Williams NixOS flake";
   
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
-
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixvim.url = "github:nix-community/nixvim/nixos-23.11";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    
+    home-manager = { 
+      url = "github:nix-community/home-manager/release-23.11"; 
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
   let 
-    # ---- System Settings ---- #
-    systemSettings = {
-      system = "x86_64-linux";
-      hostname = "system";
-      profile = "laptop";
-      timezone = "Europe/Copenhagen";
-      locale = "en_DK.UTF-8";
-      stateVersion = "23.11";
-    };
-      
-    # ---- User Settings ---- #
-    userSettings = {
-      username = "williamj";
-      name = "William Jelgren";
-      email = "william@jelgren.dk";
-      editor = "nvim";
-      terminal = "foot";
-      shellAliases = {
-        ll = "ls -l";
-      };
-    };
-
-    lib = nixpkgs.lib;
-
     pkgs = import nixpkgs {
-      system = systemSettings.system;
+      system = "x86_64-linux";
       config = {
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
       };
     };
 
-    supportedSystems = [
-      "x86_64-linux"
+    hosts = [
+      { 
+        system = "laptop"; 
+        users = [
+          "williamj"
+        ]; 
+      }
+      { 
+        system = "wsl"; 
+        users = [
+          "williamj"
+        ];
+      }
     ];
-   
-    forAllSystems = inputs.nixpkgs.lib.genAttrs supportedSystems;
 
-    nixpkgsFor = forAllSystems (system: import inputs.nixpkgs { inherit system; });
+
+    mkNixHost = { host }: 
+      nixpkgs.lib.nixosSystem 
+        (import ./systems/${ host.system } { inherit host; });
+
+    mkNixConfig = { hosts }: 
+      builtins.listToAttrs (
+        builtins.map (host: { 
+            name = host.system; 
+            value = mkNixHost { 
+              inherit host; 
+            };
+          }
+        ) hosts
+      );
+
+    mkHomeManagerUser = { user }:
+      home-manager.lib.homeManagerConfiguration
+        (import ./homes/${ user } { inherit user pkgs inputs; });
+
+    mkHomeManagerConfig = { hosts }:
+      builtins.listToAttrs (
+        builtins.concatLists (
+          builtins.map (host: (
+              builtins.map (user: {
+                  name = "${user}@${host.system}";
+                  value = mkHomeManagerUser { inherit user; };
+                }
+              ) host.users
+            )
+          ) hosts
+        )
+      );
   in {
-    nixosConfigurations = {
-      system = lib.nixosSystem {
-        system = systemSettings.system;
-        modules = [ (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix") ];
-        specialArgs = {
-          inherit systemSettings;
-          inherit userSettings;
-        };
-      };
-    };
+    nixosConfigurations = mkNixConfig { inherit hosts; };
+    homeConfigurations = mkHomeManagerConfig { inherit hosts; };
 
-    homeConfigurations = {
-      williamj = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix") ];
-        extraSpecialArgs = {
-          inherit systemSettings;
-          inherit userSettings;
-          inherit inputs;
-        };
-      };
-    };
+    # homeConfigurations = {
+    #   "williamj@laptop" = home-manager.lib.homeManagerConfiguration 
+    #     (import ./homes/williamj { inherit pkgs inputs; });
+    # };
   };
 }

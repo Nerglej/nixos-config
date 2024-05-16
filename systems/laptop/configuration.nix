@@ -1,22 +1,28 @@
-{ pkgs, lib, systemSettings, userSettings, ... }:
+{ pkgs, host, ... }:
 
+let 
+  systemSettings = {
+    system = "x86_64-linux";
+    hostname = "laptop";
+    timezone = "Europe/Copenhagen";
+    locale = "en_DK.UTF-8";
+  };
+in
 {
   imports = [       
-    ./hardware-configuration.nix
-
-    ../../system/hardware/time.nix
-    ../../system/hardware/printing.nix
-    ../../system/hardware/bluetooth.nix
-    ../../system/hardware/power.nix
+    ../../modules/system/hardware/time.nix
+    ../../modules/system/hardware/printing.nix
+    ../../modules/system/hardware/bluetooth.nix
+    ../../modules/system/hardware/power.nix
     # ../../system/hardware/fingerprint-reader.nix
 
-    ../../system/config/locale.nix
+    ( import ../../modules/system/config/locale.nix { locale = systemSettings.locale; } )
     
-    ../../system/apps/zsh.nix
-    ../../system/apps/direnv.nix
-    ( import ../../system/apps/docker.nix { inherit userSettings lib; } )
-    ../../system/apps/spotify.nix
-    ../../system/apps/steam.nix
+    ../../modules/system/apps/zsh.nix
+    ../../modules/system/apps/direnv.nix
+    ../../modules/system/apps/docker.nix
+    ../../modules/system/apps/spotify.nix
+    ../../modules/system/apps/steam.nix
   ];
 
   # Fix nix path
@@ -46,12 +52,14 @@
   time.timeZone = systemSettings.timezone;
 
   # User account
-  users.users.${userSettings.username} = {
-    isNormalUser = true;
-    description = userSettings.name;
-    extraGroups = ["networkmanager" "wheel"];
-    packages = [];
-    uid = 1000;
+  users.users = {
+    "${ builtins.head host.users }" = {
+      isNormalUser = true;
+      description = "William Jelgren";
+      extraGroups = ["networkmanager" "wheel" "docker"];
+      packages = [];
+      uid = 1000;
+    }; 
   };
   
   # System packages
@@ -101,5 +109,5 @@
     pulse.enable = true;
   };
 
-  system.stateVersion = systemSettings.stateVersion; 
+  system.stateVersion = "23.11"; 
 }
