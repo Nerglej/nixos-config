@@ -72,6 +72,7 @@ in
     git
     home-manager
     foot
+    wl-clipboard
   ];
 
   # Enable the X11 windowing system.

@@ -9,7 +9,9 @@
   imports = [
     ../../modules/home/apps/zellij
     ../../modules/home/apps/git
+    ../../modules/home/apps/ripgrep
     ../../modules/home/apps/neovim
+
     ../../modules/home/apps/firefox
     ../../modules/home/apps/chrome
     ../../modules/home/apps/zoom
