@@ -1,4 +1,4 @@
-{ config, lib, pkgs, userSettings, inputs, ... }:
+{ pkgs, ... }:
 
 {
   programs.neovim = {
