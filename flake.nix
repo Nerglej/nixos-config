@@ -11,7 +11,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, nixos-wsl, home-manager, ... }:
   let 
     pkgs = import nixpkgs {
       system = "x86_64-linux";
@@ -39,7 +39,7 @@
 
     mkNixHost = { host }: 
       nixpkgs.lib.nixosSystem 
-        (import ./systems/${ host.system } { inherit host; });
+        (import ./systems/${ host.system } { inherit host nixos-wsl; });
 
     mkNixConfig = { hosts }: 
       builtins.listToAttrs (

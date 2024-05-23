@@ -1,13 +1,11 @@
-{ host, nixpkgs, ... }:
-
+{ host, nixos-wsl, ... }:
 {
-  "${ host.system }" = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [ 
-      ./configuration.nix 
-    ];
-    specialArgs = {
-      inherit host;
-    };
+  system = "x86_64-linux";
+  modules = [
+    nixos-wsl.nixosModules.default
+    ./configuration.nix
+  ];
+  specialArgs = {
+    inherit host;
   };
 }
