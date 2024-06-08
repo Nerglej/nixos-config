@@ -79,11 +79,11 @@ in
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
-  services.xserver.displayManager.defaultSession = "plasmawayland";
-  services.xserver.displayManager.sddm.wayland.enable = true;
+  services.displayManager.defaultSession = "plasmawayland";
+  services.displayManager.sddm.wayland.enable = true;
 
   services.xserver.excludePackages = [ pkgs.xterm ];
   environment.plasma5.excludePackages = with pkgs.libsForQt5; [
@@ -110,5 +110,5 @@ in
     pulse.enable = true;
   };
 
-  system.stateVersion = "23.11"; 
+  system.stateVersion = "24.05"; 
 }

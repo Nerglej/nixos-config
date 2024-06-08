@@ -19,7 +19,7 @@
     ../../modules/home/config/shell.nix
   ];
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 
   xdg.enable = true;
   xdg.mime.enable = true;
