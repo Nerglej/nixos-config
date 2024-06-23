@@ -21,6 +21,7 @@ in
     ../../modules/system/apps/zsh.nix
     ../../modules/system/apps/direnv.nix
     ../../modules/system/apps/docker.nix
+    ../../modules/system/apps/rquickshare.nix
     ../../modules/system/apps/spotify.nix
     ../../modules/system/apps/steam.nix
   ];
@@ -80,20 +81,18 @@ in
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
-  services.displayManager.defaultSession = "plasmawayland";
-  services.displayManager.sddm.wayland.enable = true;
-
-  services.xserver.excludePackages = [ pkgs.xterm ];
-  environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
     oxygen
   ];
 
+  services.xserver.excludePackages = [ pkgs.xterm ];
+
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "dk";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Configure console keymap

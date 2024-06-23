@@ -72,10 +72,5 @@
   in {
     nixosConfigurations = mkNixConfig { inherit hosts; };
     homeConfigurations = mkHomeManagerConfig { inherit hosts; };
-
-    # homeConfigurations = {
-    #   "williamj@laptop" = home-manager.lib.homeManagerConfiguration 
-    #     (import ./homes/williamj { inherit pkgs inputs; });
-    # };
   };
 }
