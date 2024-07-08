@@ -71,6 +71,7 @@ in
     gzip
     unzip
     git
+    lazygit
     home-manager
     foot
     wl-clipboard
