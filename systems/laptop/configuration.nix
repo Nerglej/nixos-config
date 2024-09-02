@@ -19,7 +19,6 @@ in
     ( import ../../modules/system/config/locale.nix { locale = systemSettings.locale; } )
     
     ../../modules/system
-    ../../modules/system/apps/direnv.nix
     ../../modules/system/apps/rquickshare.nix
     ../../modules/system/apps/spotify.nix
     ../../modules/system/apps/steam.nix
@@ -31,6 +30,8 @@ in
   shell.zsh.defaultShell = true;
 
   shell.nushell.enable = true;
+
+  shell.direnv.enable = true;
 
   virtualization.docker.enable = true;
   virtualization.docker.users = ["${builtins.head host.users }"];
