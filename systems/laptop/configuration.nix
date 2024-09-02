@@ -24,6 +24,7 @@ in
     ../../modules/system/apps/rquickshare.nix
     ../../modules/system/apps/spotify.nix
     ../../modules/system/apps/steam.nix
+    ../../modules/system/apps/obsidian.nix
   ];
 
   # Fix nix path
