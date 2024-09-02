@@ -19,12 +19,14 @@ in
     ( import ../../modules/system/config/locale.nix { locale = systemSettings.locale; } )
     
     ../../modules/system/apps/zsh.nix
+    ../../modules/system/apps/nushell.nix
     ../../modules/system/apps/direnv.nix
     ../../modules/system/apps/docker.nix
     ../../modules/system/apps/rquickshare.nix
     ../../modules/system/apps/spotify.nix
     ../../modules/system/apps/steam.nix
     ../../modules/system/apps/obsidian.nix
+    ../../modules/system/apps/intellij.nix
   ];
 
   # Fix nix path
