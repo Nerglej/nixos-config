@@ -18,16 +18,19 @@ in
 
     ( import ../../modules/system/config/locale.nix { locale = systemSettings.locale; } )
     
+    ../../modules/system
     ../../modules/system/apps/zsh.nix
     ../../modules/system/apps/nushell.nix
     ../../modules/system/apps/direnv.nix
-    ../../modules/system/apps/docker.nix
     ../../modules/system/apps/rquickshare.nix
     ../../modules/system/apps/spotify.nix
     ../../modules/system/apps/steam.nix
     ../../modules/system/apps/obsidian.nix
     ../../modules/system/apps/intellij.nix
   ];
+
+  virtualization.docker.enable = true;
+  virtualization.docker.users = ["${builtins.head host.users }"];
 
   # Fix nix path
   nix.nixPath = [
@@ -60,7 +63,7 @@ in
     "${ builtins.head host.users }" = {
       isNormalUser = true;
       description = "William Jelgren";
-      extraGroups = ["networkmanager" "wheel" "docker"];
+      extraGroups = ["networkmanager" "wheel"];
       packages = [];
       uid = 1000;
     }; 
