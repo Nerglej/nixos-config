@@ -18,23 +18,8 @@ in
 
     ( import ../../modules/system/config/locale.nix { locale = systemSettings.locale; } )
     
-    ../../modules/system
-    ../../modules/system/apps/rquickshare.nix
-    ../../modules/system/apps/spotify.nix
-    ../../modules/system/apps/steam.nix
-    ../../modules/system/apps/obsidian.nix
-    ../../modules/system/apps/intellij.nix
+    ../../modules
   ];
-
-  shell.zsh.enable = true;
-  shell.zsh.defaultShell = true;
-
-  shell.nushell.enable = true;
-
-  shell.direnv.enable = true;
-
-  virtualization.docker.enable = true;
-  virtualization.docker.users = ["${builtins.head host.users }"];
 
   # Fix nix path
   nix.nixPath = [
@@ -73,19 +58,40 @@ in
     }; 
   };
   
-  # System packages
   environment.systemPackages = with pkgs; [
+    # "Essential" system packages
+    home-manager
     vim
+    git
     wget
     curl
     gzip
     unzip
-    git
-    lazygit
-    home-manager
+    
+    # Terminal
     foot
+    lazygit
     wl-clipboard
+    
+    # Apps with no config currently
+    jetbrains.idea-ultimate
+    obsidian
+    rquickshare
   ];
+
+  shell.zsh.enable = true;
+  shell.zsh.defaultShell = true;
+
+  shell.nushell.enable = true;
+
+  shell.direnv.enable = true;
+
+  virtualization.docker.enable = true;
+  virtualization.docker.users = ["${builtins.head host.users }"];
+
+  apps.steam.enable = true;
+  apps.spotify.enable = true;
+
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
