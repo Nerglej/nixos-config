@@ -19,7 +19,6 @@ in
     ( import ../../modules/system/config/locale.nix { locale = systemSettings.locale; } )
     
     ../../modules/system
-    ../../modules/system/apps/zsh.nix
     ../../modules/system/apps/nushell.nix
     ../../modules/system/apps/direnv.nix
     ../../modules/system/apps/rquickshare.nix
@@ -28,6 +27,9 @@ in
     ../../modules/system/apps/obsidian.nix
     ../../modules/system/apps/intellij.nix
   ];
+
+  shell.zsh.enable = true;
+  shell.zsh.defaultShell = true;
 
   virtualization.docker.enable = true;
   virtualization.docker.users = ["${builtins.head host.users }"];
