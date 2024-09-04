@@ -74,7 +74,9 @@ in
     wl-clipboard
     
     # Apps with no config currently
+    jdk22
     jetbrains.idea-ultimate
+    jetbrains.idea-community
     obsidian
     rquickshare
   ];
