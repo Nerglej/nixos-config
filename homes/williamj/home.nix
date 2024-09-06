@@ -17,7 +17,10 @@
   ];
 
   programs.firefox.enable = true;
-  programs.thunderbird.enable = true;
+  programs.thunderbird = {
+    enable = true;
+    profiles = {};
+  };
 
   programs.git = {
     enable = true;
