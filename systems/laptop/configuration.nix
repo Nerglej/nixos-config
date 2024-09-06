@@ -81,6 +81,9 @@ in
     rquickshare
   ];
 
+  # Java Development for school
+  environment.etc."jdk22".source = pkgs.jdk22;
+
   shell.zsh.enable = true;
   shell.zsh.defaultShell = true;
 
