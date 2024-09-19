@@ -14,6 +14,7 @@
     discord
     google-chrome
     ripgrep
+    libreoffice
   ];
 
   programs.firefox.enable = true;
@@ -40,7 +41,11 @@
 
   programs.zellij = {
     enable = true;
-    settings = {};
+    enableZshIntegration = true;
+  };
+
+  home.file."./.config/zellij/config.kdl" = {
+    source = ../../modules/home/zellij/config.kdl;
   };
 
 
