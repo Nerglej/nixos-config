@@ -2,9 +2,9 @@
 
 with lib;
 let
-  cfg = config.virtualization.docker;
+  cfg = config.modules.system.virtualization.docker;
 in {
-  options.virtualization.docker = {
+  options.modules.system.virtualization.docker = {
     enable = mkEnableOption "Enable Docker";
 
     enableOnBoot = mkOption {

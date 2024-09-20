@@ -10,16 +10,10 @@ let
 in
 {
   imports = [       
-    ../../modules/system/hardware/time.nix
-    ../../modules/system/hardware/printing.nix
-    ../../modules/system/hardware/bluetooth.nix
-    ../../modules/system/hardware/power.nix
-    # ../../system/hardware/fingerprint-reader.nix
-
     ( import ../../modules/system/config/locale.nix { locale = systemSettings.locale; } )
-    
     ../../modules/system
   ];
+
 
   # Fix nix path
   nix.nixPath = [
@@ -93,10 +87,18 @@ in
 
     apps.steam.enable = true;
     apps.spotify.enable = true;
+
+    virtualization.docker.enable = true;
+    virtualization.docker.users = ["${builtins.head host.users }"];
+
+    hardware.printing.enable = true;
+    hardware.power.enable = true;
   };
 
-  virtualization.docker.enable = true;
-  virtualization.docker.users = ["${builtins.head host.users }"];
+  services.timesyncd.enable = true;
+
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

@@ -5,6 +5,7 @@
     ./apps
     ./virtualization
     ./shell
+    ./hardware
   ];
 }
 
