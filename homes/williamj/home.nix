@@ -39,18 +39,11 @@
     };
   };
 
-  programs.zellij = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  home.file."./.config/zellij/config.kdl" = {
-    source = ../../modules/home/zellij/config.kdl;
-  };
-
+  modules.home.apps.zellij.enable = true;
 
   imports = [
     ../../modules/home/apps/neovim
+    ../../modules/home
   ];
 
   home.stateVersion = "24.05";

@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./system
-    ./home
+    ./apps
+    ./zellij
   ];
 }
