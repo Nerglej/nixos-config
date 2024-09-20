@@ -3,6 +3,7 @@
 {
   imports = [
     ./apps
+    ./neovim
     ./zellij
   ];
 }

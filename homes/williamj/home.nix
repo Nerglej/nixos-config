@@ -39,10 +39,12 @@
     };
   };
 
-  modules.home.apps.zellij.enable = true;
+  modules.home.apps = {
+    neovim.enable = true;
+    zellij.enable = true;
+  };
 
   imports = [
-    ../../modules/home/apps/neovim
     ../../modules/home
   ];
 
