@@ -1,9 +1,9 @@
 { lib, config, pkgs, ... }:
 with lib;
 let
-  cfg = config.shell.zsh;
+  cfg = config.modules.system.shell.zsh;
 in {
-  options.shell.zsh = {
+  options.modules.system.shell.zsh = {
     enable = mkEnableOption "Enable the zsh shell";
 
     defaultShell = mkOption {

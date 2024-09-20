@@ -18,7 +18,7 @@ in
 
     ( import ../../modules/system/config/locale.nix { locale = systemSettings.locale; } )
     
-    ../../modules
+    ../../modules/system
   ];
 
   # Fix nix path
@@ -84,19 +84,19 @@ in
   # Java Development for school
   environment.etc."jdk22".source = pkgs.jdk22;
 
-  shell.zsh.enable = true;
-  shell.zsh.defaultShell = true;
+  modules.system = {
+    shell.zsh.enable = true;
+    shell.zsh.defaultShell = true;
 
-  shell.nushell.enable = true;
+    shell.nushell.enable = true;
+    shell.direnv.enable = true;
 
-  shell.direnv.enable = true;
+    apps.steam.enable = true;
+    apps.spotify.enable = true;
+  };
 
   virtualization.docker.enable = true;
   virtualization.docker.users = ["${builtins.head host.users }"];
-
-  apps.steam.enable = true;
-  apps.spotify.enable = true;
-
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

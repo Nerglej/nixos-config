@@ -1,9 +1,9 @@
 { lib, config, pkgs, ... }:
 with lib;
 let 
-  cfg = config.apps.steam;
+  cfg = config.modules.system.apps.steam;
 in {
-  options.apps.steam = {
+  options.modules.system.apps.steam = {
     enable = mkEnableOption "Enable steam with defaults";
   };
 

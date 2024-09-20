@@ -1,9 +1,9 @@
 { lib, config, ... }:
 with lib;
 let
-  cfg = config.shell.direnv;
+  cfg = config.modules.system.shell.direnv;
 in {
-  options.shell.direnv = {
+  options.modules.system.shell.direnv = {
     enable = mkEnableOption "Enable direnv";
     
     silent = mkOption {
