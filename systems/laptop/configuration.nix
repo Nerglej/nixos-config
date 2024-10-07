@@ -51,6 +51,7 @@ in
       uid = 1000;
     }; 
   };
+
   
   environment.systemPackages = with pkgs; [
     # "Essential" system packages
@@ -68,18 +69,9 @@ in
     wl-clipboard
     
     # Apps with no config currently
-    jdk22
-    jetbrains.idea-ultimate
-    jetbrains.idea-community
-    gradle
-    maven
-
     obsidian
     rquickshare
   ];
-
-  # Java Development for school
-  environment.etc."jdk22".source = pkgs.jdk22;
 
   modules.system = {
     shell.zsh.enable = true;
@@ -96,6 +88,8 @@ in
 
     hardware.printing.enable = true;
     hardware.power.enable = true;
+
+    school.java.enable = true;
   };
 
   services.timesyncd.enable = true;

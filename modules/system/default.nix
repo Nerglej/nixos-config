@@ -6,6 +6,8 @@
     ./virtualization
     ./shell
     ./hardware
+
+    ./school
   ];
 }
 
