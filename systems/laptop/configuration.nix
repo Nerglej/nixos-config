@@ -71,6 +71,9 @@ in
     jdk22
     jetbrains.idea-ultimate
     jetbrains.idea-community
+    gradle
+    maven
+
     obsidian
     rquickshare
   ];
