@@ -82,6 +82,7 @@ in
 
     apps.steam.enable = true;
     apps.spotify.enable = true;
+    apps.ollama.enable = true;
 
     virtualization.docker.enable = true;
     virtualization.docker.users = ["${builtins.head host.users }"];

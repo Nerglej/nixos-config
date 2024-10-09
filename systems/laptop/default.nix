@@ -1,4 +1,4 @@
-{ host, ... }:
+{ host, pkgs-unstable, ... }:
 
 {
   system = "x86_64-linux";
@@ -7,6 +7,6 @@
     ./configuration.nix 
   ];
   specialArgs = {
-    inherit host;
+    inherit host pkgs-unstable;
   };
 }

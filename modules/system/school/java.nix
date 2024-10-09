@@ -4,7 +4,7 @@ with lib;
 let
   cfg = config.modules.system.school.java;
 
-  jdkVersion = "22";
+  jdkVersion = "21";
 
   jdk = pkgs."jdk${jdkVersion}";
   # maven = pkgs.maven.override { jdk_headless = jdk; };
@@ -17,6 +17,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       jdk
+      jdk22
       maven
       gradle
 
@@ -26,5 +27,6 @@ in {
     ];
 
     environment.etc."jdk${jdkVersion}".source = jdk;
+    environment.etc."jdk22".source = pkgs.jdk22;
   };
 }

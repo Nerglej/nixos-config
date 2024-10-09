@@ -3,6 +3,8 @@
   
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     
     home-manager = { 
@@ -11,10 +13,22 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-wsl, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, nixos-wsl, home-manager, ... }:
   let 
+    system = "x86_64-linux";
+
     pkgs = import nixpkgs {
-      system = "x86_64-linux";
+      inherit system;
+
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = (_: true);
+      };
+    };
+
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit system;
+
       config = {
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
@@ -39,7 +53,7 @@
 
     mkNixHost = { host }: 
       nixpkgs.lib.nixosSystem 
-        (import ./systems/${ host.system } { inherit host nixos-wsl; });
+        (import ./systems/${ host.system } { inherit host nixos-wsl pkgs-unstable; });
 
     mkNixConfig = { hosts }: 
       builtins.listToAttrs (
