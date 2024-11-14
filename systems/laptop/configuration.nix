@@ -64,7 +64,6 @@ in
     unzip
     
     # Terminal
-    foot
     lazygit
     wl-clipboard
     

@@ -15,12 +15,17 @@
     google-chrome
     ripgrep
     libreoffice
+
+    # Fonts
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "CommitMono" ]; })
+
   ];
 
-  programs.firefox.enable = true;
-  programs.thunderbird = {
+  programs.foot = {
     enable = true;
-    profiles = {};
+    settings.main = {
+      font = "CommitMono Nerd Font:size=10";
+    };
   };
 
   programs.git = {
@@ -39,10 +44,21 @@
     };
   };
 
-  modules.home.apps = {
-    neovim.enable = true;
+  programs.firefox.enable = true;
+  programs.thunderbird = {
+    enable = true;
+    profiles = {};
+  };
+
+  modules.home.shell = {
+    zsh.enable = true;
     zellij.enable = true;
   };
+
+  modules.home.apps = {
+    neovim.enable = true;
+  };
+
 
   imports = [
     ../../modules/home

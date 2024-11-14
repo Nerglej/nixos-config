@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ./neovim
+    ./zsh
     ./zellij
+    ./neovim
   ];
 }
