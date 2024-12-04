@@ -4,10 +4,12 @@ with lib;
 let
   cfg = config.modules.system.school.java;
 
-  jdkVersion = "21";
+  # Using version 21 instead of the newest, so scenebuilder want to work
+  defaultVersion = "21";
 
-  jdk = pkgs."jdk${jdkVersion}";
-  # maven = pkgs.maven.override { jdk_headless = jdk; };
+  jdk = pkgs."jdk${defaultVersion}";
+
+  maven = pkgs.maven.override { jdk = jdk; };
   gradle = pkgs.gradle.override { java = jdk; };
 in {
   options.modules.system.school.java = {
@@ -21,12 +23,12 @@ in {
       maven
       gradle
 
-      jetbrains.idea-ultimate
       jetbrains.idea-community
+      jetbrains.idea-ultimate
       scenebuilder
     ];
 
-    environment.etc."jdk${jdkVersion}".source = jdk;
+    environment.etc."${defaultVersion}".source = jdk;
     environment.etc."jdk22".source = pkgs.jdk22;
   };
 }
