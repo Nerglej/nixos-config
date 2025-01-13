@@ -64,7 +64,7 @@
     ../../modules/home
   ];
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 
   xdg.enable = true;
   xdg.mime.enable = true;

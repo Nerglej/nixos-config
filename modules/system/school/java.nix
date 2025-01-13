@@ -9,7 +9,7 @@ let
 
   jdk = pkgs."jdk${defaultVersion}";
 
-  maven = pkgs.maven.override { jdk = jdk; };
+  maven = pkgs.maven.override { jdk_headless = jdk; };
   gradle = pkgs.gradle.override { java = jdk; };
 in {
   options.modules.system.school.java = {
@@ -19,7 +19,6 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       jdk
-      jdk22
       maven
       gradle
 
@@ -29,6 +28,5 @@ in {
     ];
 
     environment.etc."${defaultVersion}".source = jdk;
-    environment.etc."jdk22".source = pkgs.jdk22;
   };
 }

@@ -8,7 +8,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    hardware.opengl.driSupport32Bit = true;
+    hardware.graphics.enable32Bit = true;
 
     programs.steam = {
       enable = true;

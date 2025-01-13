@@ -22,7 +22,7 @@ in
     "/nix/var/nix/profiles/per-user/root/channels"
   ];
   
-  nix.package = pkgs.nixFlakes;
+  nix.package = pkgs.nixVersions.stable;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -66,44 +66,66 @@ in
     # Terminal
     lazygit
     wl-clipboard
+    nushell
     
     # Apps with no config currently
     obsidian
-    rquickshare
   ];
 
   modules.system = {
-    shell.zsh.enable = true;
-    shell.zsh.defaultShell = true;
-
-    shell.nushell.enable = true;
-    shell.direnv.enable = true;
-
     apps.steam.enable = true;
     apps.spotify.enable = true;
     apps.ollama.enable = true;
 
-    virtualization.docker.enable = true;
-    virtualization.docker.users = ["${builtins.head host.users }"];
-
     hardware.printing.enable = true;
-    hardware.power.enable = true;
+    hardware.power.enable = false;
 
     school.java.enable = true;
   };
 
+  # zsh
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    syntaxHighlighting.enable = true;
+    ohMyZsh = {
+      enable = true;
+      theme = "robbyrussell";
+      plugins = [
+        "history"
+        "rust"
+      ];
+    };
+  };
+
+  # direnv
+  programs.direnv.enable = true;
+  programs.direnv.silent = false;
+
+  # VM's
+  programs.virt-manager.enable = true;
+  users.groups.libvertd.members = ["${ builtins.head host.users }"];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+  
+  # Docker
+  virtualisation.docker.enable = true;
+  virtualisation.docker.enableOnBoot = false;
+  users.extraGroups.docker.members = ["${ builtins.head host.users }"];
+
   services.timesyncd.enable = true;
 
+  # Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
+  # KDE Plasma Desktop Environment
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     oxygen
   ];
@@ -119,8 +141,7 @@ in
   # Configure console keymap
   console.keyMap = "dk-latin1";
 
-  # Enable sound with pipewire.
-  sound.enable = true;
+  # Enable pipewire for sound
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -130,5 +151,5 @@ in
     pulse.enable = true;
   };
 
-  system.stateVersion = "24.05"; 
+  system.stateVersion = "24.11"; 
 }
