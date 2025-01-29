@@ -1,4 +1,4 @@
-{ pkgs, host, ... }:
+{ pkgs, pkgs-unstable, host, ... }:
 
 let 
   systemSettings = {
@@ -70,13 +70,11 @@ in
     
     # Apps with no config currently
     obsidian
+    spotify
+    pkgs-unstable.ollama
   ];
 
   modules.system = {
-    apps.steam.enable = true;
-    apps.spotify.enable = true;
-    apps.ollama.enable = true;
-
     hardware.printing.enable = true;
     hardware.power.enable = false;
 
@@ -115,6 +113,18 @@ in
   users.extraGroups.docker.members = ["${ builtins.head host.users }"];
 
   services.timesyncd.enable = true;
+
+  # Steam
+  hardware.graphics.enable32Bit = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
+
+  # Spotify - Discover casting devices and something something filesystem on network
+  networking.firewall.allowedTCPPorts = [ 57621 ];
+  networking.firewall.allowedUDPPorts = [ 5353 ];
 
   # Bluetooth
   hardware.bluetooth.enable = true;

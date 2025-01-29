@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./apps
     ./hardware
 
     ./school
