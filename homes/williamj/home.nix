@@ -9,7 +9,6 @@
 
   # Custom programs and apps
   home.packages = with pkgs; [
-    git
     zoom-us
     discord
     google-chrome
