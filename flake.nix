@@ -1,90 +1,100 @@
 {
-  description = "Williams NixOS flake";
-  
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    description = "Williams NixOS flake";
 
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    
-    home-manager = { 
-      url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
+    inputs = {
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+        nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, nixos-wsl, home-manager, ... }:
-  let 
-    system = "x86_64-linux";
+        nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
-    pkgs = import nixpkgs {
-      inherit system;
-
-      config = {
-        allowUnfree = true;
-        allowUnfreePredicate = (_: true);
-      };
+        home-manager.url =  "github:nix-community/home-manager/release-24.11";
+        home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pkgs-unstable = import nixpkgs-unstable {
-      inherit system;
+    outputs = { 
+        self, 
+        nixpkgs, 
+        nixpkgs-unstable, 
+        nixos-wsl, 
+        home-manager, 
+        ... 
+    } @ inputs: let 
+        inherit (self) outputs;
 
-      config = {
-        allowUnfree = true;
-        allowUnfreePredicate = (_: true);
-      };
-    };
-
-    hosts = [
-      { 
-        system = "laptop"; 
-        users = [
-          "williamj"
-        ]; 
-      }
-      { 
-        system = "wsl"; 
-        users = [
-          "williamj"
+        # All supported systems
+        systems = [
+            "aarch64-linux"
+            "i686-linux"
+            "x86_64-linux"
+            "aarch64-darwin"
+            "x86_64-darwin"
         ];
-      }
-    ];
 
+        forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    mkNixHost = { host }: 
-      nixpkgs.lib.nixosSystem 
-        (import ./systems/${ host.system } { inherit host nixos-wsl pkgs-unstable; });
+        system = "x86_64-linux";
 
-    mkNixConfig = { hosts }: 
-      builtins.listToAttrs (
-        builtins.map (host: { 
-            name = host.system; 
-            value = mkNixHost { 
-              inherit host; 
+        pkgs = import nixpkgs {
+            inherit system;
+
+            config = {
+                allowUnfree = true;
+                allowUnfreePredicate = (_: true);
             };
-          }
-        ) hosts
-      );
+        };
 
-    mkHomeManagerUser = { user }:
-      home-manager.lib.homeManagerConfiguration
-        (import ./homes/${ user } { inherit user pkgs inputs; });
+        pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
 
-    mkHomeManagerConfig = { hosts }:
-      builtins.listToAttrs (
-        builtins.concatLists (
-          builtins.map (host: (
-              builtins.map (user: {
-                  name = "${user}@${host.system}";
-                  value = mkHomeManagerUser { inherit user; };
-                }
-              ) host.users
-            )
-          ) hosts
-        )
-      );
-  in {
-    nixosConfigurations = mkNixConfig { inherit hosts; };
-    homeConfigurations = mkHomeManagerConfig { inherit hosts; };
-  };
+            config = {
+                allowUnfree = true;
+                allowUnfreePredicate = (_: true);
+            };
+        };
+
+        hosts = [
+            { 
+                system = "laptop"; 
+                users = [
+                    "williamj"
+                ]; 
+            }
+            { 
+                system = "wsl"; 
+                users = [
+                    "williamj"
+                ];
+            }
+        ];
+    in {
+        # Custom packages
+        packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+        # Formatter for nix files
+        formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+        overlays = import ./overlays { inherit inputs; };
+
+        # NixOS config entrypoint
+        nixosConfigurations = {
+            laptop = nixpkgs.lib.nixosSystem {
+                specialArgs = { inherit inputs outputs; };
+                modules = [
+                    ./nixos/laptop
+                ];
+            };
+        };
+
+        # Standalone home-manager configuration entrypoint
+        homeConfigurations = {
+            "williamj@laptop" = home-manager.lib.homeManagerConfiguration {
+                pkgs = nixpkgs.legacyPackages.x86_64-linux;
+                extraSpecialArgs = { inherit inputs outputs; };
+                modules = [
+                    ./home-manager/williamj
+                ];
+            };
+        };
+        # nixosConfigurations = mkNixConfig { inherit hosts; };
+        # homeConfigurations = mkHomeManagerConfig { inherit hosts; };
+    };
 }
