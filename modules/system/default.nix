@@ -1,10 +1,7 @@
-{ ... }:
-
-{
+{...}: {
   imports = [
     ./hardware
 
     ./school
   ];
 }
-

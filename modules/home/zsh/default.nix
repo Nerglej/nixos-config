@@ -1,6 +1,9 @@
-{ lib, config, ... }:
-with lib;
-let
+{
+  lib,
+  config,
+  ...
+}:
+with lib; let
   cfg = config.modules.home.shell.zsh;
 in {
   options.modules.home.shell.zsh = {

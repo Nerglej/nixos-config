@@ -1,13 +1,16 @@
-{ lib, config, pkgs, ... }:
-
-with lib;
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.modules.system.school.java;
 
-  jdk = (pkgs.jdk21.override { enableJavaFX = true; });
+  jdk = pkgs.jdk21.override {enableJavaFX = true;};
 
-  maven = pkgs.maven.override { jdk_headless = jdk; };
-  gradle = pkgs.gradle.override { java = jdk; };
+  maven = pkgs.maven.override {jdk_headless = jdk;};
+  gradle = pkgs.gradle.override {java = jdk;};
 in {
   options.modules.system.school.java = {
     enable = mkEnableOption "Enable java development for school";

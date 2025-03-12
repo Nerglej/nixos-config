@@ -1,6 +1,9 @@
-{ lib, config, ... }:
-with lib;
-let
+{
+  lib,
+  config,
+  ...
+}:
+with lib; let
   cfg = config.modules.system.hardware.printing;
 in {
   options.modules.system.hardware.printing = {

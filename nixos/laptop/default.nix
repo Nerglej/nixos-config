@@ -1,28 +1,27 @@
-{ 
-    inputs,
-    outputs,
-    lib,
-    config,
-    pkgs,
-    ...
-}: let 
-    systemSettings = {
-        system = "x86_64-linux";
-        hostname = "laptop";
-        timezone = "Europe/Copenhagen";
-        locale = "en_DK.UTF-8";
-    };
-in
 {
-  imports = [       
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  systemSettings = {
+    system = "x86_64-linux";
+    hostname = "laptop";
+    timezone = "Europe/Copenhagen";
+    locale = "en_DK.UTF-8";
+  };
+in {
+  imports = [
     ./hardware-configuration.nix
-    ( import ../../modules/system/config/locale.nix { locale = systemSettings.locale; } )
+    (import ../../modules/system/config/locale.nix {locale = systemSettings.locale;})
     ../../modules/system
   ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ outputs.overlays.unstable-packages ];
+  nixpkgs.overlays = [outputs.overlays.unstable-packages];
 
   # Fix nix path
   nix.nixPath = [
@@ -30,7 +29,7 @@ in
     "nixos-config=$HOME/dotfiles/system/configuration.nix"
     "/nix/var/nix/profiles/per-user/root/channels"
   ];
-  
+
   nix.package = pkgs.nixVersions.stable;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
@@ -39,25 +38,27 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
+
   # Networking
-  networking.hostName = systemSettings.hostname; 
+  networking.hostName = systemSettings.hostname;
   networking.networkmanager.enable = true;
 
-  # Locale 
+  # Locale
   time.timeZone = systemSettings.timezone;
 
   # User account
   users.users = {
     "williamj" = {
-        isNormalUser = true;
-        description = "William Jelgren";
-        extraGroups = ["networkmanager" "wheel"];
-        uid = 1000;
-    }; 
+      isNormalUser = true;
+      description = "William Jelgren";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+      uid = 1000;
+    };
   };
 
-  
   environment.systemPackages = with pkgs; [
     # "Essential" system packages
     home-manager
@@ -67,12 +68,12 @@ in
     curl
     gzip
     unzip
-    
+
     # Terminal
     lazygit
     wl-clipboard
     nushell
-    
+
     # Apps with no config currently
     obsidian
     spotify
@@ -111,7 +112,7 @@ in
   users.groups.libvertd.members = ["williamj"];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
-  
+
   # Docker
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = false;
@@ -128,8 +129,8 @@ in
   };
 
   # Spotify - Discover casting devices and something something filesystem on network
-  networking.firewall.allowedTCPPorts = [ 57621 ];
-  networking.firewall.allowedUDPPorts = [ 5353 ];
+  networking.firewall.allowedTCPPorts = [57621];
+  networking.firewall.allowedUDPPorts = [5353];
 
   # Bluetooth
   hardware.bluetooth.enable = true;
@@ -145,7 +146,7 @@ in
     oxygen
   ];
 
-  services.xserver.excludePackages = [ pkgs.xterm ];
+  services.xserver.excludePackages = [pkgs.xterm];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -166,5 +167,5 @@ in
     pulse.enable = true;
   };
 
-  system.stateVersion = "24.11"; 
+  system.stateVersion = "24.11";
 }

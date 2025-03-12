@@ -1,6 +1,10 @@
-{ lib, config, pkgs, ... }:
-with lib;
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.modules.home.apps.neovim;
 in {
   options.modules.home.apps.neovim = {
@@ -28,7 +32,7 @@ in {
       csharp-ls
 
       # eslint (js and ts), css, html markdown and json
-      vscode-langservers-extracted    
+      vscode-langservers-extracted
     ];
 
     home.file."./.config/nvim/" = {

@@ -1,6 +1,9 @@
-{ lib, config, ... }:
-with lib;
-let
+{
+  lib,
+  config,
+  ...
+}:
+with lib; let
   cfg = config.modules.home.shell.zellij;
 in {
   options.modules.home.shell.zellij = {
