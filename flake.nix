@@ -5,18 +5,22 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    alejandra.url = "github:kamadorueda/alejandra/3.1.0";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 
   outputs = {
     self,
     nixpkgs,
     nixpkgs-unstable,
-    nixos-wsl,
     home-manager,
+    alejandra,
+    nixos-wsl,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -35,7 +39,7 @@
     # Custom packages
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     # Formatter for nix files
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    formatter = forAllSystems (system: alejandra.defaultPackage.${system});
 
     overlays = import ./overlays {inherit inputs;};
 
@@ -45,6 +49,14 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/laptop
+        ];
+      };
+
+      wsl = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          nixos-wsl.nixosModules.default
+          ./nixos/wsl
         ];
       };
     };

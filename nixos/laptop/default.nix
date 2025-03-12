@@ -7,7 +7,6 @@
   ...
 }: let
   systemSettings = {
-    system = "x86_64-linux";
     hostname = "laptop";
     timezone = "Europe/Copenhagen";
     locale = "en_DK.UTF-8";
