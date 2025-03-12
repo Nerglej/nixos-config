@@ -71,7 +71,5 @@
         ];
       };
     };
-    # nixosConfigurations = mkNixConfig { inherit hosts; };
-    # homeConfigurations = mkHomeManagerConfig { inherit hosts; };
   };
 }
