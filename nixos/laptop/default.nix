@@ -23,7 +23,7 @@ in {
   nixpkgs.overlays = [outputs.overlays.unstable-packages];
 
   nix.package = pkgs.nixVersions.stable;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.channel.enable = false;
 
   # Bootloader.
@@ -33,6 +33,17 @@ in {
   # Networking
   networking.hostName = systemSettings.hostname;
   networking.networkmanager.enable = true;
+
+  # Firewall
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      57621 # Spotify
+    ];
+    allowedUDPPorts = [
+      5353 # Spotify
+    ];
+  };
 
   # Locale
   time.timeZone = systemSettings.timezone;
@@ -136,18 +147,6 @@ in {
 
   # KDE Connect
   programs.kdeconnect.enable = true;
-
-  # Firewall config
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [
-      57621 # Spotify
-    ];
-    allowedUDPPorts = [
-      5353 # Spotify
-    ];
-
-  };
 
   services.xserver.excludePackages = [pkgs.xterm];
 
