@@ -22,17 +22,9 @@ in {
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [outputs.overlays.unstable-packages];
 
-  # Fix nix path
-  nix.nixPath = [
-    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-    "nixos-config=$HOME/dotfiles/system/configuration.nix"
-    "/nix/var/nix/profiles/per-user/root/channels"
-  ];
-
   nix.package = pkgs.nixVersions.stable;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.channel.enable = false;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -53,6 +45,8 @@ in {
       extraGroups = [
         "networkmanager"
         "wheel"
+        "docker"
+        "libvirtd"
       ];
       uid = 1000;
     };
@@ -109,14 +103,12 @@ in {
 
   # VM's
   programs.virt-manager.enable = true;
-  users.groups.libvertd.members = ["williamj"];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
   # Docker
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = false;
-  users.extraGroups.docker.members = ["williamj"];
 
   services.timesyncd.enable = true;
 
