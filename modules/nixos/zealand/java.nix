@@ -5,15 +5,15 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.system.school.java;
+  cfg = config.zealand.java;
 
   jdk = pkgs.jdk21.override {enableJavaFX = true;};
 
   maven = pkgs.maven.override {jdk_headless = jdk;};
   gradle = pkgs.gradle.override {java = jdk;};
 in {
-  options.modules.system.school.java = {
-    enable = mkEnableOption "Enable java development for school";
+  options.zealand.java = {
+    enable = mkEnableOption "Enable java development for Zealand";
   };
 
   config = mkIf cfg.enable {

@@ -13,9 +13,9 @@
   };
 in {
   imports = [
+    outputs.nixosModules.zealand
+    outputs.nixosModules.hardware
     ./hardware-configuration.nix
-    (import ../../modules/system/config/locale.nix {locale = systemSettings.locale;})
-    ../../modules/system
   ];
 
   # Allow unfree packages
@@ -25,6 +25,8 @@ in {
   nix.package = pkgs.nixVersions.stable;
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.channel.enable = false;
+
+  i18n.defaultLocale = systemSettings.locale;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -85,11 +87,11 @@ in {
     inputs.zen-browser.packages."x86_64-linux".default
   ];
 
+  zealand.java.enable = true;
+
   modules.system = {
     hardware.printing.enable = true;
     hardware.power.enable = false;
-
-    school.java.enable = true;
   };
 
   # zsh
