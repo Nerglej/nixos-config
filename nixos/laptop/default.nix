@@ -128,10 +128,6 @@ in {
     dedicatedServer.openFirewall = true;
   };
 
-  # Spotify - Discover casting devices and something something filesystem on network
-  networking.firewall.allowedTCPPorts = [57621];
-  networking.firewall.allowedUDPPorts = [5353];
-
   # Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
@@ -145,6 +141,21 @@ in {
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     oxygen
   ];
+
+  # KDE Connect
+  programs.kdeconnect.enable = true;
+
+  # Firewall config
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      57621 # Spotify
+    ];
+    allowedUDPPorts = [
+      5353 # Spotify
+    ];
+
+  };
 
   services.xserver.excludePackages = [pkgs.xterm];
 
