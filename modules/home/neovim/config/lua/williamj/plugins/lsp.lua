@@ -12,7 +12,8 @@ return {
 
       -- Snippets
       {"L3MON4D3/LuaSnip"},
-      {"rafamadriz/friendly-snippets"}
+      {"rafamadriz/friendly-snippets"},
+      {"nvim-java/nvim-java"}
     },
     config = function()
       local lsp_zero = require('lsp-zero')
@@ -27,6 +28,7 @@ return {
 
       lspconfig.rust_analyzer.setup({})
       lspconfig.csharp_ls.setup({})
+      lspconfig.jdtls.setup({})
 
       -- Javascript I guess
       -- lspconfig.tsserver.setup({})

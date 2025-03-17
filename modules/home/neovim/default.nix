@@ -31,6 +31,8 @@ in {
       rust-analyzer
       csharp-ls
 
+      jdt-language-server
+
       # eslint (js and ts), css, html markdown and json
       vscode-langservers-extracted
     ];
