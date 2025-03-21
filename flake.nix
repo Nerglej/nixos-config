@@ -11,6 +11,9 @@
     alejandra.url = "github:kamadorueda/alejandra/3.1.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
+    nvf.url = "github:notashelf/nvf";
+    nvf.inputs.nixpkgs.follows = "nixpkgs";
+
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";

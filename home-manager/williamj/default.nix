@@ -1,5 +1,6 @@
 {
   inputs,
+  outputs,
   lib,
   config,
   pkgs,
@@ -17,7 +18,9 @@
   };
 in {
   imports = [
-    ../../modules/home
+    outputs.homeManagerModules.neovim
+    outputs.homeManagerModules.zellij
+    outputs.homeManagerModules.zsh
   ];
 
   nixpkgs = {
