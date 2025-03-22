@@ -25,6 +25,7 @@
     nixpkgs-unstable,
     home-manager,
     alejandra,
+    nvf,
     nixos-wsl,
     ...
   } @ inputs: let
@@ -75,6 +76,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
+          nvf.homeManagerModules.default
           ./home-manager/williamj
         ];
       };
