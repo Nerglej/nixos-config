@@ -18,8 +18,8 @@
   };
 in {
   imports = [
-    outputs.homeManagerModules.neovim
-    # outputs.homeManagerModules.nvf
+    # outputs.homeManagerModules.neovim
+    outputs.homeManagerModules.nvf
     outputs.homeManagerModules.zellij
     outputs.homeManagerModules.zsh
   ];
@@ -88,9 +88,9 @@ in {
     zsh.enable = true;
     zellij.enable = true;
   };
-   modules.home.apps = {
-     neovim.enable = true;
-   };
+  # modules.home.apps = {
+  #   neovim.enable = true;
+  # };
 
   xdg.enable = true;
   xdg.mime.enable = true;

@@ -297,7 +297,7 @@
         "mnw": "mnw",
         "nil": "nil",
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-unstable"
         ],
         "nmd": "nmd",
         "systems": "systems_2"

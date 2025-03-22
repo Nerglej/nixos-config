@@ -12,7 +12,7 @@
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
     nvf.url = "github:notashelf/nvf";
-    nvf.inputs.nixpkgs.follows = "nixpkgs";
+    nvf.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
@@ -64,7 +64,7 @@
       wsl = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          nixos-wsl.nixosModules.default
+          nixos-wsl.nixosModules.defaul
           ./nixos/wsl
         ];
       };
