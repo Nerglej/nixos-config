@@ -4,10 +4,9 @@
   pkgs,
   ...
 }: {
+  programs.nvf.enable = true;
+  programs.nvf.enableManpages = true;
   programs.nvf.settings.vim = {
-    nvf.enable = true;
-    nvf.enableManpages = true;
-
     viAlias = true;
     vimAlias = false;
 
@@ -198,5 +197,23 @@
 
     binds.whichKey.enable = true;
     mini.surround.enable = true;
+
+    lazy.plugins = {
+      undotree = {
+        package = pkgs.vimPlugins.undotree;
+
+        cmd = ["UndotreeToggle"];
+
+        keys = [
+          {
+            mode = "n";
+            key = "<leader>u";
+            action = "vim.cmd.UndotreeToggle";
+            lua = true;
+            desc = "Toggle undotree [Undotree]";
+          }
+        ];
+      };
+    };
   };
 }
