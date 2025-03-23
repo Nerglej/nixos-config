@@ -39,7 +39,7 @@
       {
         mode = "n";
         key = "N";
-        action = "nzzzv";
+        action = "Nzzzv";
       }
       {
         mode = "x";
@@ -126,10 +126,10 @@
     navigation.harpoon.mappings = {
       markFile = "<leader>a";
       listMarks = "<leader>h";
-      file1 = "<C-j>";
-      file2 = "<C-k>";
-      file3 = "<C-l>";
-      file4 = "<C-;>";
+      file1 = "<C-1>";
+      file2 = "<C-2>";
+      file3 = "<C-3>";
+      file4 = "<C-4>";
     };
 
     telescope.enable = true;
@@ -172,7 +172,16 @@
       };
     };
 
-    autocomplete.nvim-cmp.enable = true;
+    autocomplete.nvim-cmp = {
+        enable = true;
+        mappings = {
+            previous = "<C-k>";
+            next = "<C-j>";
+            confirm = "<C-l>";
+            # close = "<>";
+                
+        };
+    };
 
     # Supported languages
     languages = {
