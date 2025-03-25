@@ -206,6 +206,7 @@
 
     binds.whichKey.enable = true;
     mini.surround.enable = true;
+    # utility.images.image-nvim.enable = true;
 
     lazy.plugins = {
       undotree = {
@@ -222,6 +223,12 @@
             desc = "Toggle undotree [Undotree]";
           }
         ];
+      };
+    };
+
+    extraPlugins = with pkgs.vimPlugins; {
+      markview-nvim = {
+        package = markview-nvim;
       };
     };
   };
