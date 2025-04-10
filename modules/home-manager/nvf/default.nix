@@ -14,7 +14,7 @@
     theme = {
       enable = true;
       name = "gruvbox";
-            # style = "dark";
+      # style = "dark";
       style = "light";
     };
 
@@ -149,6 +149,7 @@
     # LSPs
     lsp = {
       enable = true;
+      formatOnSave = false;
       mappings = {
         hover = "K";
         goToDefinition = "gd";
@@ -174,15 +175,17 @@
     };
 
     autocomplete.nvim-cmp = {
-        enable = true;
-        mappings = {
-            previous = "<C-k>";
-            next = "<C-j>";
-            confirm = "<C-l>";
-            # close = "<>";
-                
-        };
+      enable = true;
+      mappings = {
+        previous = "<C-k>";
+        next = "<C-j>";
+        confirm = "<C-l>";
+        # close = "<>";
+      };
     };
+
+    formatter.conform-nvim.setupOpts.format_on_save = null;
+    formatter.conform-nvim.setupOpts.format_after_save = null;
 
     # Supported languages
     languages = {
@@ -200,7 +203,9 @@
       dart.enable = true;
       go.enable = true;
       lua.enable = true;
-      typst.enable = true;
+
+      # Enables conform-nvim which auto formats on save. I hate it.
+      typst.enable = false;
 
       wgsl.enable = false;
     };
