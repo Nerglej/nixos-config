@@ -61,6 +61,13 @@
         ];
       };
 
+      swift = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/swift
+        ];
+      };
+
       wsl = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
@@ -73,6 +80,15 @@
     # Standalone home-manager configuration entrypoint
     homeConfigurations = {
       "williamj@laptop" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          nvf.homeManagerModules.default
+          ./home-manager/williamj
+        ];
+      };
+
+      "williamj@swift" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
