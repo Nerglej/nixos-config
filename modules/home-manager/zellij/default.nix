@@ -19,5 +19,10 @@ in {
     home.file."./.config/zellij/config.kdl" = {
       source = ./config.kdl;
     };
+
+    home.file."./.config/zellij/layouts" = {
+      source = ./layouts;
+      recursive = true;
+    };
   };
 }

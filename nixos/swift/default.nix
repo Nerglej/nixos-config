@@ -39,6 +39,7 @@ in {
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
+      22 # OpenSSH
       57621 # Spotify
     ];
     allowedUDPPorts = [
@@ -142,6 +143,20 @@ in {
   hardware.graphics.extraPackages = [pkgs.nvidia-vaapi-driver];
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.open = true;
+
+  # OpenSSH
+
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+    settings = {
+      PasswordAuthentication = true;
+      AllowUsers = null; # Allows all users by default. Can be [ "user1" "user2" ]
+      UseDns = true;
+      X11Forwarding = false;
+      PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
+    };
+  };
 
   # KDE Plasma Desktop Environment
   services.displayManager.sddm.enable = true;
