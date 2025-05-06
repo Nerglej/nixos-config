@@ -84,7 +84,6 @@ in {
     obsidian
     spotify
     pkgs.unstable.ollama
-    inputs.zen-browser.packages."x86_64-linux".default
   ];
 
   modules.system = {
