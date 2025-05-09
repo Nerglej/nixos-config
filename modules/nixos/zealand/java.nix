@@ -24,16 +24,10 @@ in {
 
     environment.systemPackages = with pkgs; [
       jdk
-      javaPackages.openjfx21
-
       maven
       gradle
 
-      jetbrains.idea-community
       jetbrains.idea-ultimate
-
-      scenebuilder
-      libGL
     ];
 
     environment.etc."21".source = jdk;

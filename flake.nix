@@ -15,8 +15,6 @@
     nvf.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs = {
