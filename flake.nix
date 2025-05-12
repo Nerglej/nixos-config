@@ -52,17 +52,17 @@
 
     # NixOS config entrypoint
     nixosConfigurations = {
-      laptop = nixpkgs.lib.nixosSystem {
+      little = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/laptop
+          ./nixos/little
         ];
       };
 
-      swift = nixpkgs.lib.nixosSystem {
+      emperor = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/swift
+          ./nixos/emperor
         ];
       };
 
@@ -77,7 +77,7 @@
 
     # Standalone home-manager configuration entrypoint
     homeConfigurations = {
-      "williamj@laptop" = home-manager.lib.homeManagerConfiguration {
+      "williamj@little" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
@@ -86,7 +86,7 @@
         ];
       };
 
-      "williamj@swift" = home-manager.lib.homeManagerConfiguration {
+      "williamj@emperor" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [

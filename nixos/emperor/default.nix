@@ -7,7 +7,7 @@
   ...
 }: let
   systemSettings = {
-    hostname = "swift";
+    hostname = "emperor";
     timezone = "Europe/Copenhagen";
     locale = "en_DK.UTF-8";
   };

@@ -7,7 +7,7 @@
   ...
 }: let
   systemSettings = {
-    hostname = "laptop";
+    hostname = "little";
     timezone = "Europe/Copenhagen";
     locale = "en_DK.UTF-8";
   };
