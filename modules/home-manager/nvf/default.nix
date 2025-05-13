@@ -194,24 +194,29 @@
       enableTreesitter = true;
       enableExtraDiagnostics = true;
 
-      rust.enable = true;
       nix.enable = true;
-      sql.enable = true;
+
+      rust.enable = true;
+      rust.crates.enable = true;
+      csharp.enable = true;
       java.enable = true;
-      html.enable = true;
-      markdown.enable = true;
       dart.enable = true;
       go.enable = true;
       lua.enable = true;
 
-      # Enables conform-nvim which auto formats on save. I hate it.
-      typst.enable = false;
+      sql.enable = true;
 
-      wgsl.enable = false;
+      html.enable = true;
+      css.enable = true;
+
+      markdown.enable = true;
+      typst.enable = true;
     };
 
     binds.whichKey.enable = true;
     mini.surround.enable = true;
+
+    # Image-nvim doesn't work
     # utility.images.image-nvim.enable = true;
 
     lazy.plugins = {
