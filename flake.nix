@@ -14,6 +14,8 @@
     nvf.url = "github:notashelf/nvf";
     nvf.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
+    lan-mouse.url = "github:feschber/lan-mouse";
+
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 
@@ -24,6 +26,7 @@
     home-manager,
     alejandra,
     nvf,
+    lan-mouse,
     nixos-wsl,
     ...
   } @ inputs: let
@@ -82,6 +85,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           nvf.homeManagerModules.default
+          lan-mouse.homeManagerModules.default
           ./home-manager/williamj
         ];
       };
@@ -91,6 +95,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           nvf.homeManagerModules.default
+          lan-mouse.homeManagerModules.default
           ./home-manager/williamj
         ];
       };

@@ -1,7 +1,0 @@
-port = 4242
-
-[[clients]]
-position = "top"
-hostname = "emperor"
-activate_on_startup = true
-ips = ["192.168.68.120"]
