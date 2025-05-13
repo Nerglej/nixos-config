@@ -211,6 +211,7 @@
 
       markdown.enable = true;
       typst.enable = true;
+      typst.extensions.typst-preview-nvim.enable = true;
     };
 
     binds.whichKey.enable = true;
