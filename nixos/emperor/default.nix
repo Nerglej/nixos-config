@@ -9,7 +9,7 @@
   systemSettings = {
     hostname = "emperor";
     timezone = "Europe/Copenhagen";
-    locale = "en_DK.UTF-8";
+    locale = "en_US.UTF-8";
   };
 in {
   imports = [
