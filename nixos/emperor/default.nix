@@ -25,6 +25,8 @@ in {
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.channel.enable = false;
 
+  # Locale
+  time.timeZone = systemSettings.timezone;
   i18n.defaultLocale = systemSettings.locale;
 
   # Bootloader.
@@ -47,9 +49,6 @@ in {
       4242 # lan-mouse
     ];
   };
-
-  # Locale
-  time.timeZone = systemSettings.timezone;
 
   # User account
   users.users = {
@@ -153,7 +152,7 @@ in {
       PasswordAuthentication = true;
       AllowUsers = null; # Allows all users by default. Can be [ "user1" "user2" ]
       UseDns = true;
-      X11Forwarding = false;
+      X11Forwarding = true;
       PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
     };
   };
@@ -171,13 +170,10 @@ in {
   services.xserver.excludePackages = [pkgs.xterm];
 
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "dk";
-    variant = "";
-  };
+  services.xserver.xkb.layout = "us";
 
   # Configure console keymap
-  console.keyMap = "dk-latin1";
+  console.keyMap = "us";
 
   # Enable pipewire for sound
   hardware.pulseaudio.enable = false;
