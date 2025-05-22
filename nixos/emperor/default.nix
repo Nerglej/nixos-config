@@ -144,7 +144,6 @@ in {
   hardware.nvidia.open = true;
 
   # OpenSSH
-
   services.openssh = {
     enable = true;
     ports = [ 22 ];
