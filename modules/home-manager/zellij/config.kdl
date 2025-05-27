@@ -1,3 +1,5 @@
+show_startup_tips false
+
 keybinds clear-defaults=true {
   // Keybindings are seperated into modes
   normal {

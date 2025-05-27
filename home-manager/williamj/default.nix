@@ -51,13 +51,11 @@ in {
     libreoffice
 
     # Fonts
-    (nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-        "CommitMono"
-      ];
-    })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.commit-mono
   ];
+
+  fonts.fontconfig.enable = true;
 
   programs.home-manager.enable = true;
   programs.foot = {

@@ -24,7 +24,7 @@ in {
         ];
       };
 
-      initExtraFirst = "source ${./.zshrc}";
+      initContent = lib.mkBefore "source ${./.zshrc}";
     };
   };
 }
