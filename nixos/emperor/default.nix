@@ -105,6 +105,7 @@ in {
     curl
     gzip
     unzip
+    ripgrep
 
     # Terminal
     lazygit
@@ -112,8 +113,6 @@ in {
     nushell
 
     # Apps with no config currently
-    obsidian
-    spotify
     pkgs.unstable.ollama
   ];
 

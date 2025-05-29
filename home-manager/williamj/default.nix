@@ -47,8 +47,10 @@ in {
     zoom-us
     discord
     google-chrome
-    ripgrep
     libreoffice
+    obsidian
+    spotify
+    beeper
 
     # Fonts
     nerd-fonts.jetbrains-mono
