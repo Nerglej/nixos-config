@@ -147,11 +147,12 @@
           timeout = 300;
           on-timeout = "loginctl lock-session";
         }
-        {
-          timeout = 360;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on && brightnessctl -l -c backlight -m | cut -d , -f1 | while IFS= read -r dev; do brightnessctl -d $dev -r; done";
-        }
+        # DPMS on does not work
+        # {
+        #   timeout = 360;
+        #   on-timeout = "hyprctl dispatch dpms off";
+        #   on-resume = "hyprctl dispatch dpms on && brightnessctl -l -c backlight -m | cut -d , -f1 | while IFS= read -r dev; do brightnessctl -d $dev -r; done";
+        # }
       ];
     };
   };
