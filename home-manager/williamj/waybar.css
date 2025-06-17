@@ -1,0 +1,64 @@
+@define-color bg-color #ffffff;
+@define-color txt-color #000000;
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "CommitMono Nerd Font", "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+#workspaces, #window, #clock, #mode, #pulseaudio, #language, #privacy {
+    margin: 5px;
+    padding: 0 6px;
+    border-radius: 5px;
+}
+
+#clock, #mode, #pulseaudio, #language, #privacy {
+    opacity: 0.6;
+    color: @txt-color;
+    background-color: @bg-color;
+}
+
+window#waybar.empty #window {
+    background-color: transparent;
+}
+
+#privacy-item {
+    margin: 3px;
+}
+
+#workspaces {
+    margin: 5px;
+    padding: 2px 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+}
+
+#workspaces button {
+    background-color: rgba(200, 200, 200, 1);
+    opacity: 0.5;
+    border-radius: 3px;
+    padding: 0 0.7em 0 0.5em;
+    margin: 0.25em;
+    color: @txt-color;
+}
+
+#workspaces button:hover {
+    background: transparent;
+}
+
+#workspaces button.visible {
+    background-color: rgba(200, 200, 200, 1);
+    opacity: 1;
+}
+
+#workspaces button.active {
+    background-color: rgba(200, 200, 200, 1);
+    opacity: 1;
+}

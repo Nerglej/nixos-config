@@ -17,6 +17,12 @@
     lan-mouse.url = "github:feschber/lan-mouse";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs = {

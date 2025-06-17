@@ -1,9 +1,12 @@
 show_startup_tips false
 
+theme "gruvbox-dark"
+
 keybinds clear-defaults=true {
   // Keybindings are seperated into modes
   normal {
-    bind "Alt n" { NewPane ; }
+    bind "Alt n" { NewTab ; }
+    bind "Alt q" { CloseTab ; }
   }
 
   locked {
@@ -35,7 +38,7 @@ keybinds clear-defaults=true {
     bind "p"         { SwitchFocus ; SwitchToMode "Normal" ; }
     bind "r"         { SwitchToMode "RenamePane" ; PaneNameInput 0 ; }
     bind "w"         { ToggleFloatingPanes ; SwitchToMode "Normal" ; }
-    bind "x"         { CloseFocus ; SwitchToMode "Normal" ; }
+    bind "q"         { CloseFocus ; SwitchToMode "Normal" ; }
     bind "z"         { TogglePaneFrames ; SwitchToMode "Normal" ; }
   }
 
@@ -54,7 +57,7 @@ keybinds clear-defaults=true {
     bind "l"     { MoveTab "Right" ; }
     bind "n"     { NewTab ; SwitchToMode "Normal" ; }
     bind "r"     { SwitchToMode "RenameTab" ; TabNameInput 0 ; }
-    bind "x"     { CloseTab ; SwitchToMode "Normal" ; }
+    bind "q"     { CloseTab ; SwitchToMode "Normal" ; }
     bind "1"     { GoToTab 1 ; SwitchToMode "Normal" ; }
     bind "2"     { GoToTab 2 ; SwitchToMode "Normal" ; }
     bind "3"     { GoToTab 3 ; SwitchToMode "Normal" ; }

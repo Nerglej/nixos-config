@@ -12,17 +12,19 @@
     email = "william@jelgren.dk";
     editor = "nvim";
     terminal = "foot";
+    browser = "firefox";
     shellAliases = {
       ll = "ls -l";
     };
   };
 in {
   imports = [
-    # outputs.homeManagerModules.neovim
     outputs.homeManagerModules.lan-mouse
     outputs.homeManagerModules.nvf
     outputs.homeManagerModules.zellij
     outputs.homeManagerModules.zsh
+
+    ./hyprland.nix
   ];
 
   nixpkgs = {
@@ -32,58 +34,88 @@ in {
     };
   };
 
-  home.username = userSettings.username;
-  home.homeDirectory = "/home/${userSettings.username}";
-  home.shellAliases = userSettings.shellAliases;
-  home.sessionVariables = {
-    EDITOR = userSettings.editor;
-    TERMINAL = userSettings.terminal;
-    # SPAWNEDITOR = userSettings.spawnEditor;
-    # BROWSER = userSettings.browser;
+  home = {
+    inherit (userSettings) username;
+    inherit (userSettings) shellAliases;
+
+    homeDirectory = "/home/${userSettings.username}";
+    sessionVariables = {
+      EDITOR = userSettings.editor;
+      TERMINAL = userSettings.terminal;
+      BROWSER = userSettings.browser;
+      # SPAWNEDITOR = userSettings.spawnEditor;
+      MANPAGER = "${userSettings.editor} +Man!";
+    };
+
+    # Custom programs and apps
+    packages = with pkgs; [
+      # Apps
+      zoom-us
+      discord
+      google-chrome
+      libreoffice
+      obsidian
+      spotify
+      beeper
+      rmpc
+
+      # Fonts
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.commit-mono
+    ];
   };
 
-  # Custom programs and apps
-  home.packages = with pkgs; [
-    zoom-us
-    discord
-    google-chrome
-    libreoffice
-    obsidian
-    spotify
-    beeper
-
-    # Fonts
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.commit-mono
-  ];
+  services.mpd = {
+    enable = true;
+    musicDirectory = "~/Music";
+  };
 
   fonts.fontconfig.enable = true;
 
-  programs.home-manager.enable = true;
-  programs.foot = {
-    enable = true;
-    settings.main = {
-      font = "CommitMono Nerd Font:size=10";
+  programs = {
+    home-manager.enable = true;
+
+    foot = {
+      enable = true;
+      settings = {
+        main = {
+          font = "CommitMono Nerd Font:size=12";
+        };
+
+        colors.alpha = 0.8;
+      };
     };
-  };
-  programs.git = {
-    enable = true;
-    userName = userSettings.name;
-    userEmail = userSettings.email;
 
-    extraConfig = {
-      init.defaultBranch = "main";
+    git = {
+      enable = true;
+      userName = userSettings.name;
+      userEmail =
+        userSettings.email;
 
-      safe.directory = "/home/" + userSettings.username + "/.dotfiles";
+      extraConfig = {
+        init.defaultBranch = "main";
 
-      credential.helper = "${pkgs.git.override {withLibsecret = true;}}/bin/git-credential-libsecret";
+        safe.directory =
+          "/home/"
+          + userSettings.username
+          + "/.dotfiles";
+
+        credential.helper = "${pkgs.git.override {
+          withLibsecret =
+            true;
+        }}/bin/git-credential-libsecret";
+      };
     };
+
+    firefox.enable = true;
+    thunderbird = {
+      enable = true;
+      profiles = {};
+    };
+    rmpc.enable = true;
+
   };
-  programs.firefox.enable = true;
-  programs.thunderbird = {
-    enable = true;
-    profiles = {};
-  };
+
 
   modules.home.shell = {
     zsh.enable = true;

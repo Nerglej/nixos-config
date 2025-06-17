@@ -15,8 +15,8 @@
       theme = {
         enable = true;
         name = "gruvbox";
-        # style = "dark";
-        style = "light";
+        style = "dark";
+        # style = "light";
       };
 
       globals.mapleader = " ";
@@ -152,10 +152,19 @@
       git.enable = true;
       git.gitsigns.enable = false;
 
+      diagnostics = {
+        enable = true;
+        config = {
+          signs = true;
+        };
+      };
+
       # LSPs
       lsp = {
         enable = true;
         formatOnSave = false;
+        inlayHints.enable = false;
+
         mappings = {
           hover = "K";
           goToDefinition = "gd";
