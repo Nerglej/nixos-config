@@ -57,7 +57,6 @@ in {
       obsidian
       spotify
       beeper
-      rmpc
 
       # Fonts
       nerd-fonts.jetbrains-mono
@@ -68,6 +67,12 @@ in {
   services.mpd = {
     enable = true;
     musicDirectory = "~/Music";
+    extraConfig = ''
+      audio_output {
+        type "pipewire"
+        name "PipeWire Output"
+      }
+    '';
   };
 
   fonts.fontconfig.enable = true;
@@ -112,10 +117,16 @@ in {
       enable = true;
       profiles = {};
     };
-    rmpc.enable = true;
 
+    rmpc = {
+      enable = true;
+      config = builtins.readFile ./rmpc.ron;
+    };
   };
 
+  home.file.".config/rmpc/themes/theme.ron" = {
+    source = ./rmpc_theme.ron;
+  };
 
   modules.home.shell = {
     zsh.enable = true;
