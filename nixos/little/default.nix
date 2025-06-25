@@ -40,6 +40,7 @@ in {
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
+      22
       57621 # Spotify
     ];
     allowedUDPPorts = [
@@ -114,6 +115,9 @@ in {
   programs.direnv.enable = true;
   programs.direnv.silent = false;
 
+  # Hyprland
+  programs.hyprland.enable = true;
+
   # VM's
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
@@ -147,6 +151,29 @@ in {
     oxygen
   ];
 
+  services = {
+    # OpenSSH
+    openssh = {
+      enable = true;
+      ports = [22];
+      settings = {
+        PasswordAuthentication = true;
+        AllowUsers = null;
+        UseDns = true;
+        X11Forwarding = true;
+        PermitRootLogin = "prohibit-password";
+      };
+    };
+
+    # Enable pipewire for sound
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+  };
+
   # KDE Connect
   programs.kdeconnect.enable = true;
 
@@ -161,15 +188,8 @@ in {
   # Configure console keymap
   console.keyMap = "dk-latin1";
 
-  # Enable pipewire for sound
-  hardware.pulseaudio.enable = false;
+  # Pipewire realtime security
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   system.stateVersion = "24.11";
 }

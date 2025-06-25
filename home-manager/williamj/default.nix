@@ -19,12 +19,12 @@
   };
 in {
   imports = [
+    outputs.homeManagerModules.bemenu
+    outputs.homeManagerModules.hyprland
     outputs.homeManagerModules.lan-mouse
     outputs.homeManagerModules.nvf
     outputs.homeManagerModules.zellij
     outputs.homeManagerModules.zsh
-
-    ./hyprland.nix
   ];
 
   nixpkgs = {
@@ -64,15 +64,17 @@ in {
     ];
   };
 
-  services.mpd = {
-    enable = true;
-    musicDirectory = "~/Music";
-    extraConfig = ''
-      audio_output {
-        type "pipewire"
-        name "PipeWire Output"
-      }
-    '';
+  services = {
+    mpd = {
+      enable = true;
+      musicDirectory = "~/Music";
+      extraConfig = ''
+        audio_output {
+          type "pipewire"
+          name "PipeWire Output"
+        }
+      '';
+    };
   };
 
   fonts.fontconfig.enable = true;
