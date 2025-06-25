@@ -188,7 +188,13 @@
 
           modules-left = ["hyprland/workspaces"];
           modules-center = ["hyprland/window"];
-          modules-right = ["privacy" "hyprland/language" "pulseaudio" "clock"];
+          modules-right = ["tray" "privacy" "hyprland/language" "pulseaudio" "battery" "clock"];
+
+          "tray" = {
+            spacing = 10;
+          };
+
+          "battery" = {};
 
           "hyprland/workspaces" = {
             format = "{name} {windows}";
