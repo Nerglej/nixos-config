@@ -15,6 +15,8 @@
         ignorecase = true;
         width-factor = 0.3;
         center = true;
+        vim-normal-mode = true;
+        vim-esc-exits = true;
       };
     };
   };

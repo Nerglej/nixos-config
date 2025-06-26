@@ -101,6 +101,9 @@
       ];
 
       input = {
+        touchpad = {
+            natural_scroll = true;
+        };
         kb_layout = "us,dk";
         kb_options = [
           "caps:swapescape"

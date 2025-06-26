@@ -124,6 +124,10 @@ in {
       enable = true;
       config = builtins.readFile ./rmpc.ron;
     };
+
+    imv = {
+        enable = true;
+    };
   };
 
   home.file.".config/rmpc/themes/theme.ron" = {
