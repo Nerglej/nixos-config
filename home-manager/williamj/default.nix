@@ -61,7 +61,22 @@ in {
       # Fonts
       nerd-fonts.jetbrains-mono
       nerd-fonts.commit-mono
+
+      # Cursor
+      graphite-cursors
+      bibata-cursors
     ];
+  };
+
+  fonts.fontconfig.enable = true;
+
+  home.pointerCursor = {
+    enable = true;
+    hyprcursor.enable = true;
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
   };
 
   services = {
@@ -76,8 +91,6 @@ in {
       '';
     };
   };
-
-  fonts.fontconfig.enable = true;
 
   programs = {
     home-manager.enable = true;
@@ -126,7 +139,7 @@ in {
     };
 
     imv = {
-        enable = true;
+      enable = true;
     };
   };
 
