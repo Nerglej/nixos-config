@@ -58,7 +58,8 @@
                 ws = i + 1;
               in [
                 "$mod, code:1${toString i}, split-workspace, ${toString ws}"
-                "$mod SHIFT, code:1${toString i}, split-movetoworkspacesilent, ${toString ws}"
+                "$mod CTRL, code:1${toString i}, split-movetoworkspacesilent, ${toString ws}"
+                "$mod SHIFT, code:1${toString i}, split-movetoworkspace, ${toString ws}"
               ]
             )
             5)
@@ -102,7 +103,7 @@
 
       input = {
         touchpad = {
-            natural_scroll = true;
+          natural_scroll = true;
         };
         kb_layout = "us,dk";
         kb_options = [
@@ -132,8 +133,8 @@
   };
 
   home.file.".background-image" = {
-        source = ../../../fractal-flower.jpg;
-    };
+    source = ../../../fractal-flower.jpg;
+  };
 
   services = {
     hypridle = {

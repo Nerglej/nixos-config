@@ -33,14 +33,17 @@ in {
   time.timeZone = systemSettings.timezone;
   i18n.defaultLocale = systemSettings.locale;
 
-  # Bootloader.
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  boot = {
+    # Bootloader.
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
+    extraModulePackages = with config.boot.kernelPackages; [ddcci-driver];
+    kernelModules = ["i2c-dev" "ddcci_backlight"];
   };
 
-  boot.extraModulePackages = with config.boot.kernelPackages; [ddcci-driver];
-  boot.kernelModules = ["i2c-dev" "ddcci_backlight"];
   services.udev.extraRules = ''
     SUBSYSTEM=="i2c-dev", ACTION=="add",\
       ATTR{name}=="NVIDIA i2c adapter*",\
@@ -99,9 +102,8 @@ in {
       videoDrivers = ["nvidia"];
     };
 
-    # KDE Plasma
+    # Login screen thing
     displayManager.sddm.enable = true;
-    desktopManager.plasma6.enable = true;
 
     # OpenSSH
     openssh = {
@@ -145,13 +147,6 @@ in {
 
     # Apps with no config currently
     pkgs.unstable.ollama
-  ];
-
-  # KDE Plasma Desktop Environment
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    kdepim-runtime
-    oxygen
-    konsole
   ];
 
   users.defaultUserShell = pkgs.zsh;
