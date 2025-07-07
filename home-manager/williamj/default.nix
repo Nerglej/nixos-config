@@ -136,7 +136,12 @@ in {
       };
     };
 
-    password-store.enable = true;
+    password-store = {
+      enable = true;
+      settings = {
+        PASSWORD_STORE_DIR = "$HOME/.password-store";
+      };
+    };
     gpg.enable = true;
 
     firefox.enable = true;
