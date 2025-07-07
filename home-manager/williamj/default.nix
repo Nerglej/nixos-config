@@ -58,6 +58,8 @@ in {
       spotify
       beeper
 
+      pinentry-curses
+
       # Fonts
       nerd-fonts.jetbrains-mono
       nerd-fonts.commit-mono
@@ -89,6 +91,13 @@ in {
           name "PipeWire Output"
         }
       '';
+    };
+
+    gpg-agent = {
+      enable = true;
+      enableZshIntegration = true;
+      pinentry.package = pkgs.pinentry-curses;
+      pinentry.program = "pinentry-curses";
     };
   };
 
@@ -126,6 +135,9 @@ in {
         }}/bin/git-credential-libsecret";
       };
     };
+
+    password-store.enable = true;
+    gpg.enable = true;
 
     firefox.enable = true;
     thunderbird = {

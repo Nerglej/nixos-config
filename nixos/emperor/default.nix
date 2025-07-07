@@ -138,6 +138,7 @@ in {
     unzip
     ripgrep
     ddcutil
+    deploy-rs
 
     # Terminal
     lazygit
@@ -221,6 +222,8 @@ in {
       dedicatedServer.openFirewall = true;
     };
 
+    ssh.startAgent = true;
+
     hyprland.enable = true;
   };
 
@@ -230,8 +233,14 @@ in {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
 
-    docker.enable = true;
-    docker.enableOnBoot = false;
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+
+    oci-containers.backend = "podman";
   };
 
   # Configure console keymap
