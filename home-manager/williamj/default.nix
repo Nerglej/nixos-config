@@ -21,6 +21,7 @@ in {
   imports = [
     outputs.homeManagerModules.bemenu
     outputs.homeManagerModules.hyprland
+    outputs.homeManagerModules.swaync
     outputs.homeManagerModules.lan-mouse
     outputs.homeManagerModules.nvf
     outputs.homeManagerModules.zellij
@@ -101,9 +102,6 @@ in {
     };
 
     blueman-applet.enable = true;
-    swaync = {
-      enable = true;
-    };
   };
 
   programs = {
