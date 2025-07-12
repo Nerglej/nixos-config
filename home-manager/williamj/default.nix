@@ -99,6 +99,11 @@ in {
       pinentry.package = pkgs.pinentry-curses;
       pinentry.program = "pinentry-curses";
     };
+
+    blueman-applet.enable = true;
+    swaync = {
+      enable = true;
+    };
   };
 
   programs = {

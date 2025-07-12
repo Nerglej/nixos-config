@@ -172,6 +172,8 @@
   programs = {
     hyprlock = {
       enable = true;
+      settings = {
+      };
     };
 
     waybar = {
@@ -190,38 +192,99 @@
             "*"
           ];
 
-          modules-left = ["hyprland/workspaces"];
-          modules-center = ["hyprland/window"];
-          modules-right = ["tray" "privacy" "hyprland/language" "pulseaudio" "battery" "clock"];
-
-          "tray" = {
-            spacing = 10;
-          };
-
-          "battery" = {};
+          modules-left = ["custom/notification" "clock" "tray"];
+          modules-center = ["hyprland/workspaces"];
+          modules-right = ["group/expand" "bluetooth" "network" "battery"];
 
           "hyprland/workspaces" = {
-            format = "{name} {windows}";
+            format = "{icon}";
             format-icons = {
-              urgent = "";
               active = "";
-              visible = "";
-              default = "";
-              empty = "";
+              default = "";
+              empty = "";
             };
-            window-rewrite-default = "";
-            window-rewrite = {
-              "class<firefox>" = "";
-              "foot" = "";
-              "class<discord>" = "";
-              "class<spotify>" = "";
-            };
+
             all-outputs = false;
           };
 
-          "hyprland/window" = {
-            format = "{title}";
-            separate-outputs = true;
+          "custom/notification" = {
+            tooltip = false;
+            format = "";
+            on-click = "swaync-client -t -sw";
+            escape = true;
+          };
+
+          "clock" = {
+            format = "{:%H:%M}";
+            interval = 60;
+            tooltip = true;
+            tooltip-format = "<tt>{calendar}</tt>";
+            calendar.format.today = "<span color='#fAfBfC'><b>{}</b></span>";
+            actions.on-click-right = "shift_down";
+            actions.on-click = "shift_up";
+          };
+
+          "network" = {
+            format-wifi = "";
+            format-ethernet = "";
+            format-disconnected = "";
+            tooltip-format-disconnected = "Error";
+            tooltip-format-wifi = "{essid} ({signalStrength}%) ";
+            tooltip-format-ethernet = "{ifname} 🖧";
+            on-click = "foot nmtui";
+          };
+
+          "bluetooth" = {
+            format-on = "󰂯";
+            format-off = "BT-off";
+            format-disabled = "󰂲";
+            format-connected-battery = "{device_battery_percentage}% 󰂯";
+            format-alt = "{device_alias} 󰂯";
+            tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+            tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+            tooltip-format-enumerate-connected = "{device_alias}\n{device_address}";
+            tooltip-format-enumerate-connected-battery = "{device_alias}\n{device_address}\n{device_battery_percentage}%";
+            on-click-right = "blueman-manager";
+          };
+          "battery" = {
+            interval = 30;
+            states = {
+              "good" = 85;
+              "warning" = 30;
+              "critical" = 20;
+            };
+            format = "{capacity}% {icon}";
+            format-charging = "{capacity}% 󰂄";
+            format-plugged = "{capacity}% 󰂄 ";
+            format-alt = "{time} {icon}";
+            format-icons = [
+              "󰁻"
+              "󰁼"
+              "󰁾"
+              "󰂀"
+              "󰂂"
+              "󰁹"
+            ];
+          };
+
+          "custom/expand" = {
+            format = "";
+            tooltip = false;
+          };
+
+          "custom/endpoint" = {
+            format = "|";
+            tooltip = false;
+          };
+
+          "group/expand" = {
+            orientation = "horizontal";
+            drawer = {
+              transition-duration = 600;
+              transition-to-left = true;
+              click-to-reveal = true;
+            };
+            modules = ["custom/expand" "cpu" "memory" "temperature" "custom/endpoint"];
           };
 
           "hyprland/language" = {
@@ -231,30 +294,21 @@
             on-click = "hyprctl switchxkblayout all next";
           };
 
-          "pulseaudio" = {
-            min-volume = 0;
-            max-volume = 100;
-            format = "{icon} {volume}%";
-            format-bluetooth = "{icon} {volume}% ";
-            format-muted = "";
-            format-icons = {
-              headphone = "";
-              hands-free = "";
-              headset = "";
-              phone = "";
-              phone-muted = "";
-              portable = "";
-              car = "";
-              default = ["" ""];
-            };
-            scroll-step = 5;
+          "cpu" = {
+            format = "󰻠";
+            tooltip = true;
           };
 
-          "clock" = {
-            format = "{:%H:%M}";
-            interval = 60;
-            tooltip = true;
-            tooltip-format = "{:%Y-%m-%d %H:%M}";
+          "memory".format = "";
+
+          "temperature" = {
+            critical-threshold = 80;
+            format = "";
+          };
+
+          "tray" = {
+            icon-size = 14;
+            spacing = 10;
           };
 
           "privacy" = {
@@ -263,10 +317,6 @@
             modules = [
               {
                 type = "screenshare";
-                tooltip = false;
-              }
-              {
-                type = "audio-out";
                 tooltip = false;
               }
               {
@@ -292,7 +342,6 @@
   };
 
   home.packages = with pkgs; [
-    dunst
     waytrogen
     swaybg
     brightnessctl
