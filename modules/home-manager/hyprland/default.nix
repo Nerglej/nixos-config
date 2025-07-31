@@ -20,8 +20,10 @@
 
       bind =
         [
-          # Close current window
-          "$mod, Q, killactive,"
+          # Current window actions
+          "$mod, Q, killactive"
+          "$mod, F, fullscreen"
+          "$mod, G, togglefloating"
 
           # Move focus
           "$mod, H, movefocus, l"
@@ -43,7 +45,7 @@
 
           # Some app shortcuts
           "$mod, T, exec, foot"
-          "$mod, F, exec, firefox"
+          "$mod ALT, F, exec, firefox"
 
           # Locale changes
           "$mod, M, exec, hyprctl switchxkblayout all next"
