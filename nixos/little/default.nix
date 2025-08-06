@@ -116,7 +116,11 @@ in {
   programs.direnv.silent = false;
 
   # Hyprland
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland = true;
+  };
 
   # VM's
   programs.virt-manager.enable = true;

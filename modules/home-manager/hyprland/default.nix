@@ -50,6 +50,10 @@
           # Locale changes
           "$mod, M, exec, hyprctl switchxkblayout all next"
           "$mod, SPACE, exec, bemenu-run -c -p \"Open\" -l 10 -W 0.2"
+
+          # Screenshot
+          ''$mod SHIFT, S, exec, sh -c 'REGION=$(slurp) || exit; grim -g "$REGION" - | wl-copy &&  wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot of the region taken" -t 1500' ''
+          ''$mod CTRL SHIFT, S, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot of the whole screen taken" -t 1500''
         ]
         ++ (
           # workspaces
@@ -80,10 +84,10 @@
       ];
 
       # Repeating bindings that works on lockscreens
-      bindle = [
+      bindel = [
         # Volume controls
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%-"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 5%-"
       ];
 
       exec-once = [
@@ -92,10 +96,23 @@
       ];
 
       decoration = {
-        rounding = 8;
+        rounding = 4;
+        rounding_power = 2.0;
         active_opacity = 1;
-        inactive_opacity = 0.9;
+        inactive_opacity = 1;
         fullscreen_opacity = 1;
+        dim_inactive = false;
+        border_part_of_window = true;
+
+        blur = {
+          enabled = true;
+          size = 8;
+        };
+
+        shadow = {
+          enabled = true;
+          range = 4;
+        };
       };
 
       animation = [
@@ -348,5 +365,9 @@
     swaybg
     brightnessctl
     playerctl
+
+    libnotify
+    grim
+    slurp
   ];
 }

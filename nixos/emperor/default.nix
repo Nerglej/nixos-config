@@ -240,7 +240,11 @@ in {
 
     ssh.startAgent = true;
 
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+      xwayland = true;
+    };
   };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
