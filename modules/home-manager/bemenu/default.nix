@@ -20,4 +20,11 @@
       };
     };
   };
+
+  home.file.".config/scripts" = {
+    source = ./scripts;
+    recursive = true;
+  };
+
+  home.sessionPath = ["$HOME/.config/scripts"];
 }

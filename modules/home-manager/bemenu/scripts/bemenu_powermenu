@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+all=(
+    lockscreen
+    suspend 
+    hibernate
+    logout 
+    reboot 
+    shutdown 
+)
+
+show=(
+    lockscreen
+    reboot
+    shutdown
+)
+
+declare -A labels 
+labels[lockscreen]="lock screen"
+labels[logout]="log out"
+labels[suspend]="suspend"
+labels[hibernate]="hibernate"
+labels[reboot]="reboot"
+labels[shutdown]="power off"
+
+declare -A actions
+actions[${labels[lockscreen]}]="loginctl lock-session ${XDG_SESSION_ID-}"
+actions[${labels[logout]}]="loginctl terminate-session ${XDG_SESSION_ID-}"
+actions[${labels[suspend]}]="systemctl suspend"
+actions[${labels[hibernate]}]="systemctl hibernate"
+actions[${labels[reboot]}]="systemctl reboot"
+actions[${labels[shutdown]}]="systemctl poweroff"
+
+selected=$(for entry in "${show[@]}"; do 
+    echo "${labels[$entry]}" 
+done | bemenu -p "Power menu" -l 10)
+
+if [ "$selected" == "" ]; then
+    :
+else
+    eval "${actions[$selected]}"
+fi

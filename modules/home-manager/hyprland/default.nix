@@ -54,6 +54,9 @@
           # Screenshot
           ''$mod SHIFT, S, exec, sh -c 'REGION=$(slurp) || exit; grim -g "$REGION" - | wl-copy &&  wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot of the region taken" -t 1500' ''
           ''$mod CTRL SHIFT, S, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot of the whole screen taken" -t 1500''
+
+          # Powermenu
+          "$mod SHIFT, P, exec, bemenu_powermenu"
         ]
         ++ (
           # workspaces
