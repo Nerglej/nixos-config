@@ -52,8 +52,8 @@
           "$mod, SPACE, exec, bemenu-run -c -p \"Open\" -l 10 -W 0.2"
 
           # Screenshot
-          ''$mod SHIFT, S, exec, sh -c 'REGION=$(slurp) || exit; grim -g "$REGION" - | wl-copy &&  wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot of the region taken" -t 1500' ''
-          ''$mod CTRL SHIFT, S, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot of the whole screen taken" -t 1500''
+          ''$mod SHIFT, S, exec, sh -c 'REGION=$(slurp) IMG_PATH=~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png || exit; grim -g "$REGION" - | wl-copy &&  wl-paste > "$IMG_PATH" && notify-send -i "$IMG_PATH" "Partial screenshot taken" -t 1500 -a "Screenshot utility"' ''
+          ''$mod CTRL SHIFT, S, exec, IMG_PATH=~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png grim - | wl-copy && wl-paste > "$IMG_PATH" && notify-end "Fullscreen screenshot taken" -t 1500 -a "Screenshot utility"''
 
           # Powermenu
           "$mod SHIFT, P, exec, bemenu_powermenu"
@@ -229,7 +229,7 @@
             valign = "center";
           }
           {
-            text = "Hey $USER";
+            text = "$USER";
             color = "rgba(242, 243, 244, 0.75)";
             font_size = 14;
             font_family = "JetBrainsMono NF";
