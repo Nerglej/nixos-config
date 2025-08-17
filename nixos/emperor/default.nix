@@ -243,7 +243,7 @@ in {
     hyprland = {
       enable = true;
       withUWSM = true;
-      xwayland = true;
+      # xwayland = true;
     };
   };
 

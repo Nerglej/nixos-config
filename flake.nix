@@ -16,8 +16,6 @@
 
     lan-mouse.url = "github:feschber/lan-mouse";
 
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-
     hyprland.url = "github:hyprwm/Hyprland";
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
@@ -33,7 +31,6 @@
     alejandra,
     nvf,
     lan-mouse,
-    nixos-wsl,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -51,6 +48,7 @@
   in {
     # Custom packages
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+
     # Formatter for nix files
     formatter = forAllSystems (system: alejandra.defaultPackage.${system});
 
@@ -61,48 +59,37 @@
 
     # NixOS config entrypoint
     nixosConfigurations = {
-      little = nixpkgs.lib.nixosSystem {
+      "little" = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/little
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users."williamj" = import ./home-manager/williamj;
+
+              extraSpecialArgs = {inherit inputs outputs;};
+            };
+          }
         ];
       };
 
-      emperor = nixpkgs.lib.nixosSystem {
+      "emperor" = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/emperor
-        ];
-      };
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users."williamj" = import ./home-manager/williamj;
 
-      wsl = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          nixos-wsl.nixosModules.defaul
-          ./nixos/wsl
-        ];
-      };
-    };
-
-    # Standalone home-manager configuration entrypoint
-    homeConfigurations = {
-      "williamj@little" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          nvf.homeManagerModules.default
-          lan-mouse.homeManagerModules.default
-          ./home-manager/williamj
-        ];
-      };
-
-      "williamj@emperor" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          nvf.homeManagerModules.default
-          lan-mouse.homeManagerModules.default
-          ./home-manager/williamj
+              extraSpecialArgs = {inherit inputs outputs;};
+            };
+          }
         ];
       };
     };

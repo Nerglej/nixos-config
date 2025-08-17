@@ -1,8 +1,6 @@
 {
   inputs,
   outputs,
-  lib,
-  config,
   pkgs,
   ...
 }: let
@@ -19,6 +17,8 @@
   };
 in {
   imports = [
+    inputs.nvf.homeManagerModules.default
+    inputs.lan-mouse.homeManagerModules.default
     outputs.homeManagerModules.bemenu
     outputs.homeManagerModules.hyprland
     outputs.homeManagerModules.swaync
@@ -60,6 +60,9 @@ in {
       beeper
 
       pinentry-curses
+
+      # Games
+      prismlauncher
 
       # Fonts
       nerd-fonts.jetbrains-mono

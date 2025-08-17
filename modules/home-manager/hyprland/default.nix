@@ -1,8 +1,5 @@
 {
   inputs,
-  outputs,
-  lib,
-  config,
   pkgs,
   ...
 }: {
@@ -49,14 +46,14 @@
 
           # Locale changes
           "$mod, M, exec, hyprctl switchxkblayout all next"
-          "$mod, SPACE, exec, bemenu-run -c -p \"Open\" -l 10 -W 0.2"
+          "$mod, SPACE, exec, bemenu-run -c -p \"Open\" -l 10"
 
           # Screenshot
           ''$mod SHIFT, S, exec, REGION=$(slurp) IMG_PATH=~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png || exit; grim -g "$REGION" - | wl-copy &&  wl-paste > "$IMG_PATH" && notify-send -i "$IMG_PATH" -t 1500 -a "Screenshot utility" "Screenshot" "Partial screenshot taken" ''
           ''$mod CTRL SHIFT, S, exec, IMG_PATH=~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png || grim - | wl-copy && wl-paste > "$IMG_PATH" && notify-send -i "$IMG_PATH" -t 1500 -a "Screenshot utility" "Screenshot" "Fullscreen screenshot taken" ''
 
           # Powermenu
-          "$mod SHIFT, P, exec, bemenu_powermenu"
+          "$mod SHIFT, P, exec, bemenu-powermenu"
         ]
         ++ (
           # workspaces
@@ -422,17 +419,6 @@
             ];
           };
         };
-      };
-    };
-
-    bemenu = {
-      enable = true;
-      settings = {
-        line-height = 28;
-        prompt = "open";
-        ignorecase = true;
-        width-factor = 0.3;
-        center = true;
       };
     };
   };
