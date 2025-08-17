@@ -28,12 +28,8 @@ in {
     outputs.homeManagerModules.zsh
   ];
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-    };
-  };
+  stylix.targets.nvf.enable = false;
+  stylix.targets.nixvim.enable = false;
 
   home = {
     inherit (userSettings) username;
@@ -67,23 +63,10 @@ in {
       # Fonts
       nerd-fonts.jetbrains-mono
       nerd-fonts.commit-mono
-
-      # Cursor
-      graphite-cursors
-      bibata-cursors
     ];
   };
 
   fonts.fontconfig.enable = true;
-
-  home.pointerCursor = {
-    enable = true;
-    hyprcursor.enable = true;
-    gtk.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 24;
-  };
 
   services = {
     mpd = {
@@ -116,8 +99,6 @@ in {
         main = {
           font = "CommitMono Nerd Font:size=12";
         };
-
-        colors.alpha = 0.8;
       };
     };
 
