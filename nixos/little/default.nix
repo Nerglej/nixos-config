@@ -119,7 +119,6 @@ in {
   programs.hyprland = {
     enable = true;
     withUWSM = true;
-    xwayland = true;
   };
 
   # VM's

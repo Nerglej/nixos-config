@@ -17,7 +17,6 @@
   };
 in {
   imports = [
-    inputs.nvf.homeManagerModules.default
     inputs.lan-mouse.homeManagerModules.default
     outputs.homeManagerModules.bemenu
     outputs.homeManagerModules.hyprland
@@ -27,9 +26,13 @@ in {
     outputs.homeManagerModules.zellij
     outputs.homeManagerModules.zsh
   ];
-
-  stylix.targets.nvf.enable = false;
-  stylix.targets.nixvim.enable = false;
+  stylix = {
+    targets = {
+      nvf.enable = false;
+      nixvim.enable = false;
+      waybar.addCss = false;
+    };
+  };
 
   home = {
     inherit (userSettings) username;

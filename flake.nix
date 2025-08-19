@@ -20,20 +20,16 @@
     lan-mouse.url = "github:feschber/lan-mouse";
 
     hyprland.url = "github:hyprwm/Hyprland";
-    split-monitor-workspaces = {
-      url = "github:Duckonaut/split-monitor-workspaces";
-      inputs.hyprland.follows = "hyprland";
-    };
+
+    split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";
+    split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
   };
 
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
     home-manager,
     alejandra,
-    nvf,
-    lan-mouse,
     ...
   } @ inputs: let
     inherit (self) outputs;

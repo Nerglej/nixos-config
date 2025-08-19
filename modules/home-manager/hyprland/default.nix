@@ -5,7 +5,13 @@
 }: {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+
+    plugins = [
+      inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system}.split-monitor-workspaces
+    ];
+
     settings = {
       "$mod" = "SUPER";
 
@@ -54,6 +60,9 @@
 
           # Powermenu
           "$mod SHIFT, P, exec, bemenu-powermenu"
+
+          # Reload hyprland and send a inotify reload to waybar at .config/waybar/config.json
+          "$mod, Escape, exec, hyprctl reload && hyprpm reload -f -n && sleep 0.2 && touch -m $APP_FOLDER/waybar/config.jsonc"
         ]
         ++ (
           # workspaces
@@ -139,16 +148,12 @@
       plugin = {
         "split-monitor-workspaces" = {
           count = 5;
-          keep_focused = 0;
+          keep_focused = 1;
           enable_notifications = 0;
           enable_persistent_workspaces = 1;
         };
       };
     };
-
-    plugins = [
-      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
-    ];
   };
 
   home.file.".background-image" = {
