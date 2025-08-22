@@ -1,8 +1,6 @@
 {
   inputs,
   outputs,
-  lib,
-  config,
   pkgs,
   ...
 }: let
@@ -13,18 +11,27 @@
   };
 in {
   imports = [
+    inputs.stylix.nixosModules.stylix
     outputs.nixosModules.zealand
     outputs.nixosModules.hardware
+    outputs.nixosModules.sddm
     ./hardware-configuration.nix
   ];
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [outputs.overlays.unstable-packages];
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+    };
+    overlays = [outputs.overlays.unstable-packages];
+  };
 
-  nix.package = pkgs.nixVersions.stable;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.channel.enable = false;
+  nix = {
+    package = pkgs.nixVersions.stable;
+    settings.experimental-features = ["nix-command" "flakes"];
+    channel.enable = false;
+  };
 
   i18n.defaultLocale = systemSettings.locale;
 
@@ -32,21 +39,23 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Networking
-  networking.hostName = systemSettings.hostname;
-  networking.networkmanager.enable = true;
+  networking = {
+    # Networking
+    hostName = systemSettings.hostname;
+    networkmanager.enable = true;
 
-  # Firewall
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [
-      22
-      57621 # Spotify
-    ];
-    allowedUDPPorts = [
-      5353 # Spotify
-      4242 # lan-mouse
-    ];
+    # Firewall
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        22
+        57621 # Spotify
+      ];
+      allowedUDPPorts = [
+        5353 # Spotify
+        4242 # lan-mouse
+      ];
+    };
   };
 
   # Locale
@@ -97,60 +106,101 @@ in {
 
   # zsh
   users.defaultUserShell = pkgs.zsh;
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    syntaxHighlighting.enable = true;
-    ohMyZsh = {
+
+  programs = {
+    zsh = {
       enable = true;
-      theme = "robbyrussell";
-      plugins = [
-        "history"
-        "rust"
-      ];
+      enableCompletion = true;
+      syntaxHighlighting.enable = true;
+      ohMyZsh = {
+        enable = true;
+        theme = "robbyrussell";
+        plugins = [
+          "history"
+          "rust"
+        ];
+      };
     };
+
+    # direnv
+    direnv = {
+      enable = true;
+      silent = false;
+    };
+
+    # Hyprland
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
+
+    # VM's
+    virt-manager.enable = true;
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
+
+    # KDE Connect
+    kdeconnect.enable = true;
   };
 
-  # direnv
-  programs.direnv.enable = true;
-  programs.direnv.silent = false;
-
-  # Hyprland
-  programs.hyprland = {
+  stylix = {
     enable = true;
-    withUWSM = true;
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+    base16Scheme = {
+      base00 = "282828";
+      base01 = "3c3836";
+      base02 = "504945";
+      base03 = "665c54";
+      base04 = "bdae93";
+      base05 = "d5c4a1";
+      base06 = "ebdbb2";
+      base07 = "fbf1c7";
+      base08 = "fb4934";
+      base09 = "fe8019";
+      base0A = "fabd2f";
+      base0B = "b8bb26";
+      base0C = "8ec07c";
+      base0D = "83a598";
+      base0E = "d3869b";
+      base0F = "d65d0e";
+    };
+    image = ../../fractal-flower.jpg;
+    fonts = {
+      monospace = {
+        package = pkgs.commit-mono;
+        name = "CommitMono Nerd Font";
+      };
+    };
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 24;
+    };
+
+    opacity.terminal = 0.9;
+
+    targets.nvf.enable = false;
+    targets.nixvim.enable = false;
   };
 
-  # VM's
-  programs.virt-manager.enable = true;
-  virtualisation.libvirtd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
 
-  # Docker
-  virtualisation.docker.enable = true;
-  virtualisation.docker.enableOnBoot = false;
-
-  services.timesyncd.enable = true;
-
-  # Steam
-  hardware.graphics.enable32Bit = true;
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
+    # Docker
+    docker.enable = true;
+    docker.enableOnBoot = false;
   };
-
-  # Bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # KDE Plasma Desktop Environment
-  services.displayManager.sddm.enable = true;
 
   services = {
+    timesyncd.enable = true;
+
+    # KDE Plasma Desktop Environment
+    displayManager.sddm.enable = true;
+
     # OpenSSH
     openssh = {
       enable = true;
@@ -173,17 +223,28 @@ in {
     };
 
     blueman.enable = true;
+
+    xserver = {
+      # Enable the X11 windowing system.
+      enable = true;
+
+      excludePackages = [pkgs.xterm];
+
+      # Configure keymap in X11
+      xkb = {
+        layout = "dk";
+        variant = "";
+      };
+    };
   };
 
-  # KDE Connect
-  programs.kdeconnect.enable = true;
+  hardware = {
+    # Steam
+    graphics.enable32Bit = true;
 
-  services.xserver.excludePackages = [pkgs.xterm];
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "dk";
-    variant = "";
+    # Bluetooth
+    bluetooth.enable = true;
+    bluetooth.powerOnBoot = true;
   };
 
   # Configure console keymap

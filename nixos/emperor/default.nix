@@ -1,7 +1,6 @@
 {
   inputs,
   outputs,
-  lib,
   config,
   pkgs,
   ...
@@ -14,6 +13,7 @@
 in {
   imports = [
     inputs.stylix.nixosModules.stylix
+    outputs.nixosModules.sddm
     outputs.nixosModules.hardware
     ./hardware-configuration.nix
   ];
@@ -106,13 +106,6 @@ in {
       videoDrivers = ["nvidia"];
     };
 
-    # Login screen thing
-    displayManager.sddm = {
-      enable = true;
-      theme = "catppuccin-mocha";
-      package = pkgs.kdePackages.sddm;
-    };
-
     # OpenSSH
     openssh = {
       enable = true;
@@ -157,16 +150,6 @@ in {
     wl-clipboard
     nushell
     kitty
-
-    (
-      catppuccin-sddm.override {
-        flavor = "mocha";
-        # font= "";
-        fontSize = "9";
-        # background = ./;
-        loginBackground = true;
-      }
-    )
 
     # Apps with no config currently
     pkgs.unstable.ollama
