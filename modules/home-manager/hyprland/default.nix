@@ -97,6 +97,8 @@
         # Volume controls
         ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
       ];
 
       exec-once = [
@@ -142,6 +144,7 @@
       monitor = [
         "DP-1, 3840x2160@120, 0x0, 1.5"
         "DP-2, 1920x1080@240, 2560x0, 1"
+        "eDP-1, 1920x1080@60, 0x0, 1"
         ", preferred, auto, 1"
       ];
 
