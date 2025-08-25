@@ -148,6 +148,8 @@
         ", preferred, auto, 1"
       ];
 
+      xwayland.force_zero_scaling = true;
+
       plugin = {
         "split-monitor-workspaces" = {
           count = 5;
