@@ -20,7 +20,6 @@ in {
     inputs.lan-mouse.homeManagerModules.default
     outputs.homeManagerModules.bemenu
     outputs.homeManagerModules.hyprland
-    outputs.homeManagerModules.swaync
     outputs.homeManagerModules.lan-mouse
     outputs.homeManagerModules.nvf
     outputs.homeManagerModules.zellij
