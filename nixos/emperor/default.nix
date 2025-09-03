@@ -215,6 +215,8 @@ in {
 
     kdeconnect.enable = true;
 
+    thunar.enable = true;
+
     # direnv
     direnv.enable = true;
     direnv.silent = false;

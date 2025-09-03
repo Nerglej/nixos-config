@@ -122,6 +122,8 @@ in {
       };
     };
 
+    thunar.enable = true;
+
     # direnv
     direnv = {
       enable = true;
