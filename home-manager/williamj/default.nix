@@ -50,7 +50,7 @@ in {
     packages = with pkgs; [
       # Apps
       zoom-us
-      discord
+      alsa-utils
       google-chrome
       libreoffice
       obsidian
@@ -58,6 +58,8 @@ in {
       beeper
 
       pinentry-curses
+
+      discord
 
       # Games
       prismlauncher
