@@ -240,6 +240,11 @@ in {
         variant = "";
       };
     };
+
+    tailscale = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 
   hardware = {
