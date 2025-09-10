@@ -25,10 +25,14 @@ in {
     outputs.homeManagerModules.zellij
     outputs.homeManagerModules.zsh
   ];
+
   stylix = {
     targets = {
-      nvf.enable = false;
-      nixvim.enable = false;
+      nvf = {
+        enable = false;
+        plugin = "mini-base16";
+        transparentBackground = true;
+      };
       waybar.addCss = false;
     };
   };
