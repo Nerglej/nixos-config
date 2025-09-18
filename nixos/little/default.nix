@@ -97,7 +97,8 @@ in {
     pkgs.unstable.ollama
   ];
 
-  zealand.java.enable = true;
+  # zealand.java.enable = true;
+  zealand.jetbrains.enable = true;
 
   modules.system = {
     hardware.printing.enable = true;
