@@ -105,9 +105,8 @@
         relativenumber = true;
 
         tabstop = 4;
-        softtabstop = 4;
-        shiftwidth = 4;
-        expandtab = true;
+        shiftwidth = 0;
+        expandtab = false;
 
         smartindent = true;
 
@@ -131,6 +130,19 @@
 
         colorcolumn = "80";
       };
+
+      autocmds = [
+        {
+          event = ["Filetype"];
+          pattern = ["nix"];
+          desc = "Set correct indent for nix files";
+          callback = lib.generators.mkLuaInline ''
+            function()
+              vim.opt_local.tabstop = 2;
+            end
+          '';
+        }
+      ];
 
       # Navigation
       navigation.harpoon.enable = true;
