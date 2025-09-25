@@ -138,7 +138,7 @@ in {
   environment.systemPackages = with pkgs; [
     # "Essential" system packages
     home-manager
-    vim
+    neovim
     git
     wget
     curl
