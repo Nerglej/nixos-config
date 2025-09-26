@@ -130,6 +130,14 @@ in {
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      extraConfig.pipewire = {
+        "10-clock-rate" = {
+          "context.properties" = {
+            "default.clock.rate" = 96000;
+            "default.allowed-rates" = [192000 96000 48000 44100];
+          };
+        };
+      };
     };
 
     blueman.enable = true;
