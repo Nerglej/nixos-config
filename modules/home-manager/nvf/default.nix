@@ -226,8 +226,12 @@
 
         nix.enable = true;
 
-        rust.enable = true;
-        rust.crates.enable = true;
+        rust = {
+          enable = true;
+          lsp.enable = true;
+					lsp.package = ["rust-analyzer"];
+          crates.enable = true;
+        };
         csharp.enable = true;
         java.enable = true;
         dart.enable = true;
