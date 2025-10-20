@@ -56,6 +56,7 @@
           # Some app shortcuts
           "$mod, T, exec, foot"
           "$mod ALT, F, exec, firefox"
+          "$mod ALT, S, exec, pgrep spotify && hyprctl dispatch togglespecialworkspace music || spotify &"
 
           # Locale changes
           "$mod, M, exec, hyprctl switchxkblayout all next"
@@ -106,6 +107,11 @@
         ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 5%-"
         ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
         ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+      ];
+
+      windowrule = [
+        "float,class:(spotify)"
+        "workspace special:music,class:(spotify)"
       ];
 
       exec-once = [
