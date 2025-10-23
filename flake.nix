@@ -15,7 +15,6 @@
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
     nvf.url = "github:notashelf/nvf";
-    nvf.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     lan-mouse.url = "github:feschber/lan-mouse";
 

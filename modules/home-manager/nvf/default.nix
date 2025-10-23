@@ -241,7 +241,7 @@
         sql.enable = true;
 
         html.enable = true;
-        css.enable = true;
+				# css.enable = true;
 
         markdown.enable = true;
         typst.enable = true;
