@@ -222,14 +222,15 @@
       languages = {
         enableFormat = true;
         enableTreesitter = true;
-        enableExtraDiagnostics = true;
+        enableExtraDiagnostics = false;
 
         nix.enable = true;
+        nix.lsp.enable = true;
 
         rust = {
           enable = true;
           lsp.enable = true;
-					lsp.package = ["rust-analyzer"];
+          lsp.package = ["rust-analyzer"];
           crates.enable = true;
         };
         csharp.enable = true;
@@ -241,7 +242,7 @@
         sql.enable = true;
 
         html.enable = true;
-				# css.enable = true;
+        # css.enable = true;
 
         markdown.enable = true;
         typst.enable = true;
