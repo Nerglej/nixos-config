@@ -170,9 +170,12 @@
 
       diagnostics = {
         enable = true;
-        config = {
-          signs = true;
-        };
+				config = {
+					underline = true;
+					virtual_text = true;
+
+					virtual_lines = false;
+				};
       };
 
       # LSPs
