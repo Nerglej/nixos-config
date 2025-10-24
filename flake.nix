@@ -43,6 +43,24 @@
     ];
 
     forAllSystems = nixpkgs.lib.genAttrs systems;
+
+    mkSystem = {users}:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/little
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users."williamj" = import ./home-manager/williamj;
+
+              extraSpecialArgs = {inherit inputs outputs;};
+            };
+          }
+        ];
+      };
   in {
     # Custom packages
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});

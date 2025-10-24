@@ -15,9 +15,9 @@ _: {
           "*"
         ];
 
-        modules-left = ["custom/notification" "clock" "tray"];
+        modules-left = ["clock" "tray"];
         modules-center = ["hyprland/workspaces"];
-        modules-right = ["group/expand" "bluetooth" "network" "battery"];
+        modules-right = ["group/expand" "bluetooth" "network" "battery" "custom/notification"];
 
         "hyprland/workspaces" = {
           format = "{icon}";
@@ -31,9 +31,23 @@ _: {
         };
 
         "custom/notification" = {
-          tooltip = false;
-          format = "";
+          tooltip = true;
+          format = "{icon}";
+          format-icons = {
+            notification = "󱅫";
+            none = "󰂜";
+            dnd-notification = "󰂠";
+            dnd-none = "󰪓";
+            inhibited-notification = "󰂛";
+            inhibited-none = "󰪑";
+            dnd-inhibited-notification = "󰂛";
+            dnd-inhibited-none = "󰪑";
+          };
+          return-type = "json";
+          exec-if = "which swaync-client";
+          exec = "swaync-client -swb";
           on-click = "swaync-client -t -sw";
+          on-click-right = "swaync-client -d -sw";
           escape = true;
         };
 
