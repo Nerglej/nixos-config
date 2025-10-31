@@ -105,6 +105,8 @@ in {
     hardware.power.enable = false;
   };
 
+	modules.sddm.enable = true;
+
   # zsh
   users.defaultUserShell = pkgs.zsh;
 
@@ -162,9 +164,6 @@ in {
 
   services = {
     timesyncd.enable = true;
-
-    # KDE Plasma Desktop Environment
-    displayManager.sddm.enable = true;
 
     # OpenSSH
     openssh = {

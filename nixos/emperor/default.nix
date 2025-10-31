@@ -208,6 +208,8 @@ in {
     hardware.power.enable = false;
   };
 
+	modules.sddm.enable = true;
+
   programs = {
     zsh = {
       enable = true;
