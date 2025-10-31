@@ -172,6 +172,8 @@ in {
     zellij.enable = true;
   };
 
+	modules.hyprland.enable = true;
+
   xdg = {
     enable = true;
     mime.enable = true;
