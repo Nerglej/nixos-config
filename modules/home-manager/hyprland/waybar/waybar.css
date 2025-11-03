@@ -1,8 +1,12 @@
-@define-color background #001E23;
-@define-color foreground #b4c8be;
+@define-color background @base00;
+@define-color foreground @base07;
 
-@define-color color7 #b4c8be;
-@define-color color9 #4D726B;
+@define-color color9 @base04;
+@define-color hover @base04;
+
+@define-color charging #26A65B;
+@define-color warning @base0A;
+@define-color critical @base08;
 
 window#waybar {
     all: unset;
@@ -34,7 +38,7 @@ window#waybar {
 
 tooltip {
     background: @background;
-    color: @color7;
+    color: @foreground;
 }
 
 #clock:hover,
@@ -47,25 +51,25 @@ tooltip {
 #memory:hover,
 #temperature:hover {
     transition: all .3s ease;
-    color: @color9;
+    color: @hover;
 }
 
 #custom-notification {
     padding: 0px 5px;
     transition: all .3s ease;
-    color: @color7;
+    color: @foreground;
 }
 
 #clock {
     padding: 0px 5px;
-    color: @color7;
+    color: @foreground;
     transition: all .3s ease;
 }
 
 #custom-pacman {
     padding: 0px 5px;
     transition: all .3s ease;
-    color: @color7;
+    color: @foreground;
 
 }
 
@@ -115,35 +119,33 @@ tooltip {
 #bluetooth {
     padding: 0px 5px;
     transition: all .3s ease;
-    color: @color7;
+    color: @foreground;
 
 }
 
 #network {
     padding: 0px 5px;
     transition: all .3s ease;
-    color: @color7;
+    color: @foreground;
 
 }
 
 #battery {
     padding: 0px 5px;
     transition: all .3s ease;
-    color: @color7;
-
-
+    color: @foreground;
 }
 
 #battery.charging {
-    color: #26A65B;
+    color: @charging;
 }
 
 #battery.warning:not(.charging) {
-    color: #ffbe61;
+    color: @warning;
 }
 
 #battery.critical:not(.charging) {
-    color: #f53c3c;
+    color: @critical;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -177,7 +179,7 @@ tooltip {
 #temperature {
     padding: 0px 5px;
     transition: all .3s ease;
-    color: @color7;
+    color: @foreground;
 
 }
 
