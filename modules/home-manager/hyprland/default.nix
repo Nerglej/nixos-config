@@ -63,6 +63,10 @@ in {
             "$mod SHIFT, K, movewindow, u"
             "$mod SHIFT, L, movewindow, r"
 
+						# Relative workspace focus
+						"$mod, COMMA, split-workspace, -1"
+						"$mod, PERIOD, split-workspace, +1"
+
             # Some app shortcuts
             "$mod, T, exec, foot"
             "$mod ALT, F, exec, firefox"
