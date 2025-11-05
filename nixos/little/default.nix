@@ -127,12 +127,6 @@ in {
 
     thunar.enable = true;
 
-    # direnv
-    direnv = {
-      enable = true;
-      silent = false;
-    };
-
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;

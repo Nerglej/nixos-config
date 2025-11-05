@@ -79,6 +79,9 @@ in {
       # Fonts
       nerd-fonts.jetbrains-mono
       nerd-fonts.commit-mono
+
+      pkgs.unstable.cursor-cli
+      pkgs.unstable.code-cursor
     ];
   };
 
@@ -139,6 +142,13 @@ in {
       };
     };
 
+    direnv = {
+      enable = true;
+      silent = false;
+      nix-direnv.enable = true;
+      enableZshIntegration = true;
+    };
+
     password-store = {
       enable = true;
       settings = {
@@ -172,7 +182,7 @@ in {
     zellij.enable = true;
   };
 
-	modules.hyprland.enable = true;
+  modules.hyprland.enable = true;
 
   xdg = {
     enable = true;
