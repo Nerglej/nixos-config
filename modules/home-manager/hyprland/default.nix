@@ -144,8 +144,13 @@ in {
           "swaybg -i ~/.background-image"
         ];
 
+				general = {
+					gaps_in = 5;
+					gaps_out = 10;
+				};
+
         decoration = {
-          rounding = 4;
+          rounding = 10;
           rounding_power = 2.0;
           active_opacity = 1;
           inactive_opacity = 1;
