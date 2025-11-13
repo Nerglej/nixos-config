@@ -13,10 +13,15 @@ window#waybar {
 }
 
 .modules-left, .modules-center, .modules-right {
+	padding: 7px;
 	margin: 10 10 0 10;
     border-radius: 10px;
     background: alpha(@background, .6);
     box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+}
+
+.modules-center {
+	padding: 7px 7px 7px 4px;
 }
 
 tooltip {
@@ -37,23 +42,18 @@ tooltip {
     color: @hover;
 }
 
-#custom-notification {
+#clock,
+#custom-pacman,
+#custom-notification,
+#bluetooth,
+#network,
+#battery,
+#cpu,
+#memory,
+#temperature {
     padding: 0px 5px;
     transition: all .3s ease;
     color: @foreground;
-}
-
-#clock {
-    padding: 0px 5px;
-    color: @foreground;
-    transition: all .3s ease;
-}
-
-#custom-pacman {
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color: @foreground;
-
 }
 
 #workspaces {
@@ -63,60 +63,49 @@ tooltip {
 #workspaces button {
     all: unset;
     padding: 0px 5px;
-    color: alpha(@color9, .4);
+    border: none;
     transition: all .2s ease;
 }
 
-#workspaces button:hover {
-    color: rgba(0, 0, 0, 0);
-    border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
-    transition: all 1s ease;
+
+/* Not empty, not selected, not hovered */
+#workspaces button {
+    color: alpha(@color9, 0.4);
 }
 
+/* Empty, not selected, not hovered */
+#workspaces button.empty {
+    color: rgba(0, 0, 0, .2);
+}
+
+/* Not empty, selected, not hovered */
 #workspaces button.active {
     color: @color9;
-    border: none;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
 }
 
-#workspaces button.empty {
-    color: rgba(0, 0, 0, 0);
-    border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .2);
+/* Not empty, not selected, hovered */
+#workspaces button:hover {
+    color: alpha(@color9, 0.8);
 }
 
-#workspaces button.empty:hover {
-    color: rgba(0, 0, 0, 0);
-    border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
-    transition: all 1s ease;
-}
-
+/* Empty, selected, not hovered */
 #workspaces button.empty.active {
     color: @color9;
-    border: none;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
 }
 
-#bluetooth {
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color: @foreground;
-
+/* Empty, not selected, hovered */
+#workspaces button.empty:hover {
+    color: alpha(@color9, 0.3);
 }
 
-#network {
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color: @foreground;
-
+/* Not empty, selected, hovered */
+#workspaces button.active:hover {
+    color: @color9;
 }
 
-#battery {
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color: @foreground;
+/* Empty, selected, hovered */
+#workspaces button.empty.active:hover {
+    color: alpha(@color9, 0.8);
 }
 
 #battery.charging {
@@ -157,25 +146,14 @@ tooltip {
     padding: 0px 5px;
 }
 
-#cpu,
-#memory,
-#temperature {
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color: @foreground;
-
-}
-
 #custom-endpoint {
     color: transparent;
     text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 1);
-
 }
 
 #tray {
     padding: 0px 5px;
     transition: all .3s ease;
-
 }
 
 #tray menu * {
