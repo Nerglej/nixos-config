@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Simple audio input/output switcher based on bemenu
+
+DEVICE=$1
+
+case "$DEVICE" in
+	sink)
+		MEDIA_CLASS="Audio/Sink"
+		STREAM_TYPE="playback"
+		;;
+	source)
+		MEDIA_CLASS="Audio/Source"
+		STREAM_TYPE="capture"
+		;;
+	*)
+		echo "Pass 'sink' (audio output) or 'source' (audio input) as argument"
+		exit 1
+		;;
+
+esac
+
+node=$(pw-dump Node | jq -r --arg class "$MEDIA_CLASS" '.[]|select(.info.props|.["media.class"] == $class and has("device.api"))|.info.props["node.description"]' | bemenu -i -l 10)
+[ -z "$node" ] && exit 0
+
+id=$(pw-dump Node | jq -r --arg desc "$node" --arg stream "$STREAM_TYPE" '.[]|select(.info.props|."api.alsa.pcm.stream" == $stream and ."node.description" == $desc)|.info.props["object.id"]')
+[ -z "$id" ] && exit 0
+
+wpctl set-default "$id" && notify-send -a "Audio Utility" -u normal -t 3500 "$node" "Successfully set as default $MEDIA_CLASS"

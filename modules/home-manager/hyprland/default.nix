@@ -50,38 +50,53 @@ in {
             "$mod, J, movefocus, d"
             "$mod, K, movefocus, u"
             "$mod, L, movefocus, r"
+            "$mod, LEFT, movefocus, l"
+            "$mod, DOWN, movefocus, d"
+            "$mod, UP, movefocus, u"
+            "$mod, RIGHT, movefocus, r"
 
-            # Swap windows
-            "$mod CTRL, H, swapwindow, l"
-            "$mod CTRL, J, swapwindow, d"
-            "$mod CTRL, K, swapwindow, u"
-            "$mod CTRL, L, swapwindow, r"
+						"$mod, COMMA, split-workspace, -1"
+						"$mod, PERIOD, split-workspace, +1"
 
             # Move windows
             "$mod SHIFT, H, movewindow, l"
             "$mod SHIFT, J, movewindow, d"
             "$mod SHIFT, K, movewindow, u"
             "$mod SHIFT, L, movewindow, r"
+            "$mod SHIFT, LEFT, movewindow, l"
+            "$mod SHIFT, DOWN, movewindow, d"
+            "$mod SHIFT, UP, movewindow, u"
+            "$mod SHIFT, RIGHT, movewindow, r"
 
-						# Relative workspace focus
-						"$mod, COMMA, split-workspace, -1"
-						"$mod, PERIOD, split-workspace, +1"
+						"$mod SHIFT, COMMA, split-movetoworkspace, -1"
+						"$mod SHIFT, PERIOD, split-movetoworkspace, +1"
+
+            # Swap windows
+            "$mod CTRL, H, swapwindow, l"
+            "$mod CTRL, J, swapwindow, d"
+            "$mod CTRL, K, swapwindow, u"
+            "$mod CTRL, L, swapwindow, r"
+            "$mod CTRL, LEFT, swapwindow, l"
+            "$mod CTRL, DOWN, swapwindow, d"
+            "$mod CTRL, UP, swapwindow, u"
+            "$mod CTRL, RIGHT, swapwindow, r"
 
             # Some app shortcuts
+            "$mod, SPACE, exec, bemenu-run -c -p \"Open\" -l 10"
             "$mod, T, exec, foot"
+            "$mod ALT, T, exec, foot"
             "$mod ALT, F, exec, firefox"
-            "$mod ALT, S, exec, pgrep spotify && hyprctl dispatch togglespecialworkspace music || spotify &"
+            "$mod ALT, M, exec, pgrep spotify && hyprctl dispatch togglespecialworkspace music || spotify &"
+            "$mod ALT, P, exec, bemenu-powermenu"
+            "$mod ALT, O, exec, bemenu-audio sink"
+            "$mod ALT, I, exec, bemenu-audio source"
 
             # Locale changes
             "$mod, M, exec, hyprctl switchxkblayout all next"
-            "$mod, SPACE, exec, bemenu-run -c -p \"Open\" -l 10"
 
             # Screenshot
             ''$mod SHIFT, S, exec, REGION=$(slurp) IMG_PATH=~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png || exit; grim -g "$REGION" - | wl-copy &&  wl-paste > "$IMG_PATH" && notify-send -i "$IMG_PATH" -t 1500 -a "Screenshot utility" "Screenshot" "Partial screenshot taken" ''
             ''$mod CTRL SHIFT, S, exec, IMG_PATH=~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png || grim - | wl-copy && wl-paste > "$IMG_PATH" && notify-send -i "$IMG_PATH" -t 1500 -a "Screenshot utility" "Screenshot" "Fullscreen screenshot taken" ''
-
-            # Powermenu
-            "$mod SHIFT, P, exec, bemenu-powermenu"
 
             # Reload hyprland and send a inotify reload to waybar at .config/waybar/config.json
             "$mod, Escape, exec, hyprctl reload && hyprpm reload -f -n && sleep 0.2 && touch -m $APP_FOLDER/waybar/config.jsonc"

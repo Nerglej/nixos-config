@@ -68,6 +68,7 @@ in {
       obsidian
       spotify
       beeper
+			jq
 
       pinentry-curses
 
