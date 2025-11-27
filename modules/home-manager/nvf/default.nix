@@ -244,8 +244,27 @@
 
         sql.enable = true;
 
-        html.enable = true;
-        # css.enable = true;
+        html = {
+					enable = true;
+					treesitter.enable = true;
+					treesitter.autotagHtml = true;
+				};
+				css = {
+					enable = true;
+					lsp.enable = false;
+					format.enable = false; # TODO update to true in 25.11
+				};
+				ts = {
+					enable = true;
+					lsp.enable = true;
+					format.enable = false; # TODO update to true in 25.11
+				};
+
+				svelte = {
+					enable = true;
+					lsp.enable = true;
+					format.enable = false; # TODO update to true in 25.11
+				};
 
         markdown.enable = true;
         typst.enable = true;
