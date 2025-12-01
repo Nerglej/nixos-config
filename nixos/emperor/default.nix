@@ -161,6 +161,8 @@ in {
     nushell
     kitty
 
+		docker-compose
+
     # Apps with no config currently
     pkgs.unstable.ollama
   ];

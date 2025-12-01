@@ -19,7 +19,7 @@ case "$DEVICE" in
 
 esac
 
-node=$(pw-dump Node | jq -r --arg class "$MEDIA_CLASS" '.[]|select(.info.props|.["media.class"] == $class and has("device.api"))|.info.props["node.description"]' | bemenu -i -l 10)
+node=$(pw-dump Node | jq -r --arg class "$MEDIA_CLASS" '.[]|select(.info.props|.["media.class"] == $class and has("device.api"))|.info.props["node.description"]' | bemenu -p "Choose $DEVICE" -i -l 10)
 [ -z "$node" ] && exit 0
 
 id=$(pw-dump Node | jq -r --arg desc "$node" --arg stream "$STREAM_TYPE" '.[]|select(.info.props|."api.alsa.pcm.stream" == $stream and ."node.description" == $desc)|.info.props["object.id"]')

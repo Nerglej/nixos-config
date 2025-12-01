@@ -68,9 +68,10 @@ in {
       obsidian
       spotify
       beeper
-			jq
+      jq
 
-      pinentry-curses
+			pinentry-qt
+			# pinentry-curses
 
       discord
 
@@ -81,8 +82,8 @@ in {
       nerd-fonts.jetbrains-mono
       nerd-fonts.commit-mono
 
-      pkgs.unstable.cursor-cli
-      pkgs.unstable.code-cursor
+      unstable.cursor-cli
+      unstable.code-cursor
     ];
   };
 
@@ -103,8 +104,8 @@ in {
     gpg-agent = {
       enable = true;
       enableZshIntegration = true;
-      pinentry.package = pkgs.pinentry-curses;
-      pinentry.program = "pinentry-curses";
+      pinentry.package = pkgs.pinentry-qt;
+      pinentry.program = "pinentry-qt";
     };
 
     blueman-applet.enable = true;
@@ -152,13 +153,19 @@ in {
 
     password-store = {
       enable = true;
+      package = pkgs.pass.withExtensions (exts: with exts; [pass-otp]);
       settings = {
         PASSWORD_STORE_DIR = "$HOME/.password-store";
       };
     };
+
     gpg.enable = true;
 
-    firefox.enable = true;
+    firefox = {
+      enable = true;
+      package = pkgs.firefox.override {nativeMessagingHosts = [pkgs.passff-host];};
+    };
+
     thunderbird = {
       enable = true;
       profiles = {};
