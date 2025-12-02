@@ -1,9 +1,9 @@
 {inputs, ...}: {
   additions = final: _prev: import ../pkgs final.pkgs;
 
-  unstable-packages = final: _prev: {
+  unstable-packages = final: prev: {
     unstable = import inputs.nixpkgs-unstable {
-      system = final.system;
+      system = prev.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
   };

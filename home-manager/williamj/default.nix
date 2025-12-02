@@ -37,13 +37,7 @@ in {
     };
   };
 
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Dracula";
-      package = pkgs.dracula-icon-theme;
-    };
-  };
+  gtk.enable = true;
 
   home = {
     inherit (userSettings) username;
@@ -70,8 +64,8 @@ in {
       beeper
       jq
 
-			pinentry-qt
-			# pinentry-curses
+      pinentry-qt
+      # pinentry-curses
 
       discord
 
@@ -125,11 +119,11 @@ in {
 
     git = {
       enable = true;
-      userName = userSettings.name;
-      userEmail =
-        userSettings.email;
 
-      extraConfig = {
+      settings = {
+        user.name = userSettings.name;
+        user.email = userSettings.email;
+
         init.defaultBranch = "main";
 
         safe.directory =
