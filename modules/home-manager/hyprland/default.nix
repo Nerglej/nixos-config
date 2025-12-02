@@ -2,7 +2,7 @@
   inputs,
   pkgs,
   lib,
-	config,
+  config,
   ...
 }:
 with lib; let
@@ -20,6 +20,13 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.file.".config/scripts/hypr" = {
+      source = ./scripts;
+      recursive = true;
+    };
+
+    home.sessionPath = ["$HOME/.config/scripts/hypr"];
+
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -55,8 +62,8 @@ in {
             "$mod, UP, movefocus, u"
             "$mod, RIGHT, movefocus, r"
 
-						"$mod, COMMA, split-workspace, -1"
-						"$mod, PERIOD, split-workspace, +1"
+            "$mod, COMMA, split-workspace, -1"
+            "$mod, PERIOD, split-workspace, +1"
 
             # Move windows
             "$mod SHIFT, H, movewindow, l"
@@ -68,8 +75,8 @@ in {
             "$mod SHIFT, UP, movewindow, u"
             "$mod SHIFT, RIGHT, movewindow, r"
 
-						"$mod SHIFT, COMMA, split-movetoworkspace, -1"
-						"$mod SHIFT, PERIOD, split-movetoworkspace, +1"
+            "$mod SHIFT, COMMA, split-movetoworkspace, -1"
+            "$mod SHIFT, PERIOD, split-movetoworkspace, +1"
 
             # Swap windows
             "$mod CTRL, H, swapwindow, l"
@@ -134,8 +141,11 @@ in {
           # Volume controls
           ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 5%-"
-          ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
-          ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+        ];
+
+        binde = [
+          ", XF86MonBrightnessUp, exec, hypr-brightness +10%"
+          ", XF86MonBrightnessDown, exec, hypr-brightness 10%-"
         ];
 
         windowrule = [
@@ -159,10 +169,10 @@ in {
           "swaybg -i ~/.background-image"
         ];
 
-				general = {
-					gaps_in = 5;
-					gaps_out = 10;
-				};
+        general = {
+          gaps_in = 5;
+          gaps_out = 10;
+        };
 
         decoration = {
           rounding = 10;

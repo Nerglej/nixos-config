@@ -1,0 +1,99 @@
+#!/usr/bin/env sh
+
+# Script to set brightness for all monitors using brightnessctl
+
+set -e
+
+# Default values
+DRY_RUN=false
+BRIGHTNESS=""
+
+# Help message
+show_help() {
+    cat << EOF
+Usage: $(basename "$0") [OPTIONS] BRIGHTNESS
+
+Set brightness for all backlight devices.
+
+Arguments:
+    BRIGHTNESS    Brightness value (e.g., 50%, 80, +10%, -20%)
+
+Options:
+    -d, --dry-run    Show what would be changed without applying
+    -h, --help       Show this help message
+
+Examples:
+    $(basename "$0") 50%       # Set to 50%
+    $(basename "$0") 80        # Set to 80%
+    $(basename "$0") +10%      # Increase by 10%
+    $(basename "$0") -20%      # Decrease by 20%
+EOF
+}
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -d|--dry-run)
+            DRY_RUN=true
+            shift
+            ;;
+        -h|--help)
+            show_help
+            exit 0
+            ;;
+        *)
+            if [[ -z "$BRIGHTNESS" ]]; then
+                BRIGHTNESS="$1"
+            else
+                echo "Error: Unexpected argument '$1'"
+                show_help
+                exit 1
+            fi
+            shift
+            ;;
+    esac
+done
+
+# Check if brightness value was provided
+if [[ -z "$BRIGHTNESS" ]]; then
+    echo "Error: Brightness value required"
+    show_help
+    exit 1
+fi
+
+# Check if brightnessctl is installed
+if ! command -v brightnessctl &> /dev/null; then
+    echo "Error: brightnessctl is not installed"
+    exit 1
+fi
+
+# Get all backlight devices
+devices=$(brightnessctl -l | grep -oP '(?<=Device \047)[^\047]+(?=\047 of class \047backlight\047)')
+
+# Check if any devices were found
+if [[ -z "$devices" ]]; then
+    echo "Error: No backlight devices found"
+    exit 1
+fi
+
+device_count=$(echo "$devices" | wc -l)
+echo "Found $device_count backlight device(s):"
+echo "$devices" | while IFS= read -r device; do
+    echo "  - $device"
+done
+echo
+
+# Set brightness for each device
+echo "$devices" | while IFS= read -r device; do
+    if [[ "$DRY_RUN" == true ]]; then
+        echo "[DRY RUN] Would set '$device' to $BRIGHTNESS"
+    else
+        echo "Setting '$device' to $BRIGHTNESS..."
+        brightnessctl -d "$device" set "$BRIGHTNESS"
+    fi
+done
+
+if [[ "$DRY_RUN" == true ]]; then
+    echo
+    echo "Dry run complete. Run without -d/--dry-run to apply changes."
+fi

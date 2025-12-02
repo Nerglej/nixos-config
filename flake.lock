@@ -638,6 +638,24 @@
         "type": "github"
       }
     },
+    "nixos-ddcci-nvidia": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1758746071,
+        "narHash": "sha256-vvFapUooCo4ehr7UYZ7uQWSaTAtmhcACUiRh3zrZPFM=",
+        "owner": "poogas",
+        "repo": "nixos-ddcci-nvidia",
+        "rev": "1a4344a2f2b0662fd2d538ee840baa3462c51753",
+        "type": "github"
+      },
+      "original": {
+        "owner": "poogas",
+        "repo": "nixos-ddcci-nvidia",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1760878510,
@@ -688,6 +706,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1758427187,
+        "narHash": "sha256-pHpxZ/IyCwoTQPtFIAG2QaxuSm8jWzrzBGjwQZIttJc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "554be6495561ff07b6c724047bdd7e0716aa7b46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1764522689,
         "narHash": "sha256-SqUuBFjhl/kpDiVaKLQBoD8TLD+/cTUzzgVFoaHrkqY=",
         "owner": "nixos",
@@ -702,7 +736,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1761880412,
         "narHash": "sha256-QoJjGd4NstnyOG4mm4KXF+weBzA2AH/7gn1Pmpfcb0A=",
@@ -748,7 +782,7 @@
         "flake-compat": "flake-compat_2",
         "flake-parts": "flake-parts",
         "mnw": "mnw",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "systems": "systems_2"
       },
       "locked": {
@@ -794,7 +828,8 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "lan-mouse": "lan-mouse",
-        "nixpkgs": "nixpkgs_3",
+        "nixos-ddcci-nvidia": "nixos-ddcci-nvidia",
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvf": "nvf",
         "split-monitor-workspaces": "split-monitor-workspaces",

@@ -17,10 +17,10 @@ _: {
     };
   };
 
-  home.file.".config/scripts" = {
+  home.file.".config/scripts/bemenu" = {
     source = ./scripts;
     recursive = true;
   };
 
-  home.sessionPath = ["$HOME/.config/scripts"];
+  home.sessionPath = ["$HOME/.config/scripts/bemenu"];
 }

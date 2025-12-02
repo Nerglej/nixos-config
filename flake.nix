@@ -22,6 +22,8 @@
 
     split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";
     split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
+
+		nixos-ddcci-nvidia.url = "github:poogas/nixos-ddcci-nvidia";
   };
 
   outputs = {
