@@ -1,6 +1,6 @@
 {
-  zealand = import ./zealand;
-  hardware = import ./hardware;
-  sddm = import ./sddm;
-  stylix = import ./stylix;
+  zealand = ./zealand;
+  hardware = ./hardware;
+  sddm = ./sddm;
+  stylix = ./stylix;
 }
