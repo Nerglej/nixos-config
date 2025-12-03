@@ -85,16 +85,11 @@ in {
     curl
     gzip
     unzip
-
-    # Terminal
-    lazygit
+		ripgrep
     wl-clipboard
     nushell
 
-    # Apps with no config currently
-    obsidian
-    spotify
-    pkgs.unstable.ollama
+		podman-compose
   ];
 
   # zealand.java.enable = true;
@@ -151,9 +146,13 @@ in {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
 
-    # Docker
-    docker.enable = true;
-    docker.enableOnBoot = false;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+
+    oci-containers.backend = "podman";
   };
 
   services = {

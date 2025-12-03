@@ -55,19 +55,23 @@ in {
     # Custom programs and apps
     packages = with pkgs; [
       # Apps
+      spotify
+      discord
+      obsidian
       zoom-us
       alsa-utils
       google-chrome
       libreoffice
-      obsidian
-      spotify
-      beeper
+
+			# Unstable stuff
+      unstable.cursor-cli
+      unstable.code-cursor
+			unstable.ollama
+
+			# CLI
       jq
 
       pinentry-qt
-      # pinentry-curses
-
-      discord
 
       # Games
       prismlauncher
@@ -75,9 +79,6 @@ in {
       # Fonts
       nerd-fonts.jetbrains-mono
       nerd-fonts.commit-mono
-
-      unstable.cursor-cli
-      unstable.code-cursor
     ];
   };
 

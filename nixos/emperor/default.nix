@@ -130,18 +130,12 @@ in {
     gzip
     unzip
     ripgrep
-    ddcutil
-
-    # Terminal
-    lazygit
     wl-clipboard
     nushell
-    kitty
 
-    docker-compose
+		podman-compose
 
-    # Apps with no config currently
-    pkgs.unstable.ollama
+    ddcutil
   ];
 
   users.defaultUserShell = pkgs.zsh;
