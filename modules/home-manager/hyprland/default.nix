@@ -98,6 +98,9 @@ in {
             "$mod ALT, O, exec, bemenu-audio sink"
             "$mod ALT, I, exec, bemenu-audio source"
 
+            "$mod ALT, W, exec, bemenu-zellij-session"
+            "$mod ALT, E, exec, bemenu-projects"
+
             # Locale changes
             "$mod, M, exec, hyprctl switchxkblayout all next"
 

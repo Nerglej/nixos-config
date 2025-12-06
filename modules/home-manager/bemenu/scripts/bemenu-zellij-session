@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+sessions=$(zellij list-sessions -sr)
+
+newSession="Create new session..."
+deleteSession="Delete session..."
+
+all=$(printf "$newSession\n$deleteSession\n$sessions")
+
+selected=$(printf "$all" | bemenu -p "Terminal session" -P ">" -l 10)
+
+if [ "$selected" == "$newSession" ]; then
+	sessionName=$(printf '' | bemenu -p "Name new session: " -l 10)
+	if [ -n "$sessionName" ]; then
+		$TERMINAL -e zellij a "$sessionName" -c &
+	fi
+elif [ "$selected" == "$deleteSession" ]; then
+	selectedSession=$(echo "$sessions" | bemenu -p "Kill session" -l 10)
+	if [ -n "$selectedSession" ]; then
+		zellij d "$selectedSession" &
+	fi
+elif [ -n "$selected" ]; then
+    $TERMINAL -e zellij a "$selected" &
+fi

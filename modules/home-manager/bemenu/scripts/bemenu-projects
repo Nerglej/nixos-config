@@ -1,0 +1,15 @@
+	#!/usr/bin/env bash
+
+	projectDirs=$(cat ~/.projectdirs 2>/dev/null || echo "~/Projects")
+	projectDirs=$(eval echo $projectDirs)  # This expands ~ to actual home path
+
+	projects=$(find $projectDirs -mindepth 1 -maxdepth 1 -type d -exec basename {} \;)
+
+	all=$(printf "$projects")
+
+	selected=$(printf "$all" | bemenu -p "Open project" -P ">" -l 10)
+
+	if [ -n "$selected" ]; then
+		sessionName=$(printf "project-$selected")
+		$TERMINAL -e zellij a "$sessionName" -c &
+	fi
