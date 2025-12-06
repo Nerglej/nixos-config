@@ -17,7 +17,7 @@ if [ "$selected" == "$newSession" ]; then
 elif [ "$selected" == "$deleteSession" ]; then
 	selectedSession=$(echo "$sessions" | bemenu -p "Kill session" -l 10)
 	if [ -n "$selectedSession" ]; then
-		zellij d "$selectedSession" &
+		zellij d "$selectedSession" -f &
 	fi
 elif [ -n "$selected" ]; then
     $TERMINAL -e zellij a "$selected" &
