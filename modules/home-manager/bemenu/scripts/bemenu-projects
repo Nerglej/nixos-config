@@ -1,15 +1,23 @@
-	#!/usr/bin/env bash
+#!/usr/bin/env bash
 
-	projectDirs=$(cat ~/.projectdirs 2>/dev/null || echo "~/Projects")
-	projectDirs=$(eval echo $projectDirs)  # This expands ~ to actual home path
+projectDirs=$(cat ~/.projectdirs 2>/dev/null || echo "~/Projects")
+projectDirs=$(eval echo $projectDirs)  # This expands ~ to actual home path
 
-	projects=$(find $projectDirs -mindepth 1 -maxdepth 1 -type d -exec basename {} \;)
+declare -A projectPaths
 
-	all=$(printf "$projects")
+while IFS= read -r fullPath; do
+    projectName=$(basename "$fullPath")
+    projectPaths["$projectName"]="$fullPath"
+done < <(find $projectDirs -mindepth 1 -maxdepth 1 -type d)
 
-	selected=$(printf "$all" | bemenu -p "Open project" -P ">" -l 10)
+projects=$(printf '%s\n' "${!projectPaths[@]}")
+selected=$(printf "$projects" | bemenu -p "Open project" -P ">" -l 10)
 
-	if [ -n "$selected" ]; then
-		sessionName=$(printf "project-$selected")
-		$TERMINAL -e zellij a "$sessionName" -c &
-	fi
+if [ -n "$selected" ]; then
+	sessionName=$(printf "project-$selected")
+    projectPath="${projectPaths[$selected]}"
+
+	echo "$projectPath"
+
+	cd "$projectPath" && $TERMINAL -e zellij a "$sessionName" -cf &
+fi
