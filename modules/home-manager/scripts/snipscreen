@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+IMG_PATH=~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png ||
+grim - | wl-copy && wl-paste > "$IMG_PATH" &&
+notify-send -i "$IMG_PATH" -t 1500 -a "Screenshot utility" "Screenshot" "Fullscreen screenshot taken"

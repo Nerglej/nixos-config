@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+IMG_PATH=~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png || exit; 
+
+selection=$(slurp) || exit
+
+grim -g "$selection" - | 
+wl-copy &&  wl-paste > "$IMG_PATH" && 
+notify-send -i "$IMG_PATH" -t 1500 -a "Screenshot utility" "Screenshot" "Partial screenshot taken"
+

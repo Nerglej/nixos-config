@@ -24,6 +24,7 @@ in {
     outputs.homeManagerModules.nvf
     outputs.homeManagerModules.zellij
     outputs.homeManagerModules.zsh
+    outputs.homeManagerModules.scripts
   ];
 
   stylix = {

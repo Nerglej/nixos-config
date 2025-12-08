@@ -5,4 +5,5 @@
   nvf = ./nvf;
   zellij = ./zellij;
   zsh = ./zsh;
+	scripts = ./scripts.nix;
 }

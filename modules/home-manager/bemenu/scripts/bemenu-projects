@@ -19,5 +19,5 @@ if [ -n "$selected" ]; then
 
 	echo "$projectPath"
 
-	cd "$projectPath" && $TERMINAL -e zellij a "$sessionName" -cf &
+	cd "$projectPath" && $TERMINAL -e zellij a "$sessionName" -c &
 fi

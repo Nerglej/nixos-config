@@ -49,8 +49,8 @@ in {
           [
             # Current window actions
             "$mod, Q, killactive"
-            "$mod, F, fullscreen"
-            "$mod, G, togglefloating"
+            "$mod, F, togglefloating"
+            "$mod SHIFT, F, fullscreen"
 
             # Move focus
             "$mod, H, movefocus, l"
@@ -79,14 +79,14 @@ in {
             "$mod SHIFT, PERIOD, split-movetoworkspace, +1"
 
             # Swap windows
-            "$mod CTRL, H, swapwindow, l"
-            "$mod CTRL, J, swapwindow, d"
-            "$mod CTRL, K, swapwindow, u"
-            "$mod CTRL, L, swapwindow, r"
-            "$mod CTRL, LEFT, swapwindow, l"
-            "$mod CTRL, DOWN, swapwindow, d"
-            "$mod CTRL, UP, swapwindow, u"
-            "$mod CTRL, RIGHT, swapwindow, r"
+            "CTRL SHIFT, H, swapwindow, l"
+            "CTRL SHIFT, J, swapwindow, d"
+            "CTRL SHIFT, K, swapwindow, u"
+            "CTRL SHIFT, L, swapwindow, r"
+            "CTRL SHIFT, LEFT, swapwindow, l"
+            "CTRL SHIFT, DOWN, swapwindow, d"
+            "CTRL SHIFT, UP, swapwindow, u"
+            "CTRL SHIFT, RIGHT, swapwindow, r"
 
             # Some app shortcuts
             "$mod, SPACE, exec, bemenu-run -c -p \"Open\" -l 10"
@@ -105,8 +105,7 @@ in {
             "$mod, M, exec, hyprctl switchxkblayout all next"
 
             # Screenshot
-            ''$mod SHIFT, S, exec, REGION=$(slurp) IMG_PATH=~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png || exit; grim -g "$REGION" - | wl-copy &&  wl-paste > "$IMG_PATH" && notify-send -i "$IMG_PATH" -t 1500 -a "Screenshot utility" "Screenshot" "Partial screenshot taken" ''
-            ''$mod CTRL SHIFT, S, exec, IMG_PATH=~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png || grim - | wl-copy && wl-paste > "$IMG_PATH" && notify-send -i "$IMG_PATH" -t 1500 -a "Screenshot utility" "Screenshot" "Fullscreen screenshot taken" ''
+            ''$mod SHIFT, S, exec, snip''
 
             # Reload hyprland and send a inotify reload to waybar at .config/waybar/config.json
             "$mod, Escape, exec, hyprctl reload && hyprpm reload -f -n && sleep 0.2 && touch -m $APP_FOLDER/waybar/config.jsonc"
