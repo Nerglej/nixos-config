@@ -79,14 +79,14 @@ in {
             "$mod SHIFT, PERIOD, split-movetoworkspace, +1"
 
             # Swap windows
-            "CTRL SHIFT, H, swapwindow, l"
-            "CTRL SHIFT, J, swapwindow, d"
-            "CTRL SHIFT, K, swapwindow, u"
-            "CTRL SHIFT, L, swapwindow, r"
-            "CTRL SHIFT, LEFT, swapwindow, l"
-            "CTRL SHIFT, DOWN, swapwindow, d"
-            "CTRL SHIFT, UP, swapwindow, u"
-            "CTRL SHIFT, RIGHT, swapwindow, r"
+            "$mod CTRL SHIFT, H, swapwindow, l"
+            "$mod CTRL SHIFT, J, swapwindow, d"
+            "$mod CTRL SHIFT, K, swapwindow, u"
+            "$mod CTRL SHIFT, L, swapwindow, r"
+            "$mod CTRL SHIFT, LEFT, swapwindow, l"
+            "$mod CTRL SHIFT, DOWN, swapwindow, d"
+            "$mod CTRL SHIFT, UP, swapwindow, u"
+            "$mod CTRL SHIFT, RIGHT, swapwindow, r"
 
             # Some app shortcuts
             "$mod, SPACE, exec, bemenu-run -c -p \"Open\" -l 10"
