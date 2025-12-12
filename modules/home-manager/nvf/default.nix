@@ -234,7 +234,7 @@
           enable = true;
           lsp.enable = true;
           lsp.package = ["rust-analyzer"];
-          crates.enable = true;
+          extensions.crates-nvim.enable = true;
         };
         csharp.enable = true;
         java.enable = true;
