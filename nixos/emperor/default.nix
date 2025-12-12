@@ -128,6 +128,7 @@ in {
     wget
     curl
     gzip
+		zip
     unzip
     ripgrep
     wl-clipboard
