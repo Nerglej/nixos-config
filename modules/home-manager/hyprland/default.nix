@@ -207,7 +207,7 @@ in {
           };
           kb_layout = "us,dk";
           kb_options = [
-            "caps:swapescape"
+            "caps:escape"
           ];
         };
 
