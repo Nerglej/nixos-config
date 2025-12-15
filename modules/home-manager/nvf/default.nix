@@ -3,7 +3,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.nvf.homeManagerModules.default
   ];
@@ -53,7 +54,10 @@
           action = "\"_dP";
         }
         {
-          mode = ["n" "v"];
+          mode = [
+            "n"
+            "v"
+          ];
           key = "<leader>y";
           action = "\"+y";
         }
@@ -63,7 +67,10 @@
           action = "\"+Y";
         }
         {
-          mode = ["n" "v"];
+          mode = [
+            "n"
+            "v"
+          ];
           key = "<leader>d";
           action = "\"_d";
         }
@@ -133,9 +140,13 @@
 
       autocmds = [
         {
-          event = ["Filetype"];
-          pattern = ["nix"];
-          desc = "Set correct indent for nix files";
+          event = [ "Filetype" ];
+          pattern = [
+            "nix"
+            "dart"
+						"html"
+          ];
+          desc = "Set correct indent for some files";
           callback = lib.generators.mkLuaInline ''
             function()
               vim.opt_local.tabstop = 2;
@@ -170,12 +181,12 @@
 
       diagnostics = {
         enable = true;
-				config = {
-					underline = true;
-					virtual_text = true;
+        config = {
+          underline = true;
+          virtual_text = true;
 
-					virtual_lines = false;
-				};
+          virtual_lines = false;
+        };
       };
 
       # LSPs
@@ -206,6 +217,12 @@
           locList = "<leader>xL";
           quickfix = "<leader>xQ";
         };
+
+        servers.dart.cmd = lib.mkForce [
+          "dart"
+          "language-server"
+          "--protocol=lsp"
+        ];
       };
 
       autocomplete.nvim-cmp = {
@@ -233,38 +250,44 @@
         rust = {
           enable = true;
           lsp.enable = true;
-          lsp.package = ["rust-analyzer"];
+          lsp.package = [ "rust-analyzer" ];
           extensions.crates-nvim.enable = true;
         };
+
+        go.enable = true;
+        dart = {
+          enable = true;
+          flutter-tools.enable = true;
+          flutter-tools.flutterPackage = null;
+        };
+
         csharp.enable = true;
         java.enable = true;
-        dart.enable = true;
-        go.enable = true;
         lua.enable = true;
 
         sql.enable = true;
 
         html = {
-					enable = true;
-					treesitter.enable = true;
-					treesitter.autotagHtml = true;
-				};
-				css = {
-					enable = true;
-					lsp.enable = false;
-					format.enable = true;
-				};
-				ts = {
-					enable = true;
-					lsp.enable = true;
-					format.enable = true;
-				};
+          enable = true;
+          treesitter.enable = true;
+          treesitter.autotagHtml = true;
+        };
+        css = {
+          enable = true;
+          lsp.enable = false;
+          format.enable = true;
+        };
+        ts = {
+          enable = true;
+          lsp.enable = true;
+          format.enable = true;
+        };
 
-				svelte = {
-					enable = true;
-					lsp.enable = true;
-					format.enable = true;
-				};
+        svelte = {
+          enable = true;
+          lsp.enable = true;
+          format.enable = true;
+        };
 
         markdown.enable = true;
         typst.enable = true;
@@ -287,7 +310,7 @@
         undotree = {
           package = pkgs.vimPlugins.undotree;
 
-          cmd = ["UndotreeToggle"];
+          cmd = [ "UndotreeToggle" ];
 
           keys = [
             {
