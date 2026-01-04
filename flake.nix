@@ -16,8 +16,6 @@
 
     nvf.url = "github:notashelf/nvf";
 
-    lan-mouse.url = "github:feschber/lan-mouse";
-
     hyprland.url = "github:hyprwm/Hyprland";
 
     split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";

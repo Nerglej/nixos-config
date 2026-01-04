@@ -1,5 +1,4 @@
 {
-  inputs,
   outputs,
   pkgs,
   ...
@@ -19,10 +18,8 @@ let
 in
 {
   imports = [
-    inputs.lan-mouse.homeManagerModules.default
     outputs.homeManagerModules.bemenu
     outputs.homeManagerModules.hyprland
-    outputs.homeManagerModules.lan-mouse
     outputs.homeManagerModules.nvf
     outputs.homeManagerModules.zellij
     outputs.homeManagerModules.zsh

@@ -58,7 +58,6 @@ in
       ];
       allowedUDPPorts = [
         5353 # Spotify
-        4242 # lan-mouse
       ];
     };
   };
