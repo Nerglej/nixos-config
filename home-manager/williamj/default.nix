@@ -3,7 +3,8 @@
   outputs,
   pkgs,
   ...
-}: let
+}:
+let
   userSettings = {
     username = "williamj";
     name = "William Jelgren";
@@ -15,7 +16,8 @@
       ll = "ls -l";
     };
   };
-in {
+in
+{
   imports = [
     inputs.lan-mouse.homeManagerModules.default
     outputs.homeManagerModules.bemenu
@@ -63,19 +65,19 @@ in {
       alsa-utils
       google-chrome
       libreoffice
-
-			# Unstable stuff
-      unstable.cursor-cli
-      unstable.code-cursor
-			unstable.ollama
-
-			# CLI
-      jq
-
       pinentry-qt
+
+      # CLI
+      jq
+      nushell
 
       # Games
       prismlauncher
+
+      # Unstable stuff
+      unstable.cursor-cli
+      unstable.code-cursor
+      unstable.ollama
 
       # Fonts
       nerd-fonts.jetbrains-mono
@@ -128,15 +130,13 @@ in {
 
         init.defaultBranch = "main";
 
-        safe.directory =
-          "/home/"
-          + userSettings.username
-          + "/.dotfiles";
+        safe.directory = "/home/" + userSettings.username + "/.dotfiles";
 
-        credential.helper = "${pkgs.git.override {
-          withLibsecret =
-            true;
-        }}/bin/git-credential-libsecret";
+        credential.helper = "${
+          pkgs.git.override {
+            withLibsecret = true;
+          }
+        }/bin/git-credential-libsecret";
       };
     };
 
@@ -149,7 +149,7 @@ in {
 
     password-store = {
       enable = true;
-      package = pkgs.pass.withExtensions (exts: with exts; [pass-otp]);
+      package = pkgs.pass.withExtensions (exts: with exts; [ pass-otp ]);
       settings = {
         PASSWORD_STORE_DIR = "$HOME/.password-store";
       };
@@ -159,12 +159,12 @@ in {
 
     firefox = {
       enable = true;
-      package = pkgs.firefox.override {nativeMessagingHosts = [pkgs.passff-host];};
+      package = pkgs.firefox.override { nativeMessagingHosts = [ pkgs.passff-host ]; };
     };
 
     thunderbird = {
       enable = true;
-      profiles = {};
+      profiles = { };
     };
 
     rmpc = {
@@ -194,12 +194,12 @@ in {
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "default-web-browser" = ["firefox.desktop"];
-        "text/html" = ["firefox.desktop"];
-        "x-scheme-handler/http" = ["firefox.desktop"];
-        "x-scheme-handler/https" = ["firefox.desktop"];
-        "x-scheme-handler/about" = ["firefox.desktop"];
-        "x-scheme-handler/unknown" = ["firefox.desktop"];
+        "default-web-browser" = [ "firefox.desktop" ];
+        "text/html" = [ "firefox.desktop" ];
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/https" = [ "firefox.desktop" ];
+        "x-scheme-handler/about" = [ "firefox.desktop" ];
+        "x-scheme-handler/unknown" = [ "firefox.desktop" ];
       };
     };
   };
