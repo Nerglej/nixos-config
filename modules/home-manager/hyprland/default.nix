@@ -5,9 +5,11 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.hyprland;
-in {
+in
+{
   imports = [
     ./waybar
     ./hyprlock
@@ -25,12 +27,14 @@ in {
       recursive = true;
     };
 
-    home.sessionPath = ["$HOME/.config/scripts/hypr"];
+    home.sessionPath = [ "$HOME/.config/scripts/hypr" ];
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+
+      # Uses the nixos defined packages
+      package = null;
+      portalPackage = null;
 
       plugins = [
         inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system}.split-monitor-workspaces
@@ -45,86 +49,88 @@ in {
           "$mod ALT, mouse:272, resizewindow"
         ];
 
-        bind =
-          [
-            # Current window actions
-            "$mod, Q, killactive"
-            "$mod, F, togglefloating"
-            "$mod SHIFT, F, fullscreen"
+        bind = [
+          # Current window actions
+          "$mod, Q, killactive"
+          "$mod, F, togglefloating"
+          "$mod SHIFT, F, fullscreen"
 
-            # Move focus
-            "$mod, H, movefocus, l"
-            "$mod, J, movefocus, d"
-            "$mod, K, movefocus, u"
-            "$mod, L, movefocus, r"
-            "$mod, LEFT, movefocus, l"
-            "$mod, DOWN, movefocus, d"
-            "$mod, UP, movefocus, u"
-            "$mod, RIGHT, movefocus, r"
+          # Move focus
+          "$mod, H, movefocus, l"
+          "$mod, J, movefocus, d"
+          "$mod, K, movefocus, u"
+          "$mod, L, movefocus, r"
+          "$mod, LEFT, movefocus, l"
+          "$mod, DOWN, movefocus, d"
+          "$mod, UP, movefocus, u"
+          "$mod, RIGHT, movefocus, r"
 
-            "$mod, COMMA, split-workspace, -1"
-            "$mod, PERIOD, split-workspace, +1"
+          "$mod, COMMA, split-workspace, -1"
+          "$mod, PERIOD, split-workspace, +1"
 
-            # Move windows
-            "$mod SHIFT, H, movewindow, l"
-            "$mod SHIFT, J, movewindow, d"
-            "$mod SHIFT, K, movewindow, u"
-            "$mod SHIFT, L, movewindow, r"
-            "$mod SHIFT, LEFT, movewindow, l"
-            "$mod SHIFT, DOWN, movewindow, d"
-            "$mod SHIFT, UP, movewindow, u"
-            "$mod SHIFT, RIGHT, movewindow, r"
+          # Move windows
+          "$mod SHIFT, H, movewindow, l"
+          "$mod SHIFT, J, movewindow, d"
+          "$mod SHIFT, K, movewindow, u"
+          "$mod SHIFT, L, movewindow, r"
+          "$mod SHIFT, LEFT, movewindow, l"
+          "$mod SHIFT, DOWN, movewindow, d"
+          "$mod SHIFT, UP, movewindow, u"
+          "$mod SHIFT, RIGHT, movewindow, r"
 
-            "$mod SHIFT, COMMA, split-movetoworkspace, -1"
-            "$mod SHIFT, PERIOD, split-movetoworkspace, +1"
+          "$mod SHIFT, COMMA, split-movetoworkspace, -1"
+          "$mod SHIFT, PERIOD, split-movetoworkspace, +1"
 
-            # Swap windows
-            "$mod CTRL SHIFT, H, swapwindow, l"
-            "$mod CTRL SHIFT, J, swapwindow, d"
-            "$mod CTRL SHIFT, K, swapwindow, u"
-            "$mod CTRL SHIFT, L, swapwindow, r"
-            "$mod CTRL SHIFT, LEFT, swapwindow, l"
-            "$mod CTRL SHIFT, DOWN, swapwindow, d"
-            "$mod CTRL SHIFT, UP, swapwindow, u"
-            "$mod CTRL SHIFT, RIGHT, swapwindow, r"
+          # Swap windows
+          "$mod CTRL SHIFT, H, swapwindow, l"
+          "$mod CTRL SHIFT, J, swapwindow, d"
+          "$mod CTRL SHIFT, K, swapwindow, u"
+          "$mod CTRL SHIFT, L, swapwindow, r"
+          "$mod CTRL SHIFT, LEFT, swapwindow, l"
+          "$mod CTRL SHIFT, DOWN, swapwindow, d"
+          "$mod CTRL SHIFT, UP, swapwindow, u"
+          "$mod CTRL SHIFT, RIGHT, swapwindow, r"
 
-            # Some app shortcuts
-            "$mod, SPACE, exec, bemenu-run -c -p \"Open\" -l 10"
-            "$mod, T, exec, foot"
-            "$mod ALT, T, exec, foot"
-            "$mod ALT, F, exec, firefox"
-            "$mod ALT, M, exec, pgrep spotify && hyprctl dispatch togglespecialworkspace music || spotify &"
-            "$mod ALT, P, exec, bemenu-powermenu"
-            "$mod ALT, O, exec, bemenu-audio sink"
-            "$mod ALT, I, exec, bemenu-audio source"
+          # Some app shortcuts
+          "$mod, SPACE, exec, bemenu-run -c -p \"Open\" -l 10"
+          "$mod, T, exec, foot"
+          "$mod ALT, T, exec, foot"
+          "$mod ALT, F, exec, firefox"
+          "$mod ALT, M, exec, pgrep spotify && hyprctl dispatch togglespecialworkspace music || spotify &"
+          "$mod ALT, P, exec, bemenu-powermenu"
+          "$mod ALT, O, exec, bemenu-audio sink"
+          "$mod ALT, I, exec, bemenu-audio source"
 
-            "$mod ALT, W, exec, bemenu-zellij-session"
-            "$mod ALT, E, exec, bemenu-projects"
+          "$mod ALT, W, exec, bemenu-zellij-session"
+          "$mod ALT, E, exec, bemenu-projects"
 
-            # Locale changes
-            "$mod, M, exec, hyprctl switchxkblayout all next"
+          # Locale changes
+          "$mod, M, exec, hyprctl switchxkblayout all next"
 
-            # Screenshot
-            ''$mod SHIFT, S, exec, snip''
+          # Screenshot
+          ''$mod SHIFT, S, exec, snip''
 
-            # Reload hyprland and send a inotify reload to waybar at .config/waybar/config.json
-            "$mod, Escape, exec, hyprctl reload && hyprpm reload -f -n && sleep 0.2 && touch -m $APP_FOLDER/waybar/config.jsonc"
-          ]
-          ++ (
-            # workspaces
-            # binds $mod + [shift +] {1..5} to [move to] workspace
-            # {1..5} on the corresponding monitor
-            builtins.concatLists (builtins.genList (
-                i: let
-                  ws = i + 1;
-                in [
-                  "$mod, code:1${toString i}, split-workspace, ${toString ws}"
-                  "$mod CTRL, code:1${toString i}, split-movetoworkspacesilent, ${toString ws}"
-                  "$mod SHIFT, code:1${toString i}, split-movetoworkspace, ${toString ws}"
-                ]
-              )
-              5)
-          );
+          # Reload hyprland and send a inotify reload to waybar at .config/waybar/config.json
+          "$mod, Escape, exec, hyprctl reload && hyprpm reload -f -n && sleep 0.2 && touch -m $APP_FOLDER/waybar/config.jsonc"
+        ]
+        ++ (
+          # workspaces
+          # binds $mod + [shift +] {1..5} to [move to] workspace
+          # {1..5} on the corresponding monitor
+          builtins.concatLists (
+            builtins.genList (
+              i:
+              let
+                ws = i + 1;
+              in
+              [
+                "$mod, code:1${toString i}, split-workspace, ${toString ws}"
+                "$mod CTRL, code:1${toString i}, split-movetoworkspacesilent, ${toString ws}"
+                "$mod SHIFT, code:1${toString i}, split-movetoworkspace, ${toString ws}"
+              ]
+            ) 5
+          )
+        );
 
         # Bindings that works on lockscreens
         bindl = [
