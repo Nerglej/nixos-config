@@ -157,19 +157,17 @@ in
         ];
 
         windowrule = [
-          "float,class:(spotify)"
-          "workspace special:music,class:(spotify)"
+          "match:class spotify, workspace special:music"
         ];
 
         layerrule = [
-          "blur, swaync-control-center"
-          "blur, swaync-notification-window"
+          "match:class swaync-control-center, blur on"
+          "match:class swaync-control-center, ignore_alpha 0"
+          "match:class swaync-control-center, ignore_alpha 0.5"
 
-          "ignorezero, swaync-control-center"
-          "ignorezero, swaync-notification-window"
-
-          "ignorealpha 0.5, swaync-control-center"
-          "ignorealpha 0.5, swaync-notification-window"
+          "match:class swaync-notification-window, blur on"
+          "match:class swaync-notification-window, ignore_alpha 0"
+          "match:class swaync-notification-window, ignore_alpha 0.5"
         ];
 
         exec-once = [
