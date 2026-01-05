@@ -1,10 +1,11 @@
 {
   inputs,
-  outputs,
   pkgs,
   ...
 }:
 let
+  inherit (inputs) self;
+
   systemSettings = {
     hostname = "little";
     timezone = "Europe/Copenhagen";
@@ -16,9 +17,9 @@ in
     ./hardware-configuration.nix
     ../common
 
-    outputs.nixosModules.zealand
-    outputs.nixosModules.sddm
-    outputs.nixosModules.hardware
+    self.nixosModules.zealand
+    self.nixosModules.sddm
+    self.nixosModules.hardware
   ];
 
   # Locale

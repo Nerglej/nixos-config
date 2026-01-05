@@ -1,11 +1,12 @@
 {
   inputs,
-  outputs,
   config,
   pkgs,
   ...
 }:
 let
+  inherit (inputs) self;
+
   systemSettings = {
     hostname = "emperor";
     timezone = "Europe/Copenhagen";
@@ -19,8 +20,8 @@ in
 
     inputs.nixos-ddcci-nvidia.nixosModules.default
 
-    outputs.nixosModules.sddm
-    outputs.nixosModules.hardware
+    self.nixosModules.sddm
+    self.nixosModules.hardware
   ];
 
   # Locale

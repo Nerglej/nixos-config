@@ -1,9 +1,11 @@
 {
-  outputs,
+  inputs,
   pkgs,
   ...
 }:
 let
+  inherit (inputs) self;
+
   userSettings = {
     username = "williamj";
     name = "William Jelgren";
@@ -18,12 +20,15 @@ let
 in
 {
   imports = [
-    outputs.homeManagerModules.hyprland
+    self.homeModules.hyprland
 
-    ./bemenu
-    ./nvf
-    ./zellij
-    ./zsh
+    self.homeModules.bemenu
+    self.homeModules.direnv
+    self.homeModules.gpg
+    self.homeModules.nvf
+    self.homeModules.rmpc
+    self.homeModules.zellij
+    self.homeModules.zsh
   ];
 
   stylix = {
@@ -62,7 +67,6 @@ in
       alsa-utils
       google-chrome
       libreoffice
-      pinentry-qt
 
       # CLI
       jq
@@ -84,27 +88,7 @@ in
 
   fonts.fontconfig.enable = true;
 
-  services = {
-    mpd = {
-      enable = true;
-      musicDirectory = "~/Music";
-      extraConfig = ''
-        audio_output {
-          type "pipewire"
-          name "PipeWire Output"
-        }
-      '';
-    };
-
-    gpg-agent = {
-      enable = true;
-      enableZshIntegration = true;
-      pinentry.package = pkgs.pinentry-qt;
-      pinentry.program = "pinentry-qt";
-    };
-
-    blueman-applet.enable = true;
-  };
+  services.blueman-applet.enable = true;
 
   programs = {
     home-manager.enable = true;
@@ -127,21 +111,12 @@ in
 
         init.defaultBranch = "main";
 
-        safe.directory = "/home/" + userSettings.username + "/.dotfiles";
-
         credential.helper = "${
           pkgs.git.override {
             withLibsecret = true;
           }
         }/bin/git-credential-libsecret";
       };
-    };
-
-    direnv = {
-      enable = true;
-      silent = false;
-      nix-direnv.enable = true;
-      enableZshIntegration = true;
     };
 
     password-store = {
@@ -151,8 +126,6 @@ in
         PASSWORD_STORE_DIR = "$HOME/.password-store";
       };
     };
-
-    gpg.enable = true;
 
     firefox = {
       enable = true;
@@ -164,18 +137,9 @@ in
       profiles = { };
     };
 
-    rmpc = {
-      enable = true;
-      config = builtins.readFile ./rmpc.ron;
-    };
-
     imv = {
       enable = true;
     };
-  };
-
-  home.file.".config/rmpc/themes/theme.ron" = {
-    source = ./rmpc_theme.ron;
   };
 
   modules.home.shell = {

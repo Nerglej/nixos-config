@@ -3,9 +3,11 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.home.shell.zsh;
-in {
+in
+{
   options.modules.home.shell.zsh = {
     enable = mkEnableOption "Enable the zsh shell";
   };

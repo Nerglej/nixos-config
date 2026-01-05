@@ -8,6 +8,8 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     stylix.url = "github:nix-community/stylix/release-25.11";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -25,71 +27,48 @@
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nixpkgs,
+      flake-parts,
       home-manager,
       alejandra,
       ...
-    }@inputs:
-    let
-      inherit (self) outputs;
+    }:
+    flake-parts.lib.mkFlake { inherit inputs; } ({
+      imports = [
+        inputs.home-manager.flakeModules.home-manager
 
-      # All supported systems
-      systems = [
-        "aarch64-linux"
-        "i686-linux"
-        "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
+        ./machines
+        ./homes
+
+        ./modules/nixos
+        ./modules/home-manager
       ];
 
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-    in
-    {
-      # Formatter for nix files
-      formatter = forAllSystems (system: alejandra.defaultPackage.${system});
+      systems = [
+        "x86_64-linux"
+        "x86_64-darwin"
+        "aarch64-linux"
+        # "aarch64-darwin" # Not supported by alejandra for some reason
+        "i686-linux"
+      ];
 
-      overlays = import ./overlays { inherit inputs; };
+      perSystem =
+        { lib, system, ... }:
+        {
+          # Formatter for nix files
+          formatter = inputs.alejandra.defaultPackage."${system}";
 
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
-
-      # NixOS config entrypoint
-      nixosConfigurations = {
-        "little" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            ./machines/little
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users."williamj" = import ./homes/williamj;
-
-                extraSpecialArgs = { inherit inputs outputs; };
-              };
-            }
-          ];
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = lib.attrValues self.overlays;
+            config.allowUnfree = true;
+          };
         };
 
-        "emperor" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            ./machines/emperor
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users."williamj" = import ./homes/williamj;
-
-                extraSpecialArgs = { inherit inputs outputs; };
-              };
-            }
-          ];
-        };
+      flake = {
+        overlays = import ./overlays { inherit inputs; };
       };
-    };
+    });
 }

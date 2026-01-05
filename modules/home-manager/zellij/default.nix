@@ -3,9 +3,11 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.home.shell.zellij;
-in {
+in
+{
   options.modules.home.shell.zellij = {
     enable = mkEnableOption "Enable zellij";
   };

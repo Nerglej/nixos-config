@@ -1,13 +1,14 @@
 {
   inputs,
-  outputs,
-  config,
   pkgs,
   ...
 }:
+let
+  inherit (inputs) self;
+in
 {
   imports = [
-    outputs.nixosModules.stylix
+    self.nixosModules.stylix
   ];
 
   # Allow unfree packages
@@ -16,7 +17,7 @@
       allowUnfree = true;
       allowUnfreePredicate = _: true;
     };
-    overlays = [ outputs.overlays.unstable-packages ];
+    overlays = [ inputs.self.overlays.unstable-packages ];
   };
 
   nix = {
