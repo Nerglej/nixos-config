@@ -5,10 +5,10 @@
 }:
 with lib;
 let
-  cfg = config.modules.home.shell.zsh;
+  cfg = config.wij.shell.zsh;
 in
 {
-  options.modules.home.shell.zsh = {
+  options.wij.shell.zsh = {
     enable = mkEnableOption "Enable the zsh shell";
   };
 

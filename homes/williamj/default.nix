@@ -24,25 +24,16 @@ in
 
     self.homeModules.bemenu
     self.homeModules.direnv
+    self.homeModules.firefox
+    self.homeModules.foot
+    self.homeModules.git
     self.homeModules.gpg
     self.homeModules.nvf
+    self.homeModules.password-store
     self.homeModules.rmpc
     self.homeModules.zellij
     self.homeModules.zsh
   ];
-
-  stylix = {
-    targets = {
-      nvf = {
-        enable = false;
-        plugin = "mini-base16";
-        transparentBackground = true;
-      };
-      waybar.addCss = false;
-    };
-  };
-
-  gtk.enable = true;
 
   home = {
     inherit (userSettings) username;
@@ -64,7 +55,6 @@ in
       discord
       obsidian
       zoom-us
-      alsa-utils
       google-chrome
       libreoffice
 
@@ -86,83 +76,54 @@ in
     ];
   };
 
+  wij.foot.enable = true;
+
+  wij.password-store.enable = true;
+
+  wij.firefox.enable = true;
+  wij.firefox.mimeAppDefault = true;
+
+  wij.git = {
+    enable = true;
+    inherit (userSettings) name email;
+  };
+
+  wij.shell.zsh.enable = true;
+  wij.shell.zellij.enable = true;
+
+  wij.hyprland.enable = true;
+
+  stylix = {
+    targets = {
+      nvf = {
+        enable = false;
+        plugin = "mini-base16";
+        transparentBackground = true;
+      };
+      waybar.addCss = false;
+    };
+  };
+
+  gtk.enable = true;
+
+  # Used to properly updated the local fonts folders
   fonts.fontconfig.enable = true;
 
   services.blueman-applet.enable = true;
 
   programs = {
     home-manager.enable = true;
-
-    foot = {
-      enable = true;
-      settings = {
-        main = {
-          font = "CommitMono Nerd Font:size=12";
-        };
-      };
-    };
-
-    git = {
-      enable = true;
-
-      settings = {
-        user.name = userSettings.name;
-        user.email = userSettings.email;
-
-        init.defaultBranch = "main";
-
-        credential.helper = "${
-          pkgs.git.override {
-            withLibsecret = true;
-          }
-        }/bin/git-credential-libsecret";
-      };
-    };
-
-    password-store = {
-      enable = true;
-      package = pkgs.pass.withExtensions (exts: with exts; [ pass-otp ]);
-      settings = {
-        PASSWORD_STORE_DIR = "$HOME/.password-store";
-      };
-    };
-
-    firefox = {
-      enable = true;
-      package = pkgs.firefox.override { nativeMessagingHosts = [ pkgs.passff-host ]; };
-    };
+    imv.enable = true;
 
     thunderbird = {
       enable = true;
       profiles = { };
     };
-
-    imv = {
-      enable = true;
-    };
   };
-
-  modules.home.shell = {
-    zsh.enable = true;
-    zellij.enable = true;
-  };
-
-  modules.hyprland.enable = true;
 
   xdg = {
     enable = true;
-    mime.enable = true;
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "default-web-browser" = [ "firefox.desktop" ];
-        "text/html" = [ "firefox.desktop" ];
-        "x-scheme-handler/http" = [ "firefox.desktop" ];
-        "x-scheme-handler/https" = [ "firefox.desktop" ];
-        "x-scheme-handler/about" = [ "firefox.desktop" ];
-        "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-      };
-    };
+    mimeApps.enable = true;
   };
 
   # NEVER CHANGE THIS. IT DOESN'T MATTER WHEN UPGRADING TO ANOTHER VERSION.

@@ -5,16 +5,18 @@
 }:
 with lib;
 let
-  cfg = config.modules.home.shell.zellij;
+  cfg = config.wij.shell.zellij;
 in
 {
-  options.modules.home.shell.zellij = {
+  options.wij.shell.zellij = {
     enable = mkEnableOption "Enable zellij";
   };
 
   config = mkIf cfg.enable {
     programs.zellij = {
       enable = true;
+      # This option made me not able to do certain custom stuff.
+      # So I simply removed it, and it's much better.
       # enableZshIntegration = true;
     };
 

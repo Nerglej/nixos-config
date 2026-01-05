@@ -7,7 +7,7 @@
 }:
 with lib;
 let
-  cfg = config.modules.hyprland;
+  cfg = config.wij.hyprland;
 in
 {
   imports = [
@@ -17,7 +17,7 @@ in
     ./swaync
   ];
 
-  options.modules.hyprland = {
+  options.wij.hyprland = {
     enable = mkEnableOption "enable custom hyprland config";
   };
 
