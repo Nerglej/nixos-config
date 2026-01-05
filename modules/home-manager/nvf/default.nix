@@ -144,9 +144,21 @@
           pattern = [
             "nix"
             "dart"
-						"html"
           ];
-          desc = "Set correct indent for some files";
+          desc = "Set correct indent and tabs as spaces for some filestypes";
+          callback = lib.generators.mkLuaInline ''
+            function()
+              vim.opt_local.tabstop = 2;
+              vim.opt_local.expandtab = true;
+            end
+          '';
+        }
+        {
+          event = [ "Filetype" ];
+          pattern = [
+            "html"
+          ];
+          desc = "Set correct indent for other files";
           callback = lib.generators.mkLuaInline ''
             function()
               vim.opt_local.tabstop = 2;
