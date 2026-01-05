@@ -1,7 +1,9 @@
-_: {
+{ pkgs, ... }:
+{
   programs = {
     bemenu = {
       enable = true;
+      package = pkgs.bemenu;
       settings = {
         line-height = 28;
         prompt = "open";
@@ -17,10 +19,21 @@ _: {
     };
   };
 
+  home.packages = with pkgs; [
+    jq
+    bemenu
+
+    # Stuff that other parts of the config sets up automatically
+    # pipewire
+    # notify-send
+    # systemd
+    # zellij
+  ];
+
   home.file.".config/scripts/bemenu" = {
     source = ./scripts;
     recursive = true;
   };
 
-  home.sessionPath = ["$HOME/.config/scripts/bemenu"];
+  home.sessionPath = [ "$HOME/.config/scripts/bemenu" ];
 }

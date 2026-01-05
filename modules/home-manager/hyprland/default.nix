@@ -102,13 +102,13 @@ in
           "$mod ALT, I, exec, bemenu-audio source"
 
           "$mod ALT, W, exec, bemenu-zellij-session"
-          "$mod ALT, E, exec, bemenu-projects"
+          "$mod ALT, E, exec, bemenu-zellij-projects"
 
           # Locale changes
           "$mod, M, exec, hyprctl switchxkblayout all next"
 
           # Screenshot
-          ''$mod SHIFT, S, exec, snip''
+          "$mod SHIFT, S, exec, snip"
 
           # Reload hyprland and send a inotify reload to waybar at .config/waybar/config.json
           "$mod, Escape, exec, hyprctl reload && hyprpm reload -f -n && sleep 0.2 && touch -m $APP_FOLDER/waybar/config.jsonc"

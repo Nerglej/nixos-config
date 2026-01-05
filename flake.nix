@@ -47,9 +47,6 @@
       forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
-      # Custom packages
-      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-
       # Formatter for nix files
       formatter = forAllSystems (system: alejandra.defaultPackage.${system});
 

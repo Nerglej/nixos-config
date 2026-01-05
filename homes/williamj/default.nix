@@ -18,12 +18,12 @@ let
 in
 {
   imports = [
-    outputs.homeManagerModules.bemenu
     outputs.homeManagerModules.hyprland
-    outputs.homeManagerModules.nvf
-    outputs.homeManagerModules.zellij
-    outputs.homeManagerModules.zsh
-    outputs.homeManagerModules.scripts
+
+    ./bemenu
+    ./nvf
+    ./zellij
+    ./zsh
   ];
 
   stylix = {
