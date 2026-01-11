@@ -269,8 +269,10 @@
         go.enable = true;
         dart = {
           enable = true;
+
           flutter-tools.enable = true;
           flutter-tools.flutterPackage = null;
+          # flutter-tools.enableNoResolvePatch = true;
         };
 
         csharp.enable = true;
