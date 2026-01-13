@@ -17,7 +17,6 @@ in
     ./hardware-configuration.nix
     ../common
 
-    self.nixosModules.zealand
     self.nixosModules.sddm
     self.nixosModules.hardware
   ];
@@ -100,8 +99,6 @@ in
       pulse.enable = true;
     };
   };
-
-  zealand.jetbrains.enable = true;
 
   modules.sddm.enable = true;
   modules.system = {
