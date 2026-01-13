@@ -230,6 +230,7 @@
           quickfix = "<leader>xQ";
         };
 
+        servers.dart.enable = lib.mkForce false;
         servers.dart.cmd = lib.mkForce [
           "dart"
           "language-server"
