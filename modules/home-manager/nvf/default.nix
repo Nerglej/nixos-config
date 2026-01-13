@@ -236,6 +236,11 @@
           "language-server"
           "--protocol=lsp"
         ];
+
+        servers.svelte.cmd = lib.mkForce [
+          "svelteserver"
+          "--stdio"
+        ];
       };
 
       autocomplete.nvim-cmp = {
@@ -253,12 +258,13 @@
 
       # Supported languages
       languages = {
-        enableFormat = true;
         enableTreesitter = true;
-        enableExtraDiagnostics = false;
+        enableFormat = true;
 
-        nix.enable = true;
-        nix.lsp.enable = true;
+        nix = {
+          enable = true;
+          lsp.enable = true;
+        };
 
         rust = {
           enable = true;
@@ -268,6 +274,7 @@
         };
 
         go.enable = true;
+
         dart = {
           enable = true;
 
@@ -284,24 +291,21 @@
 
         html = {
           enable = true;
-          treesitter.enable = true;
+          lsp.enable = false;
           treesitter.autotagHtml = true;
         };
         css = {
           enable = true;
           lsp.enable = false;
-          format.enable = true;
         };
         ts = {
           enable = true;
           lsp.enable = true;
-          format.enable = true;
         };
 
         svelte = {
           enable = true;
           lsp.enable = true;
-          format.enable = true;
         };
 
         markdown.enable = true;
@@ -320,6 +324,10 @@
           view_options.show_hidden = true;
         };
       };
+
+# startPlugins = with pkgs.vimPlugins.nvim-treesitter; [
+#  ecma
+# ];
 
       lazy.plugins = {
         undotree = {

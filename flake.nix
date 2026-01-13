@@ -25,6 +25,7 @@
     split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
 
     nixos-ddcci-nvidia.url = "github:poogas/nixos-ddcci-nvidia";
+    nixos-ddcci-nvidia.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
