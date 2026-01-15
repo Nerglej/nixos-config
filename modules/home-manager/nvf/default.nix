@@ -319,15 +319,31 @@
       utility = {
         # Image-nvim doesn't work
         # images.image-nvim.enable = true;
+        images.img-clip.enable = true;
         oil-nvim.enable = true;
         oil-nvim.setupOpts = {
           view_options.show_hidden = true;
         };
       };
 
-# startPlugins = with pkgs.vimPlugins.nvim-treesitter; [
-#  ecma
-# ];
+      assistant.avante-nvim = {
+        enable = true;
+
+        setupOpts.behaviour.enable_cursor_planning_mode = true;
+        setupOpts.behaviour.support_paste_from_clipboard = true;
+
+        setupOpts.provider = "ollama";
+        setupOpts.providers = {
+          ollama = {
+            model = "deepseek-coder-v2:16b";
+            is_env_set = ''require("avante.providers.ollama").check_endpoint_alive'';
+          };
+        };
+      };
+
+      # startPlugins = with pkgs.vimPlugins.nvim-treesitter; [
+      #  ecma
+      # ];
 
       lazy.plugins = {
         undotree = {
