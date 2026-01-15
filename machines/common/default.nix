@@ -33,6 +33,7 @@ in
     home-manager
     neovim
     git
+    at
     wget
     curl
     gzip
@@ -66,6 +67,7 @@ in
   programs.kdeconnect.enable = true;
   programs.virt-manager.enable = true;
 
+  services.atd.enable = true;
   services.timesyncd.enable = true;
   services.blueman.enable = true;
 
