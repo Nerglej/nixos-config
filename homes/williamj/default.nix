@@ -51,24 +51,16 @@ in
     # Custom programs and apps
     packages = with pkgs; [
       # Apps
-      spotify
-      discord
-      obsidian
-      zoom-us
-      google-chrome
+      vesktop
       libreoffice
-
-      # CLI
       jq
       nushell
-
-      # Games
-      prismlauncher
-
-      # Unstable stuff
+      prismlauncher # Minecraft
       unstable.cursor-cli
-      unstable.code-cursor
-      unstable.ollama
+
+      # Unfree apps
+      spotify
+      zoom-us
 
       # Fonts
       nerd-fonts.jetbrains-mono

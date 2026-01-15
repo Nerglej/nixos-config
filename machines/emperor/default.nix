@@ -125,6 +125,13 @@ in
     };
 
     flatpak.enable = true;
+    ollama = {
+      enable = true;
+      package = pkgs.unstable.ollama-cuda;
+      # Use Nvidia thingies I pay for
+      acceleration = "cuda";
+      loadModels = [ "deepseek-coder-v2:16b" ];
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -152,9 +159,16 @@ in
     bluetooth.powerOnBoot = true;
 
     # Use open source nvidia drivers
-    nvidia.open = true;
+    nvidia = {
+      open = true;
+    };
     i2c.enable = true;
     ddcci.enable = true;
+  };
+
+  nix.settings = {
+    substituters = [ "https://cache.nixos-cuda.org" ];
+    trusted-public-keys = [ "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
   };
 
   # Pipewire realtime security

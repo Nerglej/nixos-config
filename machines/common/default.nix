@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }:
 let
@@ -11,14 +12,26 @@ in
     self.nixosModules.stylix
   ];
 
-  # Allow unfree packages
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-    };
-    overlays = [ inputs.self.overlays.unstable-packages ];
-  };
+  nixpkgs.overlays = [ inputs.self.overlays.unstable-packages ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      # custom apps
+      "steam"
+      "steam-unwrapped"
+      "spotify"
+      "zoom"
+
+      # required for nvidia driver
+      "nvidia-x11"
+      "nvidia-settings"
+
+      # required for ollama and nvidia
+      # "cuda_cudart"
+      # "libcublas"
+      # "cuda_cccl"
+      # "cuda_nvcc"
+    ];
 
   nix = {
     package = pkgs.nixVersions.stable;
