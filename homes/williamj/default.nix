@@ -28,6 +28,7 @@ in
     self.homeModules.foot
     self.homeModules.git
     self.homeModules.gpg
+    self.homeModules.librewolf
     self.homeModules.nvf
     self.homeModules.password-store
     self.homeModules.rmpc
@@ -74,6 +75,7 @@ in
 
   wij.firefox.enable = true;
   wij.firefox.mimeAppDefault = true;
+  wij.librewolf.enable = true;
 
   wij.git = {
     enable = true;

@@ -125,16 +125,11 @@ in
     };
 
     flatpak.enable = true;
-    ollama = {
-      enable = true;
-      package = pkgs.unstable.ollama-cuda;
-      # Use Nvidia thingies I pay for
-      acceleration = "cuda";
-      loadModels = [ "deepseek-coder-v2:16b" ];
-    };
   };
 
   environment.systemPackages = with pkgs; [
+    unstable.ollama-cuda
+
     # manages physical display stuff
     ddcutil
   ];

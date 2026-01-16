@@ -12,7 +12,11 @@ in
     self.nixosModules.stylix
   ];
 
-  nixpkgs.overlays = [ inputs.self.overlays.unstable-packages ];
+  nixpkgs.overlays = [
+    inputs.self.overlays.unstable-packages
+    inputs.nur.overlays.default
+  ];
+
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
