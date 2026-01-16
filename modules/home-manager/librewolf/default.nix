@@ -86,6 +86,7 @@ in
             force = true;
             packages = with pkgs.nur.repos.rycee.firefox-addons; [
               ublock-origin
+              sponsorblock
             ];
             settings."uBlock0@raymondhill.net".settings = {
               selectedFilterLists = [
