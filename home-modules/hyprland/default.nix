@@ -13,7 +13,6 @@ in
   imports = [
     inputs.noctalia.homeModules.default
 
-    ./hyprlock
     ./hypridle
     ./swaync
   ];
@@ -98,7 +97,7 @@ in
           "$mod ALT, T, exec, foot"
           "$mod ALT, F, exec, firefox"
           "$mod ALT, M, exec, pgrep spotify && hyprctl dispatch togglespecialworkspace music || spotify &"
-          "$mod ALT, P, exec, bemenu-powermenu"
+          "$mod ALT, P, exec, noctalia-shell ipc call sessionMenu toggle"
           "$mod ALT, O, exec, bemenu-audio sink"
           "$mod ALT, I, exec, bemenu-audio source"
 
@@ -283,14 +282,44 @@ in
           setWallpaperOnAllMonitors = true;
           transitionDuration = 1000;
         };
+        sessionMenu = {
+          enableCountdown = true;
+          countdownDuration = 5000;
+          powerOptions = [
+            {
+              action = "lock";
+              enabled = true;
+            }
+            {
+              action = "suspend";
+              enabled = false;
+            }
+            {
+              action = "hibernate";
+              enabled = false;
+            }
+            {
+              action = "reboot";
+              enabled = true;
+            }
+            {
+              action = "logout";
+              enabled = true;
+            }
+            {
+              action = "shutdown";
+              enabled = true;
+            }
+          ];
+        };
       };
     };
 
-#home.file.".cache/noctalia/wallpapers.json" = {
-#      text = builtins.toJSON {
-#        defaultWallpaper = ../../fractal-flower.jpg;
-#      };
-#    };
+    #home.file.".cache/noctalia/wallpapers.json" = {
+    #      text = builtins.toJSON {
+    #        defaultWallpaper = ../../fractal-flower.jpg;
+    #      };
+    #    };
 
     home.file."Pictures/Wallpapers/fractal-flower.jpg" = {
       source = ../../fractal-flower.jpg;
