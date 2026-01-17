@@ -47,8 +47,8 @@
         ./machines
         ./homes
 
-        ./modules/nixos
-        ./modules/home-manager
+        ./nixos-modules
+        ./home-modules
       ];
 
       systems = [
