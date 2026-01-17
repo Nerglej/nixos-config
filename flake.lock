@@ -822,6 +822,26 @@
         "type": "github"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768650271,
+        "narHash": "sha256-n1DBzvMB6G3erVoiartAt2o/GaWovhh2tl8tzrLQFVA=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "rev": "0a6a3e5eba4d25f53cec5de7a98e136f1a7af2f3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -925,6 +945,7 @@
         "nixos-ddcci-nvidia": "nixos-ddcci-nvidia",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "noctalia": "noctalia",
         "nur": "nur",
         "nvf": "nvf",
         "split-monitor-workspaces": "split-monitor-workspaces",

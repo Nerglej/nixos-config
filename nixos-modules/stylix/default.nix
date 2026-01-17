@@ -15,7 +15,7 @@
       enable = true;
       base16Scheme = ./themes/gruvbox-dark-custom.yaml;
 
-      image = ../../../fractal-flower.jpg;
+      image = ../../fractal-flower.jpg;
 
       fonts = {
         serif = {

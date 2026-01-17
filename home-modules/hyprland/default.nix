@@ -11,7 +11,8 @@ let
 in
 {
   imports = [
-    ./waybar
+    inputs.noctalia.homeModules.default
+
     ./hyprlock
     ./hypridle
     ./swaync
@@ -170,11 +171,6 @@ in
           "match:class swaync-notification-window, ignore_alpha 0.5"
         ];
 
-        exec-once = [
-          "waybar"
-          "swaybg -i ~/.background-image"
-        ];
-
         general = {
           gaps_in = 5;
           gaps_out = 10;
@@ -222,7 +218,7 @@ in
 
         monitor = [
           "DP-1, 3840x2160@120, 0x0, 1.5"
-          "DP-2, 1920x1080@240, 2560x0, 1"
+          "DP-2, 1920x1080@240, 2560x180, 1"
           "eDP-1, 1920x1080@60, 0x0, 1"
           ", preferred, auto, 1"
         ];
@@ -241,8 +237,63 @@ in
       };
     };
 
-    home.file.".background-image" = {
-      source = ../../../fractal-flower.jpg;
+    programs.noctalia-shell = {
+      enable = true;
+      systemd.enable = true;
+
+      settings = {
+        colorSchemes.predefinedScheme = "Gruvbox";
+
+        location = {
+          name = "Denmark";
+          monthBeforeDay = false;
+        };
+
+        bar = {
+          widgets = {
+            left = [
+              { id = "Launcher"; }
+              { id = "Clock"; }
+              { id = "SystemMonitor"; }
+              { id = "ActiveWindow"; }
+            ];
+            center = [
+              {
+                id = "Workspace";
+                labelMode = "none";
+                hideUnoccupied = false;
+              }
+
+            ];
+            right = [
+              { id = "MediaMini"; }
+              { id = "Tray"; }
+              { id = "NotificationHistory"; }
+              { id = "Battery"; }
+              { id = "Volume"; }
+              { id = "Brightness"; }
+              { id = "ControlCenter"; }
+            ];
+          };
+        };
+        wallpaper = {
+          enabled = true;
+          directory = "~/Pictures/Wallpapers";
+          recursiveSearch = true;
+          setWallpaperOnAllMonitors = true;
+          transitionDuration = 1000;
+        };
+      };
+    };
+
+#home.file.".cache/noctalia/wallpapers.json" = {
+#      text = builtins.toJSON {
+#        defaultWallpaper = ../../fractal-flower.jpg;
+#      };
+#    };
+
+    home.file."Pictures/Wallpapers/fractal-flower.jpg" = {
+      source = ../../fractal-flower.jpg;
     };
 
     services = {
@@ -250,8 +301,6 @@ in
     };
 
     home.packages = with pkgs; [
-      waytrogen
-      swaybg
       brightnessctl
       playerctl
 
