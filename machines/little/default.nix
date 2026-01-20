@@ -98,6 +98,8 @@ in
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+
+    upower.enable = true;
   };
 
   modules.sddm.enable = true;
