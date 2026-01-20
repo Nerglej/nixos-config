@@ -57,7 +57,7 @@ in
       jq
       nushell
       prismlauncher # Minecraft
-      unstable.cursor-cli
+      unstable.claude-code
 
       # Unfree apps
       spotify
