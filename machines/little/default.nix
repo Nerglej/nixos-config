@@ -115,6 +115,10 @@ in
     bluetooth.powerOnBoot = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    amdgpu_top
+  ];
+
   # Pipewire realtime security
   security.rtkit.enable = true;
 

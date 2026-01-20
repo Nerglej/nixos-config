@@ -30,11 +30,8 @@ in
       "nvidia-x11"
       "nvidia-settings"
 
-      # required for ollama and nvidia
-      # "cuda_cudart"
-      # "libcublas"
-      # "cuda_cccl"
-      # "cuda_nvcc"
+      # extensions
+      "dashlane"
     ];
 
   nix = {

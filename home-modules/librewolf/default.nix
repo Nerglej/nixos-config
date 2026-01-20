@@ -39,6 +39,10 @@ in
         "privacy.clearOnShutdown.history" = false;
         "privacy.clearOnShutdown.cookies" = false;
         "network.cookie.lifetimePolicy" = 0;
+
+        "extensions.autoDisableScopes" = 0;
+        "extensions.update.autoUpdateDefault" = false;
+        "extensions.update.enabled" = false;
       };
 
       profiles = {
@@ -87,7 +91,43 @@ in
             packages = with pkgs.nur.repos.rycee.firefox-addons; [
               ublock-origin
               sponsorblock
+              sidebery
+              passff
             ];
+
+            settings."uBlock0@raymondhill.net".settings = {
+              selectedFilterLists = [
+                "ublock-filters"
+                "ublock-badware"
+                "ublock-privacy"
+                "ublock-unbreak"
+                "ublock-quick-fixes"
+              ];
+            };
+
+            settings."sponsorBlocker@ajay".settings.enabled = true;
+          };
+
+        };
+
+        "opto" = {
+          id = 10;
+          isDefault = false;
+
+          search = {
+            force = true;
+            default = "ddg";
+          };
+
+          extensions = {
+            force = true;
+            packages = with pkgs.nur.repos.rycee.firefox-addons; [
+              ublock-origin
+              sponsorblock
+              sidebery
+              dashlane
+            ];
+
             settings."uBlock0@raymondhill.net".settings = {
               selectedFilterLists = [
                 "ublock-filters"
@@ -99,6 +139,15 @@ in
             };
           };
         };
+      };
+
+      policies = {
+        Extensions.Locked = [
+          "uBlock0@raymondhill.net"
+          "passff@invicem.pro"
+          "{3c078156-979c-498b-8990-85f7987dd929}" # sidebery
+          "sponsorBlocker@ajay.app"
+        ];
       };
     };
 
