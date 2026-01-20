@@ -39,107 +39,107 @@ in
         "privacy.clearOnShutdown.history" = false;
         "privacy.clearOnShutdown.cookies" = false;
         "network.cookie.lifetimePolicy" = 0;
-
-        "extensions.autoDisableScopes" = 0;
-        "extensions.update.autoUpdateDefault" = false;
-        "extensions.update.enabled" = false;
       };
 
-      profiles = {
-        "general" = {
-          id = 0;
-          isDefault = true;
+      profiles =
+        let
+          mkProfile =
+            {
+              id,
+              isDefault ? false,
+              extensions ? [ ],
+            }:
+            {
+              inherit id isDefault;
 
-          search = {
-            force = true;
-            default = "ddg";
-            engines = {
-              "Nix Packages" = {
-                definedAliases = [ "@np" ];
-                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                urls = [
-                  {
-                    template = "https://search.nixos.org/packages";
-                    params = [
+              extensions = {
+                force = true;
+
+                packages =
+                  with pkgs.nur.repos.rycee.firefox-addons;
+                  [
+                    ublock-origin
+                    sponsorblock
+                    sidebery
+                  ]
+                  ++ extensions;
+
+                settings."uBlock0@raymondhill.net".settings = {
+                  selectedFilterLists = [
+                    "ublock-filters"
+                    "ublock-badware"
+                    "ublock-privacy"
+                    "ublock-unbreak"
+                    "ublock-quick-fixes"
+                  ];
+                };
+              };
+
+              settings = {
+                "extensions.autoDisableScopes" = 0;
+                "extensions.update.autoUpdateDefault" = false;
+                "extensions.update.enabled" = false;
+
+                "browser.tabs.inTitlebar" = 0;
+                "browser.toolbars.bookmarks.visibility" = "always";
+                "browser.profiles.enabled" = false;
+                "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+              };
+
+              search = {
+                force = true;
+                default = "ddg";
+                engines = {
+                  "Nix Packages" = {
+                    definedAliases = [ "@np" ];
+                    icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                    urls = [
                       {
-                        name = "query";
-                        value = "{searchTerms}";
+                        template = "https://search.nixos.org/packages";
+                        params = [
+                          {
+                            name = "query";
+                            value = "{searchTerms}";
+                          }
+                        ];
                       }
                     ];
-                  }
-                ];
-              };
-              "Nix Options" = {
-                definedAliases = [ "@no" ];
-                urls = [
-                  {
-                    template = "https://search.nixos.org/options";
-                    params = [
+                  };
+                  "Nix Options" = {
+                    definedAliases = [ "@no" ];
+                    urls = [
                       {
-                        name = "query";
-                        value = "{searchTerms}";
+                        template = "https://search.nixos.org/options";
+                        params = [
+                          {
+                            name = "query";
+                            value = "{searchTerms}";
+                          }
+                        ];
                       }
                     ];
-                  }
-                ];
+                  };
+                };
               };
+
+              userChrome = ''
+                #TabsToolbar{ visibility: collapse !important }
+              '';
+
             };
+        in
+        {
+          "general" = mkProfile {
+            id = 0;
+            isDefault = true;
+            extensions = [ pkgs.nur.repos.rycee.firefox-addons.passff ];
           };
 
-          extensions = {
-            force = true;
-            packages = with pkgs.nur.repos.rycee.firefox-addons; [
-              ublock-origin
-              sponsorblock
-              sidebery
-              passff
-            ];
-
-            settings."uBlock0@raymondhill.net".settings = {
-              selectedFilterLists = [
-                "ublock-filters"
-                "ublock-badware"
-                "ublock-privacy"
-                "ublock-unbreak"
-                "ublock-quick-fixes"
-              ];
-            };
-
-            settings."sponsorBlocker@ajay".settings.enabled = true;
-          };
-
-        };
-
-        "opto" = {
-          id = 10;
-          isDefault = false;
-
-          search = {
-            force = true;
-            default = "ddg";
-          };
-
-          extensions = {
-            force = true;
-            packages = with pkgs.nur.repos.rycee.firefox-addons; [
-              ublock-origin
-              sponsorblock
-              sidebery
-              dashlane
-            ];
-
-            settings."uBlock0@raymondhill.net".settings = {
-              selectedFilterLists = [
-                "ublock-filters"
-                "ublock-badware"
-                "ublock-privacy"
-                "ublock-unbreak"
-                "ublock-quick-fixes"
-              ];
-            };
+          "OptoCeutics" = mkProfile {
+            id = 1;
+            extensions = [ pkgs.nur.repos.rycee.firefox-addons.dashlane ];
           };
         };
-      };
 
       policies = {
         Extensions.Locked = [
@@ -147,6 +147,7 @@ in
           "passff@invicem.pro"
           "{3c078156-979c-498b-8990-85f7987dd929}" # sidebery
           "sponsorBlocker@ajay.app"
+          "jetpack-extension@dashlane.com"
         ];
       };
     };
