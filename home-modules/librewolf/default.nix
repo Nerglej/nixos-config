@@ -35,10 +35,16 @@ in
 
       settings = {
         "webgl.disabled" = false;
-        "privacy.resistFingerprinting" = true;
+        "network.cookie.lifetimePolicy" = 0;
         "privacy.clearOnShutdown.history" = false;
         "privacy.clearOnShutdown.cookies" = false;
-        "network.cookie.lifetimePolicy" = 0;
+
+        # This is temporary, until LibreWolf figures out themselves what they want.
+        # This makes system theming viable though.
+        # See [#2121](https://codeberg.org/librewolf/issues/issues/2121)
+        "privacy.resistFingerprinting" = false;
+        "privacy.fingerprintingProtection" = true;
+        "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
       };
 
       profiles =
@@ -73,6 +79,22 @@ in
                     "ublock-quick-fixes"
                   ];
                 };
+                settings."{3c078156-979c-498b-8990-85f7987dd929}".permissions = [
+                  "activeTab"
+                  "tabs"
+                  "contextualIdentities"
+                  "cookies"
+                  "storage"
+                  "unlimitedStorage"
+                  "sessions"
+                  "menus"
+                  "menus.overrideContext"
+                  "search"
+                  "theme"
+                  "identity"
+                  "bookmarks"
+                  "history"
+                ];
               };
 
               settings = {
@@ -81,7 +103,7 @@ in
                 "extensions.update.enabled" = false;
 
                 "browser.tabs.inTitlebar" = 0;
-                "browser.toolbars.bookmarks.visibility" = "always";
+                "browser.toolbars.bookmarks.visibility" = "never";
                 "browser.profiles.enabled" = false;
                 "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               };
