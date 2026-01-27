@@ -58,6 +58,8 @@ in
       nushell
       prismlauncher # Minecraft
       unstable.claude-code
+      unstable.gemini-cli
+      unstable.opencode
 
       # Unfree apps
       spotify
