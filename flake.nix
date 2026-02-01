@@ -9,20 +9,29 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
 
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
+    nur.inputs.flake-parts.follows = "flake-parts";
 
     stylix.url = "github:nix-community/stylix/release-25.11";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.inputs.flake-parts.follows = "flake-parts";
+    stylix.inputs.nur.follows = "nur";
 
     alejandra.url = "github:kamadorueda/alejandra/3.1.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
     nvf.url = "github:notashelf/nvf";
     nvf.inputs.nixpkgs.follows = "nixpkgs";
+    nvf.inputs.flake-parts.follows = "flake-parts";
 
     hyprland.url = "github:hyprwm/Hyprland";
+
+    mango.url = "github:DreamMaoMao/mango";
+    mango.inputs.nixpkgs.follows = "nixpkgs";
+    mango.inputs.flake-parts.follows = "flake-parts";
 
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
@@ -37,21 +46,17 @@
   outputs =
     inputs@{
       self,
-      nixpkgs,
-      flake-parts,
-      home-manager,
-      alejandra,
       ...
     }:
-    flake-parts.lib.mkFlake { inherit inputs; } ({
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } ({
       imports = [
         inputs.home-manager.flakeModules.home-manager
 
-        ./machines
-        ./homes
+        (inputs.import-tree ./machines)
+        (inputs.import-tree ./homes)
 
-        ./nixos-modules
-        ./home-modules
+        (inputs.import-tree ./nixos-modules)
+        (inputs.import-tree ./home-modules)
       ];
 
       systems = [

@@ -1,18 +1,5 @@
 {
-  lib,
-  config,
-  ...
-}:
-with lib;
-let
-  cfg = config.wij.shell.zellij;
-in
-{
-  options.wij.shell.zellij = {
-    enable = mkEnableOption "Enable zellij";
-  };
-
-  config = mkIf cfg.enable {
+  flake.homeModules.zellij = {
     programs.zellij = {
       enable = true;
       # This option made me not able to do certain custom stuff.

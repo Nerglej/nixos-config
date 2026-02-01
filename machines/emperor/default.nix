@@ -1,7 +1,6 @@
 {
   inputs,
   config,
-  pkgs,
   ...
 }:
 let
@@ -14,160 +13,180 @@ let
   };
 in
 {
-  imports = [
-    ./hardware-configuration.nix
-    ../common
+  flake.nixosConfigurations."emperor" = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = { inherit inputs; };
 
-    inputs.nixos-ddcci-nvidia.nixosModules.default
+    modules = [
+      ./_hardware-configuration.nix
 
-    self.nixosModules.sddm
-    self.nixosModules.hardware
-  ];
+      self.nixosModules.commonModule
+      self.nixosModules.emperorModule
 
-  # Locale
-  time.timeZone = systemSettings.timezone;
-  i18n.defaultLocale = systemSettings.locale;
-  console.keyMap = "us";
+      self.nixosModules.sddm-astronaut
+      self.nixosModules.printing
+      self.nixosModules.stylix
 
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-
-    extraModulePackages = with config.boot.kernelPackages; [ ddcci-driver ];
-    kernelModules = [ "ddcci_backlight" ];
+      inputs.home-manager.nixosModules.home-manager
+      inputs.nixos-ddcci-nvidia.nixosModules.default
+    ];
   };
 
-  # User account
-  users.users = {
-    "williamj" = {
-      isNormalUser = true;
-      description = "William Jelgren";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "docker"
-        "libvirtd"
-        "video"
-        "input"
-      ];
-      uid = 1000;
-    };
-  };
+  flake.nixosModules.emperorModule =
+    { pkgs, ... }:
+    {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users."williamj" = inputs.self.homeConfigurations.williamj;
 
-  # Networking
-  networking = {
-    hostName = systemSettings.hostname;
-    networkmanager.enable = true;
+        extraSpecialArgs = { inherit inputs; };
+      };
 
-    # Firewall
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [
-        57621 # Spotify
-      ];
-      allowedUDPPorts = [
-        5353 # Spotify
-      ];
-    };
-  };
+      # Locale
+      time.timeZone = systemSettings.timezone;
+      i18n.defaultLocale = systemSettings.locale;
+      console.keyMap = "us";
 
-  programs = {
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
+      boot = {
+        loader = {
+          systemd-boot.enable = true;
+          efi.canTouchEfiVariables = true;
+        };
 
-    hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-      withUWSM = true;
-    };
-  };
+        extraModulePackages = with config.boot.kernelPackages; [ ddcci-driver ];
+        kernelModules = [ "ddcci_backlight" ];
+      };
 
-  services = {
-    # Enable the X11 windowing system.
-    xserver = {
-      enable = true;
-
-      excludePackages = [ pkgs.xterm ];
-
-      # Configure keymap in X11
-      xkb.layout = "us";
-
-      # Set nvidia driver
-      videoDrivers = [ "nvidia" ];
-    };
-
-    # Enable pipewire for sound
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      extraConfig.pipewire = {
-        "10-clock-rate" = {
-          "context.properties" = {
-            "default.clock.rate" = 96000;
-            "default.allowed-rates" = [
-              192000
-              96000
-              48000
-              44100
-            ];
-          };
+      # User account
+      users.users = {
+        "williamj" = {
+          isNormalUser = true;
+          description = "William Jelgren";
+          extraGroups = [
+            "networkmanager"
+            "wheel"
+            "docker"
+            "libvirtd"
+            "video"
+            "input"
+          ];
+          uid = 1000;
         };
       };
+
+      # Networking
+      networking = {
+        hostName = systemSettings.hostname;
+        networkmanager.enable = true;
+
+        # Firewall
+        firewall = {
+          enable = true;
+          allowedTCPPorts = [
+            57621 # Spotify
+          ];
+          allowedUDPPorts = [
+            5353 # Spotify
+          ];
+        };
+      };
+
+      programs = {
+        steam = {
+          enable = true;
+          remotePlay.openFirewall = true;
+          dedicatedServer.openFirewall = true;
+        };
+
+        hyprland = {
+          enable = true;
+          package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+          portalPackage =
+            inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+          withUWSM = true;
+        };
+      };
+
+      services = {
+        # Enable the X11 windowing system.
+        xserver = {
+          enable = true;
+
+          excludePackages = [ pkgs.xterm ];
+
+          # Configure keymap in X11
+          xkb.layout = "us";
+
+          # Set nvidia driver
+          videoDrivers = [ "nvidia" ];
+        };
+
+        # Enable pipewire for sound
+        pipewire = {
+          enable = true;
+          alsa.enable = true;
+          alsa.support32Bit = true;
+          pulse.enable = true;
+          extraConfig.pipewire = {
+            "10-clock-rate" = {
+              "context.properties" = {
+                "default.clock.rate" = 96000;
+                "default.allowed-rates" = [
+                  192000
+                  96000
+                  48000
+                  44100
+                ];
+              };
+            };
+          };
+        };
+
+        flatpak.enable = true;
+      };
+
+      environment.systemPackages = with pkgs; [
+        unstable.ollama-cuda
+
+        # manages physical display stuff
+        ddcutil
+      ];
+
+      modules.sddm.enable = true;
+      modules.system = {
+        hardware.printing.enable = true;
+        hardware.power.enable = false;
+      };
+
+      hardware = {
+        graphics = {
+          enable = true;
+          # For Steam
+          enable32Bit = true;
+
+          # nvidia driver
+          extraPackages = [ pkgs.nvidia-vaapi-driver ];
+        };
+
+        bluetooth.enable = true;
+        bluetooth.powerOnBoot = true;
+
+        # Use open source nvidia drivers
+        nvidia = {
+          open = true;
+        };
+        i2c.enable = true;
+        ddcci.enable = true;
+      };
+
+      nix.settings = {
+        substituters = [ "https://cache.nixos-cuda.org" ];
+        trusted-public-keys = [ "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
+      };
+
+      # Pipewire realtime security
+      security.rtkit.enable = true;
+
+      system.stateVersion = "24.11";
     };
-
-    flatpak.enable = true;
-  };
-
-  environment.systemPackages = with pkgs; [
-    unstable.ollama-cuda
-
-    # manages physical display stuff
-    ddcutil
-  ];
-
-  modules.sddm.enable = true;
-  modules.system = {
-    hardware.printing.enable = true;
-    hardware.power.enable = false;
-  };
-
-  hardware = {
-    graphics = {
-      enable = true;
-      # For Steam
-      enable32Bit = true;
-
-      # nvidia driver
-      extraPackages = [ pkgs.nvidia-vaapi-driver ];
-    };
-
-    bluetooth.enable = true;
-    bluetooth.powerOnBoot = true;
-
-    # Use open source nvidia drivers
-    nvidia = {
-      open = true;
-    };
-    i2c.enable = true;
-    ddcci.enable = true;
-  };
-
-  nix.settings = {
-    substituters = [ "https://cache.nixos-cuda.org" ];
-    trusted-public-keys = [ "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
-  };
-
-  # Pipewire realtime security
-  security.rtkit.enable = true;
-
-  system.stateVersion = "24.11";
 }
