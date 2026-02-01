@@ -129,7 +129,7 @@
 
         termguicolors = true;
 
-        scrolloff = 12;
+        scrolloff = 100;
         signcolumn = "yes";
         # vim.opt.isfname:append("@-@")
 

@@ -37,7 +37,7 @@ in
         "webgl.disabled" = false;
         "network.cookie.lifetimePolicy" = 0;
         "privacy.clearOnShutdown.history" = false;
-        "privacy.clearOnShutdown.cookies" = false;
+        "privacy.clearOnShutdown.cookies" = true;
 
         # This is temporary, until LibreWolf figures out themselves what they want.
         # This makes system theming viable though.
@@ -160,6 +160,11 @@ in
           "OptoCeutics" = mkProfile {
             id = 1;
             extensions = [ pkgs.nur.repos.rycee.firefox-addons.dashlane ];
+          };
+
+          "Zealand" = mkProfile {
+            id = 2;
+            extensions = [ ];
           };
         };
 

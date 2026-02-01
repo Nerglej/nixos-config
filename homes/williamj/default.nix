@@ -5,18 +5,6 @@
 }:
 let
   inherit (inputs) self;
-
-  userSettings = {
-    username = "williamj";
-    name = "William Jelgren";
-    email = "william@jelgren.dk";
-    editor = "nvim";
-    terminal = "foot";
-    browser = "firefox";
-    shellAliases = {
-      ll = "ls -l";
-    };
-  };
 in
 {
   imports = [
@@ -37,26 +25,31 @@ in
   ];
 
   home = {
-    inherit (userSettings) username;
-    inherit (userSettings) shellAliases;
-
-    homeDirectory = "/home/${userSettings.username}";
+    username = "williamj";
+    shellAliases = {
+      ll = "ls -l";
+    };
+    homeDirectory = "/home/williamj";
     sessionVariables = {
-      EDITOR = userSettings.editor;
-      TERMINAL = userSettings.terminal;
-      BROWSER = userSettings.browser;
+      EDITOR = "nvim";
+      TERMINAL = "foot";
+      BROWSER = "librewolf";
       # SPAWNEDITOR = userSettings.spawnEditor;
-      MANPAGER = "${userSettings.editor} +Man!";
+      MANPAGER = "$nvim +Man!";
     };
 
     # Custom programs and apps
     packages = with pkgs; [
       # Apps
-      vesktop
-      libreoffice
       jq
       nushell
+      vesktop
+      libreoffice
       prismlauncher # Minecraft
+
+      pandoc
+      texlive.combined.scheme-small
+
       unstable.claude-code
       unstable.gemini-cli
       unstable.opencode
@@ -76,12 +69,13 @@ in
   wij.password-store.enable = true;
 
   wij.firefox.enable = true;
-  wij.firefox.mimeAppDefault = true;
   wij.librewolf.enable = true;
+  wij.librewolf.mimeAppDefault = true;
 
   wij.git = {
     enable = true;
-    inherit (userSettings) name email;
+    name = "William Jelgren";
+    email = "william@jelgren.dk";
   };
 
   wij.shell.zsh.enable = true;
