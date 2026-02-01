@@ -3,8 +3,6 @@
   ...
 }:
 let
-  inherit (inputs) self;
-
   systemSettings = {
     hostname = "little";
     timezone = "Europe/Copenhagen";
@@ -18,13 +16,14 @@ in
     modules = [
       ./_hardware-configuration.nix
 
-      self.nixosModules.commonModule
-      self.nixosModules.littleModule
+      inputs.self.nixosModules.commonModule
+      inputs.self.nixosModules.littleModule
 
-      self.nixosModules.sddm-astronaut
-      self.nixosModules.printing
-      self.nixosModules.power
-      self.nixosModules.stylix
+      inputs.self.nixosModules.sddm-astronaut
+      inputs.self.nixosModules.printing
+      inputs.self.nixosModules.power
+      inputs.self.nixosModules.stylix
+      inputs.self.nixosModules.hyprland
 
       inputs.home-manager.nixosModules.home-manager
     ];
@@ -86,14 +85,6 @@ in
         steam = {
           enable = true;
           remotePlay.openFirewall = true;
-        };
-
-        hyprland = {
-          enable = true;
-          package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-          portalPackage =
-            inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-          withUWSM = true;
         };
       };
 
