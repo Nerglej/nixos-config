@@ -10,9 +10,8 @@
       wayland.windowManager.mango = {
         enable = true;
         settings = builtins.readFile ./config.conf;
-        autostart_sh = builtins.readFile ./autostart.sh;
       };
-      
+
       home.packages = with pkgs; [
         brightnessctl
         playerctl
