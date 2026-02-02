@@ -3,7 +3,6 @@
     { pkgs, inputs, ... }:
     {
       imports = [
-        inputs.self.homeModules.hyprland
         inputs.self.homeModules.bemenu
         inputs.self.homeModules.direnv
         inputs.self.homeModules.firefox

@@ -37,7 +37,7 @@ in
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        users."williamj" = inputs.self.homeConfigurations.williamj;
+        users."williamj" = inputs.self.homeConfigurations."williamj@emperor";
 
         extraSpecialArgs = { inherit inputs; };
       };

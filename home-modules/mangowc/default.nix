@@ -1,20 +1,21 @@
 {
   flake.homeModules.mangowc =
-    { inputs, ... }:
+    { inputs, pkgs, ... }:
     {
       imports = [
         inputs.mango.hmModules.mango
+        inputs.self.homeModules.noctalia-shell
       ];
 
       wayland.windowManager.mango = {
         enable = true;
-        settings = ''
-          # see config.conf
-        '';
-        autostart_sh = ''
-          # see autostart.sh
-          # Note: here no need to add shebang
-        '';
+        settings = builtins.readFile ./config.conf;
+        autostart_sh = builtins.readFile ./autostart.sh;
       };
+      
+      home.packages = with pkgs; [
+        brightnessctl
+        playerctl
+      ];
     };
 }

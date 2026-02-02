@@ -23,7 +23,7 @@ in
       inputs.self.nixosModules.printing
       inputs.self.nixosModules.power
       inputs.self.nixosModules.stylix
-      inputs.self.nixosModules.hyprland
+      inputs.self.nixosModules.mangowc
 
       inputs.home-manager.nixosModules.home-manager
     ];
@@ -35,7 +35,7 @@ in
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        users."williamj" = inputs.self.homeConfigurations.williamj;
+        users."williamj" = inputs.self.homeConfigurations."williamj@little";
 
         extraSpecialArgs = { inherit inputs; };
       };
