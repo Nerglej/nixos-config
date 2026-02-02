@@ -21,7 +21,6 @@
           bar = {
             widgets = {
               left = [
-                { id = "Launcher"; }
                 { id = "Clock"; }
                 { id = "SystemMonitor"; }
                 { id = "ActiveWindow"; }
