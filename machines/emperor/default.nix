@@ -21,7 +21,7 @@ in
 
       inputs.self.nixosModules.sddm-astronaut
       inputs.self.nixosModules.printing
-      inputs.self.nixosModules.hyprland
+      inputs.self.nixosModules.mangowc
       inputs.self.nixosModules.stylix
 
       inputs.home-manager.nixosModules.home-manager

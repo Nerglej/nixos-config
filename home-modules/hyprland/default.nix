@@ -1,6 +1,12 @@
 {
   flake.homeModules.hyprland =
-    { pkgs, inputs, ... }:
+    {
+      pkgs,
+      inputs,
+      lib,
+      config,
+      ...
+    }:
     {
       imports = [
         inputs.self.homeModules.hypridle
@@ -201,12 +207,19 @@
             "4, horizontal, workspace"
           ];
 
-          monitor = [
-            "DP-1, 3840x2160@120, 0x0, 1.5"
-            "DP-2, 1920x1080@240, 2560x180, 1"
-            "eDP-1, 1920x1080@60, 0x0, 1"
-            ", preferred, auto, 1"
-          ];
+          monitor =
+            let
+              hyprMonitor = lib.mapAttrsToList (
+                name: value:
+                "${
+                  if value.name or null != null then value.name else name
+                }, ${toString value.width}x${toString value.height}@${toString value.refresh}, ${toString value.x}x${toString value.y}, ${toString value.scale}"
+              ) config.wij.compositor.monitors;
+            in
+            hyprMonitor
+            ++ [
+              ", preferred, auto, 1"
+            ];
 
           xwayland.force_zero_scaling = true;
           misc.disable_hyprland_logo = true;
