@@ -1,6 +1,11 @@
 {
   flake.homeModules.librewolf =
-    { pkgs, lib, config, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     let
       cfg = config.wij.librewolf;
     in
@@ -72,10 +77,13 @@
                         "ublock-filters"
                         "ublock-badware"
                         "ublock-privacy"
-                        "ublock-unbreak"
                         "ublock-quick-fixes"
+                        "ublock-unbreak"
+                        "fanboy-cookiemonster"
+                        "ublock-cookies-easylist"
                       ];
                     };
+
                     settings."{3c078156-979c-498b-8990-85f7987dd929}".permissions = [
                       "activeTab"
                       "tabs"
@@ -144,7 +152,6 @@
                   userChrome = ''
                     #TabsToolbar{ visibility: collapse !important }
                   '';
-
                 };
             in
             {
