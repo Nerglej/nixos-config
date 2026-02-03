@@ -3,6 +3,7 @@
     { inputs, ... }:
     {
       imports = [
+        inputs.self.homeModules.compositor
         inputs.self.homeModules.mangowc
         inputs.self.homeConfigurations.williamj
       ];
@@ -12,8 +13,8 @@
           width = 1920;
           height = 1080;
           refresh = 60;
-          x = 0;
-          y = 0;
+          x = 0.0;
+          y = 0.0;
           scale = 1.0;
         };
       };
