@@ -1,11 +1,8 @@
 {
   inputs,
-  config,
   ...
 }:
 let
-  inherit (inputs) self;
-
   systemSettings = {
     hostname = "emperor";
     timezone = "Europe/Copenhagen";
@@ -19,12 +16,13 @@ in
     modules = [
       ./_hardware-configuration.nix
 
-      self.nixosModules.commonModule
-      self.nixosModules.emperorModule
+      inputs.self.nixosModules.commonModule
+      inputs.self.nixosModules.emperorModule
 
-      self.nixosModules.sddm-astronaut
-      self.nixosModules.printing
-      self.nixosModules.stylix
+      inputs.self.nixosModules.sddm-astronaut
+      inputs.self.nixosModules.printing
+      inputs.self.nixosModules.hyprland
+      inputs.self.nixosModules.stylix
 
       inputs.home-manager.nixosModules.home-manager
       inputs.nixos-ddcci-nvidia.nixosModules.default
@@ -32,7 +30,7 @@ in
   };
 
   flake.nixosModules.emperorModule =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       home-manager = {
         useGlobalPkgs = true;
@@ -91,20 +89,10 @@ in
         };
       };
 
-      programs = {
-        steam = {
-          enable = true;
-          remotePlay.openFirewall = true;
-          dedicatedServer.openFirewall = true;
-        };
-
-        hyprland = {
-          enable = true;
-          package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-          portalPackage =
-            inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-          withUWSM = true;
-        };
+      programs.steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+        dedicatedServer.openFirewall = true;
       };
 
       services = {
@@ -145,19 +133,6 @@ in
         flatpak.enable = true;
       };
 
-      environment.systemPackages = with pkgs; [
-        unstable.ollama-cuda
-
-        # manages physical display stuff
-        ddcutil
-      ];
-
-      modules.sddm.enable = true;
-      modules.system = {
-        hardware.printing.enable = true;
-        hardware.power.enable = false;
-      };
-
       hardware = {
         graphics = {
           enable = true;
@@ -172,12 +147,18 @@ in
         bluetooth.powerOnBoot = true;
 
         # Use open source nvidia drivers
-        nvidia = {
-          open = true;
-        };
+        nvidia.open = true;
+
         i2c.enable = true;
         ddcci.enable = true;
       };
+
+      environment.systemPackages = with pkgs; [
+        unstable.ollama-cuda
+
+        # manages physical display stuff
+        ddcutil
+      ];
 
       nix.settings = {
         substituters = [ "https://cache.nixos-cuda.org" ];

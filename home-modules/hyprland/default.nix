@@ -198,7 +198,7 @@
 
           gesture = [
             "3, horizontal, workspace"
-            "4, horizontal, wo/SIrkspace"
+            "4, horizontal, workspace"
           ];
 
           monitor = [

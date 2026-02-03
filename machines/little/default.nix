@@ -22,8 +22,8 @@ in
       inputs.self.nixosModules.sddm-astronaut
       inputs.self.nixosModules.printing
       inputs.self.nixosModules.power
-      inputs.self.nixosModules.stylix
       inputs.self.nixosModules.mangowc
+      inputs.self.nixosModules.stylix
 
       inputs.home-manager.nixosModules.home-manager
     ];
@@ -81,11 +81,9 @@ in
         };
       };
 
-      programs = {
-        steam = {
-          enable = true;
-          remotePlay.openFirewall = true;
-        };
+      programs.steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
       };
 
       services = {
@@ -96,10 +94,9 @@ in
           excludePackages = [ pkgs.xterm ];
 
           # Configure keymap in X11
-          xkb = {
-            layout = "dk";
-            variant = "";
-          };
+
+          xkb.layout = "dk";
+          xkb.variant = "";
         };
 
         # Enable pipewire for sound
