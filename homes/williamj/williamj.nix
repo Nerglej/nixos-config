@@ -39,6 +39,7 @@
           vesktop
           libreoffice
           prismlauncher # Minecraft
+          devenv
 
           pandoc
           texlive.combined.scheme-small

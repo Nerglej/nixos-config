@@ -121,6 +121,7 @@ in
 
       environment.systemPackages = with pkgs; [
         amdgpu_top
+        unstable.ollama-vulkan
       ];
 
       # Pipewire realtime security

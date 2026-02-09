@@ -12,6 +12,7 @@
         inputs.self.homeModules.hypridle
         inputs.self.homeModules.hyprland-swaync
         inputs.self.homeModules.noctalia-shell
+        inputs.self.homeModules.screenshot-scripts
       ];
 
       home.file.".config/scripts/hypr" = {
@@ -248,8 +249,6 @@
         playerctl
 
         libnotify
-        grim
-        slurp
       ];
     };
 }

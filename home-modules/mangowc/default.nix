@@ -21,6 +21,7 @@
       imports = [
         inputs.mango.hmModules.mango
         inputs.self.homeModules.noctalia-shell
+        inputs.self.homeModules.screenshot-scripts
       ];
 
       config = {
