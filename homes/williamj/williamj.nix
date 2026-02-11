@@ -40,12 +40,12 @@
           libreoffice
           prismlauncher # Minecraft
           devenv
+          inkscape
 
           pandoc
           texlive.combined.scheme-small
 
           unstable.claude-code
-          unstable.gemini-cli
           unstable.opencode
 
           # Unfree apps
