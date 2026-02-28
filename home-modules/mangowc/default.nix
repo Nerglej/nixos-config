@@ -27,6 +27,7 @@
       config = {
         wayland.windowManager.mango = {
           enable = true;
+          autostart_sh = builtins.readFile ./autostart.sh;
           settings = builtins.readFile ./config.conf + builtins.concatStringsSep "\n" mangoMonitors;
         };
 

@@ -30,7 +30,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     mango.url = "github:DreamMaoMao/mango";
-    mango.inputs.nixpkgs.follows = "nixpkgs";
+    mango.inputs.nixpkgs.follows = "nixpkgs-unstable";
     mango.inputs.flake-parts.follows = "flake-parts";
 
     noctalia.url = "github:noctalia-dev/noctalia-shell";
