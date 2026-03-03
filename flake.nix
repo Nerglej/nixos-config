@@ -29,7 +29,7 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
-    mango.url = "github:DreamMaoMao/mango";
+    mango.url = "github:mangowm/mango";
     mango.inputs.nixpkgs.follows = "nixpkgs-unstable";
     mango.inputs.flake-parts.follows = "flake-parts";
 
