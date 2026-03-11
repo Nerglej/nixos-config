@@ -24,7 +24,6 @@
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
     nvf.url = "github:notashelf/nvf";
-    nvf.inputs.nixpkgs.follows = "nixpkgs";
     nvf.inputs.flake-parts.follows = "flake-parts";
 
     hyprland.url = "github:hyprwm/Hyprland";

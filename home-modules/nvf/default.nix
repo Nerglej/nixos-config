@@ -304,7 +304,6 @@
               enable = true;
               lsp.enable = true;
             };
-
             svelte = {
               enable = true;
               lsp.enable = true;
