@@ -41,6 +41,7 @@
           prismlauncher # Minecraft
           devenv
           inkscape
+          chromium
 
           pandoc
           texlive.combined.scheme-small
