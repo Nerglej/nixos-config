@@ -327,29 +327,6 @@
             };
           };
 
-          assistant.avante-nvim = {
-            enable = true;
-
-            setupOpts.behaviour.enable_cursor_planning_mode = true;
-            setupOpts.behaviour.support_paste_from_clipboard = true;
-
-            setupOpts.provider = "ollama";
-            setupOpts.providers = {
-              ollama = {
-                model = "deepseek-coder-v2:16b";
-                is_env_set = ''require("avante.providers.ollama").check_endpoint_alive'';
-                disable_tools = false; # deepseek coder does not support tools
-
-                extra_request_body.options = {
-                  temperature = 0.5;
-                  # num_ctx = 20480; # Default for deepseek-coder-v2
-                  num_ctx = 4096;
-                  keep_alive = "5m";
-                };
-              };
-            };
-          };
-
           # startPlugins = with pkgs.vimPlugins.nvim-treesitter; [
           #  ecma
           # ];
