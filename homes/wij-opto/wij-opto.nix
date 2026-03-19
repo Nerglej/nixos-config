@@ -1,5 +1,5 @@
 {
-  flake.homeConfigurations."williamj" =
+  flake.homeConfigurations."wij-opto" =
     { pkgs, inputs, ... }:
     {
       imports = [
@@ -18,11 +18,11 @@
       ];
 
       home = {
-        username = "williamj";
+        username = "wij-opto";
         shellAliases = {
           ll = "ls -l";
         };
-        homeDirectory = "/home/williamj";
+        homeDirectory = "/home/wij-opto";
         sessionVariables = {
           EDITOR = "nvim";
           TERMINAL = "foot";
@@ -36,14 +36,8 @@
           # Apps
           jq
           nushell
-          vesktop
           libreoffice
-          prismlauncher # Minecraft
-          inkscape
           chromium
-
-          pandoc
-          texlive.combined.scheme-small
 
           unstable.claude-code
 
@@ -63,17 +57,10 @@
       wij.librewolf.enable = true;
       wij.librewolf.mimeAppDefault = true;
       wij.librewolf.profiles = {
-        "wij" = {
+        "optoceutics" = {
           id = 0;
           isDefault = true;
-          extraExtensions = [ pkgs.nur.repos.rycee.firefox-addons.passff ];
-        };
-        "optoceutics" = {
-          id = 1;
           extraExtensions = [ pkgs.nur.repos.rycee.firefox-addons.dashlane ];
-        };
-        "zealand" = {
-          id = 2;
         };
       };
 

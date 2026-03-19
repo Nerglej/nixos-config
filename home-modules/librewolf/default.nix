@@ -19,11 +19,51 @@
           example = true;
         };
 
+        profiles = lib.mkOption {
+          default = {
+            "default" = {
+              id = 0;
+              isDefault = true;
+              extraExtensions = [ ];
+            };
+          };
+          type = lib.types.attrsOf (
+            lib.types.submodule {
+              options = {
+                id = lib.mkOption {
+                  type = lib.types.int;
+                  description = ''
+                    Shall always be incremented by one.
+                  '';
+                  example = 2;
+                };
+                isDefault = lib.mkOption {
+                  type = lib.types.bool;
+                  default = false;
+                  example = true;
+                };
+                extraExtensions = lib.mkOption {
+                  type = lib.types.listOf lib.types.package;
+                  example = [ pkgs.nur.repos.rycee.firefox-addons.passff ];
+                  default = [ ];
+                  description = ''
+                    Install extra extensions for a profile. To lock them, currently
+                    add them to the module itself.
+                  '';
+                };
+              };
+            }
+          );
+          description = ''
+            Set up profiles for the browser
+          '';
+        };
+
         mimeAppDefault = lib.mkOption {
           type = lib.types.bool;
           default = false;
           description = ''
-            Remember to enable `xdf.mimeApps.enable` yourself.
+            Remember to enable `xdf.mimeApps.enable` yourself
           '';
         };
       };
@@ -153,24 +193,16 @@
                     #TabsToolbar{ visibility: collapse !important }
                   '';
                 };
+
+              profiles = builtins.mapAttrs (
+                profile: value:
+                mkProfile {
+                  inherit (value) id isDefault;
+                  extensions = value.extraExtensions;
+                }
+              ) cfg.profiles;
             in
-            {
-              "general" = mkProfile {
-                id = 0;
-                isDefault = true;
-                extensions = [ pkgs.nur.repos.rycee.firefox-addons.passff ];
-              };
-
-              "OptoCeutics" = mkProfile {
-                id = 1;
-                extensions = [ pkgs.nur.repos.rycee.firefox-addons.dashlane ];
-              };
-
-              "Zealand" = mkProfile {
-                id = 2;
-                extensions = [ ];
-              };
-            };
+            profiles;
 
           policies = {
             Extensions.Locked = [

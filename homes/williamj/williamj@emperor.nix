@@ -3,9 +3,10 @@
     { inputs, lib, ... }:
     {
       imports = [
+        inputs.self.homeConfigurations.williamj
+
         inputs.self.homeModules.compositor
         inputs.self.homeModules.mangowc
-        inputs.self.homeConfigurations.williamj
       ];
 
       wij.compositor.monitors = rec {

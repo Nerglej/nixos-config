@@ -36,6 +36,7 @@ in
         useGlobalPkgs = true;
         useUserPackages = true;
         users."williamj" = inputs.self.homeConfigurations."williamj@little";
+        # users."wij-opto" = inputs.self.homeConfigurations."wij-opto@little";
 
         extraSpecialArgs = { inherit inputs; };
       };
@@ -62,6 +63,17 @@ in
           ];
           uid = 1000;
         };
+        # "wij-opto" = {
+        #   isNormalUser = true;
+        #   description = "William Jelgren";
+        #   extraGroups = [
+        #     "networkmanager"
+        #     "wheel"
+        #     "docker"
+        #     "libvirtd"
+        #   ];
+        #   uid = 1001;
+        # };
       };
 
       networking = {
