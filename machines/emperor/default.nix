@@ -58,6 +58,7 @@ in
       # User account
       users.users = {
         "williamj" = {
+          uid = 1000;
           isNormalUser = true;
           description = "William Jelgren";
           extraGroups = [
@@ -67,7 +68,9 @@ in
             "video" # Allows access to e.g. webcams
             "input" # Full control over `/dev/input`
           ];
-          uid = 1000;
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcFiqvHVZuxrbmbE8QKk4qLhrcM3A2sRxVSlGjQVayS williamj@little"
+          ];
         };
       };
 

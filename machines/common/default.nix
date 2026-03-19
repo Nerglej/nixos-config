@@ -90,9 +90,7 @@
         ports = [ 22 ];
         openFirewall = true;
         settings = {
-          PasswordAuthentication = true;
-          AllowUsers = null; # Allows all users by default. Can be [ "user1" "user2" ]
-          UseDns = true;
+          PasswordAuthentication = false;
           X11Forwarding = true;
           PermitRootLogin = "no"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
         };

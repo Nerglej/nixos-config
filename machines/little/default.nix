@@ -53,6 +53,7 @@ in
       # User account
       users.users = {
         "williamj" = {
+          uid = 1000;
           isNormalUser = true;
           description = "William Jelgren";
           extraGroups = [
@@ -60,9 +61,12 @@ in
             "wheel"
             "libvirtd"
           ];
-          uid = 1000;
+          openssh.authorizedKeys.keys = [
+            # TODO add williamj@emperor key
+          ];
         };
         "optowij" = {
+          uid = 1001;
           isNormalUser = true;
           description = "William (Optoceutics)";
           initialHashedPassword = "$6$jgX3WhhNPUW5A371$1u4EI8SW7wIngT5ZxsBw74ITviClPEt59G4ehhK2ZR8Ggak6slWeyn2eeztahUhy8JzyHCRa7y4VztACpk8o20";
@@ -70,7 +74,6 @@ in
             "networkmanager" # Allows network management
             "libvirtd" # Management of virtual machines
           ];
-          uid = 1001;
         };
       };
 
