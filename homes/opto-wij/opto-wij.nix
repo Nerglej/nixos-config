@@ -1,5 +1,5 @@
 {
-  flake.homeConfigurations."wij-opto" =
+  flake.homeConfigurations."opto-wij" =
     { pkgs, inputs, ... }:
     {
       imports = [
@@ -18,11 +18,11 @@
       ];
 
       home = {
-        username = "wij-opto";
+        username = "opto-wij";
         shellAliases = {
           ll = "ls -l";
         };
-        homeDirectory = "/home/wij-opto";
+        homeDirectory = "/home/opto-wij";
         sessionVariables = {
           EDITOR = "nvim";
           TERMINAL = "foot";
@@ -50,8 +50,6 @@
           nerd-fonts.commit-mono
         ];
       };
-
-      wij.password-store.enable = true;
 
       wij.firefox.enable = true;
       wij.librewolf.enable = true;

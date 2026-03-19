@@ -68,12 +68,8 @@
           isDefault = true;
           extraExtensions = [ pkgs.nur.repos.rycee.firefox-addons.passff ];
         };
-        "optoceutics" = {
-          id = 1;
-          extraExtensions = [ pkgs.nur.repos.rycee.firefox-addons.dashlane ];
-        };
         "zealand" = {
-          id = 2;
+          id = 1;
         };
       };
 
