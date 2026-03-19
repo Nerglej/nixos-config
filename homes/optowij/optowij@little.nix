@@ -1,9 +1,9 @@
 {
-  flake.homeConfigurations."opto-wij@little" =
+  flake.homeConfigurations."optowij@little" =
     { inputs, ... }:
     {
       imports = [
-        inputs.self.homeConfigurations.opto-wij
+        inputs.self.homeConfigurations.optowij
 
         inputs.self.homeModules.compositor
         inputs.self.homeModules.mangowc

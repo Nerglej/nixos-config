@@ -1,5 +1,5 @@
 {
-  flake.homeConfigurations."opto-wij" =
+  flake.homeConfigurations."optowij" =
     { pkgs, inputs, ... }:
     {
       imports = [
@@ -18,11 +18,11 @@
       ];
 
       home = {
-        username = "opto-wij";
+        username = "optowij";
         shellAliases = {
           ll = "ls -l";
         };
-        homeDirectory = "/home/opto-wij";
+        homeDirectory = "/home/optowij";
         sessionVariables = {
           EDITOR = "nvim";
           TERMINAL = "foot";

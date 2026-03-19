@@ -36,7 +36,7 @@ in
         useGlobalPkgs = true;
         useUserPackages = true;
         users."williamj" = inputs.self.homeConfigurations."williamj@little";
-        users."opto-wij" = inputs.self.homeConfigurations."opto-wij@little";
+        users."optowij" = inputs.self.homeConfigurations."optowij@little";
 
         extraSpecialArgs = { inherit inputs; };
       };
@@ -63,12 +63,12 @@ in
           ];
           uid = 1000;
         };
-        "opto-wij" = {
+        "optowij" = {
           isNormalUser = true;
           description = "William Jelgren";
+          initialHashedPassword = "$6$jgX3WhhNPUW5A371$1u4EI8SW7wIngT5ZxsBw74ITviClPEt59G4ehhK2ZR8Ggak6slWeyn2eeztahUhy8JzyHCRa7y4VztACpk8o20";
           extraGroups = [
             "networkmanager"
-            "wheel"
             "docker"
             "libvirtd"
           ];
