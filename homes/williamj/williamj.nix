@@ -34,26 +34,27 @@
         # Custom programs and apps
         packages = with pkgs; [
           # Apps
-          jq
-          nushell
           vesktop
           libreoffice
           prismlauncher # Minecraft
           inkscape
           chromium
-
           pandoc
           texlive.combined.scheme-small
 
           unstable.claude-code
 
-          # Unfree apps
-          spotify
-          zoom-us
+          # CLI's'n'stuff
+          jq
+          nushell
 
           # Fonts
           nerd-fonts.jetbrains-mono
           nerd-fonts.commit-mono
+
+          # Corner of shame (unfree)
+          spotify
+          zoom-us
         ];
       };
 

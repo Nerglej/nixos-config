@@ -58,19 +58,17 @@ in
           extraGroups = [
             "networkmanager"
             "wheel"
-            "docker"
             "libvirtd"
           ];
           uid = 1000;
         };
         "optowij" = {
           isNormalUser = true;
-          description = "William Jelgren";
+          description = "William (Optoceutics)";
           initialHashedPassword = "$6$jgX3WhhNPUW5A371$1u4EI8SW7wIngT5ZxsBw74ITviClPEt59G4ehhK2ZR8Ggak6slWeyn2eeztahUhy8JzyHCRa7y4VztACpk8o20";
           extraGroups = [
-            "networkmanager"
-            "docker"
-            "libvirtd"
+            "networkmanager" # Allows network management
+            "libvirtd" # Management of virtual machines
           ];
           uid = 1001;
         };

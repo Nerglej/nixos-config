@@ -61,12 +61,11 @@ in
           isNormalUser = true;
           description = "William Jelgren";
           extraGroups = [
-            "networkmanager"
-            "wheel"
-            "docker"
-            "libvirtd"
-            "video"
-            "input"
+            "wheel" # Allows user to run `sudo`
+            "networkmanager" # Allows network management
+            "libvirtd" # Management of virtual machines
+            "video" # Allows access to e.g. webcams
+            "input" # Full control over `/dev/input`
           ];
           uid = 1000;
         };

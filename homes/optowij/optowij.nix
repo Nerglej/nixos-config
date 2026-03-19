@@ -34,20 +34,21 @@
         # Custom programs and apps
         packages = with pkgs; [
           # Apps
-          jq
-          nushell
-          libreoffice
           chromium
-
+          libreoffice
           unstable.claude-code
 
-          # Unfree apps
-          spotify
-          zoom-us
+          # CLI's'n'stuff
+          jq
+          nushell
 
           # Fonts
           nerd-fonts.jetbrains-mono
           nerd-fonts.commit-mono
+
+          # Corner of shame (unfree)
+          spotify
+          zoom-us
         ];
       };
 
@@ -65,7 +66,7 @@
       wij.git = {
         enable = true;
         name = "William Jelgren";
-        email = "william@jelgren.dk";
+        email = "wij@optoceutics.com";
       };
 
       stylix = {
