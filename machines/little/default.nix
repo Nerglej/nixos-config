@@ -57,12 +57,12 @@ in
           isNormalUser = true;
           description = "William Jelgren";
           extraGroups = [
-            "networkmanager"
-            "wheel"
-            "libvirtd"
+            "wheel" # Allows user to run `sudo`
+            "networkmanager" # Allows network management
+            "libvirtd" # Management of virtual machines
           ];
           openssh.authorizedKeys.keys = [
-            # TODO add williamj@emperor key
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIElU3Z+2DyeacMQmnMsLoqciaKboKddIwv/LYrWbL2K5 williamj@emperor"
           ];
         };
         "optowij" = {
