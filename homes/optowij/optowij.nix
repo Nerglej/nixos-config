@@ -69,15 +69,9 @@
         email = "wij@optoceutics.com";
       };
 
-      stylix = {
-        targets = {
-          nvf = {
-            enable = false;
-            plugin = "mini-base16";
-            transparentBackground = true;
-          };
-          waybar.addCss = false;
-        };
+      stylix.targets = {
+        nvf.enable = false;
+        waybar.addCss = false;
       };
 
       gtk.enable = true;
