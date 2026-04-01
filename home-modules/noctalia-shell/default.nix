@@ -44,6 +44,7 @@
               ];
             };
           };
+          dock.enabled = false;
           wallpaper = {
             enabled = true;
             directory = "~/Pictures/Wallpapers";
