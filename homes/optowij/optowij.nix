@@ -36,7 +36,6 @@
           # Apps
           chromium
           libreoffice
-          unstable.claude-code
 
           # CLI's'n'stuff
           jq

@@ -1,6 +1,6 @@
 {
   flake.homeConfigurations."optowij@little" =
-    { inputs, ... }:
+    { inputs, pkgs, ... }:
     {
       imports = [
         inputs.self.homeConfigurations.optowij
@@ -27,5 +27,43 @@
           scale = 1.0;
         };
       };
+
+      programs.claude-code.enable = true;
+      programs.claude-code.package = pkgs.unstable.claude-code;
+      programs.claude-code.settings = {
+		hooks = {
+	      PermissionRequest = [
+		     {
+			   hooks = [
+			     {
+			       type = "command";
+			       command = ''notify-send -a "Claude Code" "Permission requested"'';
+			     }
+			   ];
+			 }
+		  ];
+	      Stop = [
+	        {
+		      hooks = [
+			    {
+				  type = "command";
+			      command = ''notify-send -a "Claude Code" "Successfully done working"'';
+			    }
+			  ];
+			}
+		  ];
+		  # Presumably not yet in Claude Code in nixpkgs
+	      # StopFailure = [
+		  #   {
+		  #     hooks = [
+		  #       {
+		  #   	  type = "command";
+		  #    	  command = ''notify-send -a "Claude Code" "Stopped because of failure" -u critical'';
+		  #       }
+		  #     ];
+		  #   }
+		  # ];
+	    };
+	  };
     };
 }
