@@ -206,15 +206,17 @@
 
             mappings = {
               hover = "K";
-              goToDefinition = "gd";
-              goToDeclaration = "gD";
-              listImplementations = "gi";
-              goToType = "go";
-              listReferences = "gr";
+              format = "gf";
+
+              codeAction = "gra";
+              listImplementations = "gri";
+              renameSymbol = "grn";
+              listReferences = "grr";
+              goToType = "grt";
+              listDocumentSymbols = "gO";
+              goToDefinition = "grd";
+              goToDeclaration = "grD";
               signatureHelp = "gs";
-              renameSymbol = "<F2>";
-              format = "gq";
-              codeAction = "<F4>";
             };
 
             trouble.enable = true;
@@ -316,9 +318,13 @@
             # Image-nvim doesn't work
             # images.image-nvim.enable = true;
             images.img-clip.enable = true;
-            oil-nvim.enable = true;
-            oil-nvim.setupOpts = {
-              view_options.show_hidden = true;
+
+            oil-nvim = {
+              enable = true;
+              gitStatus.enable = true;
+              setupOpts = {
+                view_options.show_hidden = true;
+              };
             };
           };
 
