@@ -1,6 +1,11 @@
+{ self, ... }:
 {
   flake.homeConfigurations."williamj" =
-    { pkgs, inputs, ... }:
+    {
+      pkgs,
+      inputs,
+      ...
+    }:
     {
       imports = [
         inputs.self.homeModules.bemenu
@@ -10,7 +15,6 @@
         inputs.self.homeModules.git
         inputs.self.homeModules.gpg
         inputs.self.homeModules.librewolf
-        inputs.self.homeModules.nvf
         inputs.self.homeModules.password-store
         inputs.self.homeModules.rmpc
         inputs.self.homeModules.zellij
@@ -33,6 +37,8 @@
 
         # Custom programs and apps
         packages = with pkgs; [
+          self.packages.${pkgs.stdenv.hostPlatform.system}.neovim
+
           # Apps
           vesktop
           libreoffice

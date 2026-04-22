@@ -1,20 +1,15 @@
+{ inputs, ... }:
 {
-  flake.homeModules.nvf =
+  perSystem =
     {
-      pkgs,
       lib,
-      inputs,
+      pkgs,
+      system,
       ...
     }:
-    {
-      imports = [
-        inputs.nvf.homeManagerModules.default
-      ];
-
-      programs.nvf = {
-        enable = true;
-        enableManpages = true;
-        settings.vim = {
+    let
+      nvfConfig = {
+        config.vim = {
           viAlias = false;
           vimAlias = true;
 
@@ -300,7 +295,7 @@
               enable = true;
               lsp.enable = false;
             };
-            ts = {
+            typescript = {
               enable = true;
               lsp.enable = true;
             };
@@ -356,5 +351,13 @@
           };
         };
       };
+
+      config = inputs.nvf.lib.neovimConfiguration {
+        pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+        modules = [ nvfConfig ];
+      };
+    in
+    {
+      packages.neovim = config.neovim;
     };
 }

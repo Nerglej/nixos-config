@@ -57,6 +57,7 @@
 
         (inputs.import-tree ./nixos-modules)
         (inputs.import-tree ./home-modules)
+        (inputs.import-tree ./modules)
       ];
 
       systems = [
