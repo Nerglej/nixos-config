@@ -21,6 +21,11 @@
         inputs.self.homeModules.zsh
       ];
 
+      home.file."Pictures/Wallpapers" = {
+        source = ../../media/Wallpapers;
+        recursive = true;
+      };
+
       home = {
         username = "williamj";
         shellAliases = {

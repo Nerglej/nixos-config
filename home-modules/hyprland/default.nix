@@ -236,10 +236,6 @@
         };
       };
 
-      home.file."Pictures/Wallpapers/fractal-flower.jpg" = {
-        source = ../../fractal-flower.jpg;
-      };
-
       services = {
         network-manager-applet.enable = true;
       };
