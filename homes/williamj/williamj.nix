@@ -50,8 +50,6 @@
           prismlauncher # Minecraft
           inkscape
           chromium
-          pandoc
-          texlive.combined.scheme-small
 
           unstable.claude-code
 
