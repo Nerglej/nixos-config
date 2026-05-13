@@ -193,7 +193,6 @@
             config = {
               underline = true;
               virtual_text = true;
-
               virtual_lines = false;
             };
           };
@@ -327,10 +326,6 @@
               };
             };
           };
-
-          # startPlugins = with pkgs.vimPlugins.nvim-treesitter; [
-          #  ecma
-          # ];
 
           lazy.plugins = {
             undotree = {
