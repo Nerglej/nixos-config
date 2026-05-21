@@ -9,6 +9,10 @@
     }:
     {
       imports = [
+        ./hypridle
+        ./swaync
+        ./waybar
+
         inputs.self.homeModules.hypridle
         inputs.self.homeModules.hyprland-swaync
         inputs.self.homeModules.noctalia-shell

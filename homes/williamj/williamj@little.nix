@@ -3,7 +3,7 @@
     { inputs, ... }:
     {
       imports = [
-        inputs.self.homeConfigurations.williamj
+        ./williamj.nix
 
         inputs.self.homeModules.compositor
         inputs.self.homeModules.mangowc

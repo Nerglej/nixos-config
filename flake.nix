@@ -9,7 +9,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
-    import-tree.url = "github:vic/import-tree";
 
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
@@ -52,12 +51,12 @@
       imports = [
         inputs.home-manager.flakeModules.home-manager
 
-        (inputs.import-tree ./machines)
-        (inputs.import-tree ./homes)
+        ./machines
+        ./homes
 
-        (inputs.import-tree ./nixos-modules)
-        (inputs.import-tree ./home-modules)
-        (inputs.import-tree ./modules)
+        ./nixos-modules
+        ./home-modules
+        ./modules
       ];
 
       systems = [
