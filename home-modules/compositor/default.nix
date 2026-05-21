@@ -2,7 +2,7 @@
   flake.homeModules.compositor =
     { lib, config, ... }:
     let
-      monitor = import ./_monitor.nix;
+      monitor = import ./monitor.nix;
     in
     {
       options.wij.compositor = {

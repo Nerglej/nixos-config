@@ -1,0 +1,20 @@
+{
+  imports = [
+    ./bemenu
+    ./compositor
+    ./direnv
+    ./firefox
+    ./foot
+    ./git
+    ./gpg
+    ./hyprland
+    ./librewolf
+    ./mangowc
+    ./noctalia-shell
+    ./password-store
+    ./rmpc
+    ./scripts
+    ./zellij
+    ./zsh
+  ];
+}

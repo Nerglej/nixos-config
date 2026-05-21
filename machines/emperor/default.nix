@@ -14,7 +14,7 @@ in
     specialArgs = { inherit inputs; };
 
     modules = [
-      ./_hardware-configuration.nix
+      ./hardware-configuration.nix
 
       inputs.self.nixosModules.commonModule
       inputs.self.nixosModules.emperorModule
