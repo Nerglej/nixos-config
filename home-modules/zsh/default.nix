@@ -2,22 +2,22 @@
   flake.homeModules.zsh =
     { lib, ... }:
     {
+      programs.starship.enable = true;
+
       programs.zsh = {
         enable = true;
-        enableCompletion = true;
         syntaxHighlighting.enable = true;
-        oh-my-zsh = {
-          enable = true;
-          theme = "robbyrussell";
-          plugins = [
-            "history"
-            "rust"
-          ];
+        autocd = true;
+
+        enableCompletion = true;
+        completionInit = "autoload -U compinit -d $HOME/.cache/zsh/zcompdump && compinit -d $HOME/.cache/zsh/zcompdump";
+
+        history = {
+          path = "$HOME/.cache/zsh/hist";
+          size = 10000;
+          save = 10000;
+          saveNoDups = true;
         };
-
-        history.path = "$HOME/.cache/zsh/hist";
-
-        initContent = lib.mkBefore "source ${./.zshrc}";
       };
     };
 }

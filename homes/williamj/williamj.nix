@@ -21,9 +21,16 @@
 
   home = {
     username = "williamj";
+
+    # The most important aliases ever
     shellAliases = {
-      ll = "ls -l";
+      "l" = "ls -lah";
+      "la" = "ls -lAh";
+      "ll" = "ls -lh";
+      "ls" = "ls -G";
+      "lsa" = "ls -lah";
     };
+
     homeDirectory = "/home/williamj";
     sessionVariables = {
       EDITOR = "nvim";

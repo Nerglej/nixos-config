@@ -58,16 +58,14 @@
 
       programs.zsh = {
         enable = true;
-        enableCompletion = true;
         syntaxHighlighting.enable = true;
-        ohMyZsh = {
-          enable = true;
-          theme = "robbyrussell";
-          plugins = [
-            "history"
-            "rust"
-          ];
-        };
+
+        enableCompletion = true;
+        # Manually call compinit in user .zshrc
+        enableGlobalCompInit = false;
+
+        histFile = "$HOME/.cache/zsh/history";
+        histSize = 10000;
       };
 
       programs.ssh.startAgent = true;
