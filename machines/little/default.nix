@@ -16,6 +16,9 @@ in
     modules = [
       ./hardware-configuration.nix
 
+      inputs.preservation.nixosModules.default
+      ./preservation.nix
+
       inputs.self.nixosModules.commonModule
       inputs.self.nixosModules.littleModule
 

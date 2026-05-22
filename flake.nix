@@ -10,6 +10,8 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    preservation.url = "github:nix-community/preservation";
+
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
     nur.inputs.flake-parts.follows = "flake-parts";
