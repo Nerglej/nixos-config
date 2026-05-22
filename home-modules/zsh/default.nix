@@ -15,6 +15,8 @@
           ];
         };
 
+        history.path = "$HOME/.cache/zsh/hist";
+
         initContent = lib.mkBefore "source ${./.zshrc}";
       };
     };
