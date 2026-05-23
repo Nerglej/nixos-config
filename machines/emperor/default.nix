@@ -81,43 +81,28 @@ in
         dedicatedServer.openFirewall = true;
       };
 
-      services = {
-        # Enable the X11 windowing system.
-        xserver = {
-          enable = true;
-
-          excludePackages = [ pkgs.xterm ];
-
-          # Configure keymap in X11
-          xkb.layout = "us";
-
-          # Set nvidia driver
-          videoDrivers = [ "nvidia" ];
-        };
-
-        # Enable pipewire for sound
-        pipewire = {
-          enable = true;
-          alsa.enable = true;
-          alsa.support32Bit = true;
-          pulse.enable = true;
-          extraConfig.pipewire = {
-            "10-clock-rate" = {
-              "context.properties" = {
-                "default.clock.rate" = 96000;
-                "default.allowed-rates" = [
-                  192000
-                  96000
-                  48000
-                  44100
-                ];
-              };
+      # Enable pipewire for sound
+      services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        extraConfig.pipewire = {
+          "10-clock-rate" = {
+            "context.properties" = {
+              "default.clock.rate" = 96000;
+              "default.allowed-rates" = [
+                192000
+                96000
+                48000
+                44100
+              ];
             };
           };
         };
-
-        flatpak.enable = true;
       };
+
+      services.flatpak.enable = true;
 
       hardware = {
         graphics = {
@@ -134,10 +119,13 @@ in
 
         # Use open source nvidia drivers
         nvidia.open = true;
+        nvidia.modesetting.enable = true;
 
         i2c.enable = true;
         ddcci.enable = true;
       };
+
+      services.xserver.videoDrivers = [ "nvidia" ];
 
       environment.systemPackages = with pkgs; [
         unstable.ollama-cuda
