@@ -1,36 +1,44 @@
 {
   flake.nixosModules.sddm-astronaut =
     { pkgs, ... }:
+    let
+      astronaut = pkgs.sddm-astronaut.override {
+        embeddedTheme = "black_hole";
+      };
+    in
     {
       services.displayManager.sddm = {
         enable = true;
-        package = pkgs.kdePackages.sddm;
+        extraPackages = [ astronaut ];
         theme = "sddm-astronaut-theme";
+        wayland.enable = true;
       };
 
-      environment.systemPackages = with pkgs; [
-        sddm-astronaut
-        kdePackages.qtmultimedia
+      environment.systemPackages = [
+        astronaut
+        pkgs.kdePackages.qtmultimedia
       ];
     };
 
   flake.nixosModules.sddm-catppuccin =
     { pkgs, ... }:
+    let
+      catppucin = pkgs.catppuccin-sddm.override {
+        flavor = "mocha";
+        # font= "";
+        fontSize = "9";
+        # background = ./;
+        loginBackground = true;
+      };
+    in
     {
       services.displayManager.sddm = {
         enable = true;
+        extraPackages = [ catppucin ];
         theme = "catppuccin-mocha";
-        package = pkgs.kdePackages.sddm;
+        wayland.enable = true;
       };
 
-      environment.systemPackages = with pkgs; [
-        (catppuccin-sddm.override {
-          flavor = "mocha";
-          # font= "";
-          fontSize = "9";
-          # background = ./;
-          loginBackground = true;
-        })
-      ];
+      environment.systemPackages = [ catppucin ];
     };
 }
