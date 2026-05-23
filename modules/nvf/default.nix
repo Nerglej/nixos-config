@@ -19,6 +19,7 @@
             name = "gruvbox";
             style = "dark";
             # style = "light";
+            transparent = true;
           };
 
           globals.mapleader = " ";
