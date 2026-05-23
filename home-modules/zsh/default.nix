@@ -2,7 +2,45 @@
   flake.homeModules.zsh =
     { lib, ... }:
     {
-      programs.starship.enable = true;
+      programs.starship = {
+        enable = true;
+        settings = {
+          add_newline = false;
+          format = lib.concatStrings [
+            "$username"
+            "$directory"
+            # "\($vcs\)"
+            "(\\("
+            "$git_branch"
+            "$git_commit"
+            "$git_state"
+            "$git_metrics"
+            "$git_status"
+            "\\) )"
+            "$character"
+          ];
+
+          git_branch = {
+            style = "bold red";
+            format = "[$branch(:$remote_branch)]($style)";
+          };
+
+          git_status = {
+            style = "bold yellow";
+            format = "[$all_status$ahead_behind]($style)";
+            untracked = "?";
+            stashed = "\\$";
+            modified = "*";
+            staged = "+";
+            # renamed = "";
+            deleted = "-";
+          };
+
+          # vcs = {
+          #   order = [ "git" ];
+          # };
+        };
+      };
 
       programs.zsh = {
         enable = true;
