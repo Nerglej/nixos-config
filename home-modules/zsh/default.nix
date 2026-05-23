@@ -63,6 +63,13 @@
           save = 10000;
           saveNoDups = true;
         };
+
+        initContent = ''
+          bindkey "^[[3~" delete-char # delete
+
+          bindkey "^[[1;5C" forward-word # ctrl-right
+          bindkey "^[[1;5D" backward-word # ctrl-left
+        '';
       };
     };
 }
