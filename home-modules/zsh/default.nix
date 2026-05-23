@@ -50,6 +50,7 @@
         enableCompletion = true;
         completionInit = "autoload -U compinit -d $HOME/.cache/zsh/zcompdump && compinit -d $HOME/.cache/zsh/zcompdump";
 
+        historySubstringSearch.enable = true;
         history = {
           path = "$HOME/.cache/zsh/hist";
           size = 10000;
