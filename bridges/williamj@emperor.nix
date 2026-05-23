@@ -1,11 +1,15 @@
 { inputs, ... }:
+let
+  username = "williamj";
+  hostname = "emperor";
+in
 {
-  flake.nixosModules."williamj@emperor" =
+  flake.nixosModules."${username}@${hostname}" =
     { pkgs, ... }:
     {
-      home-manager.users."williamj" = inputs.self.homeConfigurations."williamj@emperor";
+      home-manager.users.${username} = inputs.self.homeConfigurations."${username}@${hostname}";
 
-      users.users."williamj" = {
+      users.users.${username} = {
         uid = 1000;
         isNormalUser = true;
         description = "William Jelgren";
@@ -20,9 +24,72 @@
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcFiqvHVZuxrbmbE8QKk4qLhrcM3A2sRxVSlGjQVayS williamj@little"
         ];
       };
+
+      services.borgbackup.jobs."${username}-${hostname}" =
+        let
+          home = "/home/${username}";
+        in
+        {
+          user = username;
+          paths = [
+            "${home}/Desktop"
+            "${home}/Documents"
+            "${home}/Downloads"
+            "${home}/Music"
+            "${home}/Pictures"
+            "${home}/Public"
+            "${home}/Templates"
+            "${home}/Videos"
+
+            "${home}/.password-store"
+            "${home}/.ssh"
+            "${home}/.vim"
+
+            "${home}/.config/projectdirs"
+          ];
+          exclude = [
+            "*/.git"
+            "*/node_modules"
+          ];
+
+          repo = "/var/lib/borgbackup/${username}";
+          encryption.mode = "none";
+
+          startAt = "weekly";
+        };
+
+      preservation.preserveAt."/persistent".users.${username} = {
+        directories = [
+          ".cache"
+          ".config"
+
+          ".gnupg"
+          ".librewolf"
+          ".mozilla"
+          ".claude"
+          ".password-store"
+          ".ssh"
+          ".steam"
+          ".thunderbird"
+
+          "Desktop"
+          "Documents"
+          "Downloads"
+          "Music"
+          "Pictures"
+          "Projects"
+          "Public"
+          "Templates"
+          "Videos"
+        ];
+
+        files = [
+          ".claude.json"
+        ];
+      };
     };
 
-  flake.homeConfigurations."williamj@emperor" =
+  flake.homeConfigurations."${username}@${hostname}" =
     { inputs, lib, ... }:
     {
       imports = [

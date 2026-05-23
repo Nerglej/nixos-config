@@ -1,12 +1,13 @@
 { inputs, ... }:
 let
   username = "williamj";
+  hostname = "little";
 in
 {
-  flake.nixosModules."${username}@little" =
+  flake.nixosModules."${username}@${hostname}" =
     { pkgs, ... }:
     {
-      home-manager.users.${username} = inputs.self.homeConfigurations."${username}@little";
+      home-manager.users.${username} = inputs.self.homeConfigurations."${username}@${hostname}";
 
       users.users.${username} = {
         uid = 1000;
@@ -52,7 +53,7 @@ in
       };
     };
 
-  flake.homeConfigurations."${username}@little" =
+  flake.homeConfigurations."${username}@${hostname}" =
     { inputs, ... }:
     {
       imports = [
