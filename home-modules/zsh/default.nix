@@ -7,17 +7,17 @@
         settings = {
           add_newline = false;
           format = lib.concatStrings [
+            "$character  "
             "$username"
             "$directory"
             # "\($vcs\)"
-            "(\\("
+            "[(\\("
             "$git_branch"
             "$git_commit"
             "$git_state"
             "$git_metrics"
             "$git_status"
-            "\\) )"
-            "$character"
+            "\\) )](bold blue)"
           ];
 
           git_branch = {
@@ -34,6 +34,12 @@
             staged = "+";
             # renamed = "";
             deleted = "-";
+          };
+
+          character = {
+            format = "$symbol";
+            success_symbol = "[➜](bold green)";
+            error_symbol = "[➜](bold red)";
           };
 
           # vcs = {
