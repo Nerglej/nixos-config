@@ -55,6 +55,7 @@
 
         ./machines
         ./homes
+        ./bridges
 
         ./nixos-modules
         ./home-modules

@@ -14,7 +14,9 @@ in
     specialArgs = { inherit inputs; };
 
     modules = [
-      ./hardware-configuration.nix
+      inputs.preservation.nixosModules.default
+      inputs.home-manager.nixosModules.home-manager
+      inputs.nixos-ddcci-nvidia.nixosModules.default
 
       inputs.self.nixosModules.commonModule
       inputs.self.nixosModules.emperorModule
@@ -24,8 +26,10 @@ in
       inputs.self.nixosModules.mangowc
       inputs.self.nixosModules.stylix
 
-      inputs.home-manager.nixosModules.home-manager
-      inputs.nixos-ddcci-nvidia.nixosModules.default
+      inputs.self.nixosModules."williamj@emperor"
+
+      ./hardware-configuration.nix
+      ./preservation.nix
     ];
   };
 
@@ -35,7 +39,6 @@ in
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        users."williamj" = inputs.self.homeConfigurations."williamj@emperor";
 
         extraSpecialArgs = { inherit inputs; };
       };
@@ -53,25 +56,6 @@ in
 
         extraModulePackages = with config.boot.kernelPackages; [ ddcci-driver ];
         kernelModules = [ "ddcci_backlight" ];
-      };
-
-      # User account
-      users.users = {
-        "williamj" = {
-          uid = 1000;
-          isNormalUser = true;
-          description = "William Jelgren";
-          extraGroups = [
-            "wheel" # Allows user to run `sudo`
-            "networkmanager" # Allows network management
-            "libvirtd" # Management of virtual machines
-            "video" # Allows access to e.g. webcams
-            "input" # Full control over `/dev/input`
-          ];
-          openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcFiqvHVZuxrbmbE8QKk4qLhrcM3A2sRxVSlGjQVayS williamj@little"
-          ];
-        };
       };
 
       # Networking

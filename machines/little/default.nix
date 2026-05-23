@@ -14,10 +14,8 @@ in
     specialArgs = { inherit inputs; };
 
     modules = [
-      ./hardware-configuration.nix
-
       inputs.preservation.nixosModules.default
-      ./preservation.nix
+      inputs.home-manager.nixosModules.home-manager
 
       inputs.self.nixosModules.commonModule
       inputs.self.nixosModules.littleModule
@@ -28,7 +26,11 @@ in
       inputs.self.nixosModules.mangowc
       inputs.self.nixosModules.stylix
 
-      inputs.home-manager.nixosModules.home-manager
+      inputs.self.nixosModules."williamj@little"
+      inputs.self.nixosModules."optowij@little"
+
+      ./hardware-configuration.nix
+      ./preservation.nix
     ];
   };
 
@@ -38,8 +40,6 @@ in
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        users."williamj" = inputs.self.homeConfigurations."williamj@little";
-        users."optowij" = inputs.self.homeConfigurations."optowij@little";
 
         extraSpecialArgs = { inherit inputs; };
       };
@@ -52,33 +52,6 @@ in
       # Bootloader
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
-
-      # User account
-      users.users = {
-        "williamj" = {
-          uid = 1000;
-          isNormalUser = true;
-          description = "William Jelgren";
-          extraGroups = [
-            "wheel" # Allows user to run `sudo`
-            "networkmanager" # Allows network management
-            "libvirtd" # Management of virtual machines
-          ];
-          openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIElU3Z+2DyeacMQmnMsLoqciaKboKddIwv/LYrWbL2K5 williamj@emperor"
-          ];
-        };
-        "optowij" = {
-          uid = 1001;
-          isNormalUser = true;
-          description = "William (Optoceutics)";
-          initialHashedPassword = "$6$jgX3WhhNPUW5A371$1u4EI8SW7wIngT5ZxsBw74ITviClPEt59G4ehhK2ZR8Ggak6slWeyn2eeztahUhy8JzyHCRa7y4VztACpk8o20";
-          extraGroups = [
-            "networkmanager" # Allows network management
-            "libvirtd" # Management of virtual machines
-          ];
-        };
-      };
 
       networking = {
         # Networking
