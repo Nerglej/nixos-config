@@ -62,7 +62,7 @@
           searchDownKey = [ "$terminfo[kcud1]" "^[[B" ];
         };
         history = {
-          path = "$HOME/.cache/zsh/hist";
+          path = "$HOME/.cache/zsh/history";
           size = 10000;
           save = 10000;
           saveNoDups = true;
