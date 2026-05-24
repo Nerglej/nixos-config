@@ -56,7 +56,11 @@
         enableCompletion = true;
         completionInit = "autoload -U compinit -d $HOME/.cache/zsh/zcompdump && compinit -d $HOME/.cache/zsh/zcompdump";
 
-        historySubstringSearch.enable = true;
+        historySubstringSearch = {
+          enable = true;
+          searchUpKey = [ "$terminfo[kcuu1]" "^[[A" ];
+          searchDownKey = [ "$terminfo[kcud1]" "^[[B" ];
+        };
         history = {
           path = "$HOME/.cache/zsh/hist";
           size = 10000;
