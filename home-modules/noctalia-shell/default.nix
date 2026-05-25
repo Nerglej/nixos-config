@@ -8,7 +8,6 @@
 
       programs.noctalia-shell = {
         enable = true;
-        systemd.enable = true;
 
         settings = {
           colorSchemes.predefinedScheme = "Gruvbox";
@@ -31,7 +30,6 @@
                   labelMode = "none";
                   hideUnoccupied = false;
                 }
-
               ];
               right = [
                 { id = "MediaMini"; }
