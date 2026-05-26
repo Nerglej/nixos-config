@@ -3,8 +3,8 @@
     ./hardware
     ./stylix
 
-    ./greetd.nix
     ./hyprland.nix
+    ./ly.nix
     ./mangowc.nix
     ./sddm.nix
   ];

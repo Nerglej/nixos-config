@@ -21,7 +21,10 @@ in
       inputs.self.nixosModules.commonModule
       inputs.self.nixosModules.emperorModule
 
-      inputs.self.nixosModules.sddm-astronaut
+      # inputs.self.nixosModules.sddm-astronaut
+      # inputs.self.nixosModules.greetd-tuigreet
+      inputs.self.nixosModules.ly
+      
       inputs.self.nixosModules.printing
       inputs.self.nixosModules.mangowc
       inputs.self.nixosModules.stylix
