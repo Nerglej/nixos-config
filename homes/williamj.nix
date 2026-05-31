@@ -7,6 +7,7 @@ in
     {
       imports = [
         inputs.self.homeModules.bemenu
+        inputs.self.homeModules.claude-code
         inputs.self.homeModules.direnv
         inputs.self.homeModules.firefox
         inputs.self.homeModules.foot
@@ -56,8 +57,6 @@ in
           prismlauncher # Minecraft
           inkscape
           chromium
-
-          unstable.claude-code
 
           # CLI's'n'stuff
           jq

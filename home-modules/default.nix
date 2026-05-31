@@ -16,5 +16,7 @@
     ./scripts
     ./zellij
     ./zsh
+
+    ./claude.nix
   ];
 }
