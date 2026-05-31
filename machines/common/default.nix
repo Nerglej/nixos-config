@@ -78,11 +78,6 @@
       services.timesyncd.enable = true;
       services.blueman.enable = true;
 
-      services.tailscale = {
-        enable = true;
-        openFirewall = true;
-      };
-
       services.openssh = {
         enable = true;
         ports = [ 22 ];
