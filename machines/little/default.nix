@@ -20,7 +20,9 @@ in
       inputs.self.nixosModules.commonModule
       inputs.self.nixosModules.littleModule
 
-      inputs.self.nixosModules.sddm-astronaut
+      # inputs.self.nixosModules.sddm-astronaut
+      inputs.self.nixosModules.ly
+
       inputs.self.nixosModules.printing
       inputs.self.nixosModules.power
       inputs.self.nixosModules.mangowc
@@ -75,29 +77,15 @@ in
         remotePlay.openFirewall = true;
       };
 
-      services = {
-        xserver = {
-          # Enable the X11 windowing system.
-          enable = true;
-
-          excludePackages = [ pkgs.xterm ];
-
-          # Configure keymap in X11
-
-          xkb.layout = "dk";
-          xkb.variant = "";
-        };
-
-        # Enable pipewire for sound
-        pipewire = {
-          enable = true;
-          alsa.enable = true;
-          alsa.support32Bit = true;
-          pulse.enable = true;
-        };
-
-        upower.enable = true;
+      # Enable pipewire for sound
+      services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
       };
+
+      services.upower.enable = true;
 
       hardware = {
         # Steam
