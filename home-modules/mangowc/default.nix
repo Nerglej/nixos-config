@@ -10,11 +10,23 @@
     let
       mangoMonitors = lib.mapAttrsToList (
         name: value:
-        "monitorrule=name:${
-          if value.name or null != null then value.name else name
-        },width:${toString value.width},height:${toString value.height},refresh:${toString value.refresh},x:${toString value.x},y:${toString value.y},scale:${toString value.scale},vrr=${
-          if value.enableVariableRefreshRate then "1" else "0"
-        }"
+        let
+          matchName = if value.name != null then value.name else name;
+          optionalField = field: key: if field != null then ",${key}:${field}" else "";
+        in
+        "monitorrule=name:${matchName}"
+        + optionalField value.make "make"
+        + optionalField value.model "model"
+        + optionalField value.serial "serial"
+        + ",width:${toString value.width}"
+        + ",height:${toString value.height}"
+        + ",refresh:${toString value.refresh}"
+        + ",x:${toString value.x}"
+        + ",y:${toString value.y}"
+        + ",scale:${toString value.scale}"
+        + ",rr:${toString value.rr}"
+        + ",vrr:${if value.vrr then "1" else "0"}"
+        + ",custom:${if value.custom then "1" else "0"}"
       ) config.wij.compositor.monitors;
     in
     {

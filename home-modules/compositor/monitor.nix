@@ -1,6 +1,43 @@
 { lib, ... }:
 {
   options = with lib; {
+    name = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = ''
+        Regex pattern to match the monitor by name.
+        When null, the attribute name is used as the match value.
+      '';
+      example = "DP-.*";
+    };
+
+    make = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = ''
+        Regex pattern to match the monitor by manufacturer.
+      '';
+      example = "LG Electronics";
+    };
+
+    model = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = ''
+        Regex pattern to match the monitor by model.
+      '';
+      example = "27GN950-B";
+    };
+
+    serial = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = ''
+        Regex pattern to match the monitor by serial number.
+      '';
+      example = "12345678";
+    };
+
     width = mkOption {
       type = types.int;
       description = ''
@@ -18,11 +55,11 @@
     };
 
     refresh = mkOption {
-      type = types.int;
+      type = types.float;
       description = ''
         Refresh rate of the monitor in Hertz (Hz).
       '';
-      example = 144;
+      example = 144.0;
     };
 
     x = mkOption {
@@ -57,12 +94,33 @@
       example = 1.3333;
     };
 
-    enableVariableRefreshRate = mkOption {
+    rr = mkOption {
+      type = types.ints.between 0 7;
+      default = 0;
+      description = ''
+        Monitor transform/rotation value.
+
+        0 = normal, 1 = 90°, 2 = 180°, 3 = 270°,
+        4-7 = same rotations with vertical flip applied.
+      '';
+      example = 1;
+    };
+
+    vrr = mkOption {
       type = types.bool;
       default = false;
       description = ''
         Enables variable refresh rate for the specified monitor,
         if the compositor supports it.
+      '';
+    };
+
+    custom = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Enable custom mode for the monitor.
+        May cause issues on unsupported displays.
       '';
     };
   };
