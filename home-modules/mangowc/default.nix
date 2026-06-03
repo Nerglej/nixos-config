@@ -8,13 +8,13 @@
       ...
     }:
     let
-      mangoMonitors = lib.mapAttrsToList (
-        name: value:
+      mangoMonitors = map (
+        value:
         let
-          matchName = if value.name != null then value.name else name;
           optionalField = field: key: if field != null then ",${key}:${field}" else "";
         in
-        "monitorrule=name:${matchName}"
+        "monitorrule="
+        + optionalField value.name "name"
         + optionalField value.make "make"
         + optionalField value.model "model"
         + optionalField value.serial "serial"

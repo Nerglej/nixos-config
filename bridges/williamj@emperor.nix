@@ -99,23 +99,33 @@ in
         inputs.self.homeModules.williamj
       ];
 
-      wij.compositor.monitors = rec {
-        "DP-1" = {
-          width = 3840;
-          height = 2160;
-          refresh = 144.0;
-          x = 0.0;
-          y = 0.0;
-          scale = 1.3333;
-        };
-        "DP-2" = rec {
-          width = 1920;
-          height = 1080;
-          refresh = 240.0;
-          x = DP-1.width / DP-1.scale;
-          y = DP-1.height / DP-1.scale / 2 - height / 2;
-          scale = 1.0;
-        };
-      };
+      wij.compositor.monitors =
+        let
+          dp-1 = {
+            width = 3840;
+            height = 2160;
+            scale = 1.3333;
+          };
+        in
+        [
+          {
+            name = "DP-1";
+            width = dp-1.width;
+            height = dp-1.height;
+            refresh = 144.0;
+            x = 0.0;
+            y = 0.0;
+            scale = dp-1.scale;
+          }
+          rec {
+            name = "DP-2";
+            width = 1920;
+            height = 1080;
+            refresh = 240.0;
+            x = dp-1.width / dp-1.scale;
+            y = dp-1.height / dp-1.scale / 2 - height / 2;
+            scale = 1.0;
+          }
+        ];
     };
 }

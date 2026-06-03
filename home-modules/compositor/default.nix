@@ -7,7 +7,7 @@
     {
       options.wij.compositor = {
         monitors = lib.mkOption {
-          type = lib.types.attrsOf (lib.types.submodule monitor);
+          type = lib.types.listOf (lib.types.submodule monitor);
         };
       };
     };
