@@ -74,10 +74,11 @@ in
           scale = 1.0;
         }
         {
-          name = "HDMI-A-1";
+          # make = "GIGA-BYTE TECHNOLOGY CO., LTD.";
+          model = "Gigabyte M32U";
           width = 2560;
           height = 1440;
-          refresh = 60.0;
+          refresh = 120.0;
           x = 0.0;
           y = 0.0;
           scale = 1.0;
