@@ -32,7 +32,7 @@
     {
       imports = [
         inputs.mango.hmModules.mango
-        inputs.self.homeModules.noctalia-shell
+        inputs.self.homeModules.noctalia
         inputs.self.homeModules.screenshot-scripts
       ];
 
@@ -141,7 +141,7 @@
               "SUPER,btn_right,moveresize,curresize"
             ];
 
-            exec-once = [ "noctalia-shell" ];
+            exec-once = [ "noctalia" ];
 
             circle_layout = "tile,scroller";
             scroller_proportion_preset = "0.5,0.8,1.0";

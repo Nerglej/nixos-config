@@ -15,7 +15,7 @@
 
         inputs.self.homeModules.hypridle
         inputs.self.homeModules.hyprland-swaync
-        inputs.self.homeModules.noctalia-shell
+        inputs.self.homeModules.noctalia
         inputs.self.homeModules.screenshot-scripts
       ];
 
@@ -94,7 +94,7 @@
             "$mod ALT, T, exec, foot"
             "$mod ALT, F, exec, firefox"
             "$mod ALT, M, exec, pgrep spotify && hyprctl dispatch togglespecialworkspace music || spotify &"
-            "$mod ALT, P, exec, noctalia-shell ipc call sessionMenu toggle"
+            "$mod ALT, P, exec, noctalia ipc call sessionMenu toggle"
             "$mod ALT, O, exec, bemenu-audio sink"
             "$mod ALT, I, exec, bemenu-audio source"
 

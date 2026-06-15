@@ -10,7 +10,7 @@
     ./hyprland
     ./librewolf
     ./mangowc
-    ./noctalia-shell
+    ./noctalia
     ./password-store
     ./rmpc
     ./scripts
