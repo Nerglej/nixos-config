@@ -27,6 +27,13 @@
             enabled = true;
             position = "top";
 
+            auto_hide = true;
+            reserve_space = false;
+
+            capsule = true;
+            widget_spacing = 8;
+            font_weight = "regular";
+
             start = [
               "clock"
               "sysmon"
@@ -40,6 +47,7 @@
               "volume"
               "brightness"
               "control-center"
+              "session"
             ];
           };
 
