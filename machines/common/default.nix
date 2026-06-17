@@ -35,6 +35,10 @@
           "nix-command"
           "flakes"
         ];
+        settings.trusted-users = [
+          "root"
+          "@wheel"
+        ];
         channel.enable = false;
       };
 
