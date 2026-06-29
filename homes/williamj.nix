@@ -57,6 +57,7 @@ in
           prismlauncher # Minecraft
           inkscape
           chromium
+          gimp
 
           # CLI's'n'stuff
           jq
