@@ -50,8 +50,6 @@
           light = "Dracula";
           dark = "Dracula";
         };
-
-        opacity.terminal = 0.9;
       };
     };
 }

@@ -3,6 +3,24 @@
   flake.nixosModules."optowij@little" =
     { pkgs, ... }:
     {
+      imports = [ inputs.hjem.nixosModules.default ];
+
+      hjem = {
+        extraModules = [
+          inputs.hjem-rum.hjemModules.default
+          inputs.self.modules.hjem.shell
+          inputs.self.modules.hjem.terminal
+        ];
+
+        users."optowij" = {
+          enable = true;
+          directory = "/home/optowij";
+          user = "optowij";
+        };
+
+        clobberByDefault = true;
+      };
+
       home-manager.users."optowij" = inputs.self.homeConfigurations."optowij@little";
 
       users.users."optowij" = {

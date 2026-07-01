@@ -2,7 +2,6 @@
   imports = [
     ./bemenu
     ./compositor
-    ./direnv
     ./firefox
     ./foot
     ./git
@@ -15,7 +14,6 @@
     ./rmpc
     ./scripts
     ./zellij
-    ./zsh
 
     ./claude.nix
   ];

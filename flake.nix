@@ -2,13 +2,18 @@
   description = "Williams NixOS flake";
 
   inputs = {
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    hjem.follows = "hjem-rum/hjem";
+
+    hjem-rum.url = "github:snugnug/hjem-rum";
+    hjem-rum.inputs.nixpkgs.follows = "nixpkgs";
 
     preservation.url = "github:nix-community/preservation";
 
@@ -51,9 +56,11 @@
     }:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } ({
       imports = [
+        inputs.flake-parts.flakeModules.modules
         inputs.home-manager.flakeModules.home-manager
 
         ./machines
+        ./hjem
         ./homes
         ./bridges
 
