@@ -60,11 +60,11 @@
         inputs.home-manager.flakeModules.home-manager
 
         ./machines
-        ./hjem
         ./homes
         ./bridges
 
         ./nixos-modules
+        ./hjem-modules
         ./home-modules
         ./modules
       ];

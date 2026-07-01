@@ -15,7 +15,9 @@ in
 
     modules = [
       inputs.preservation.nixosModules.default
+      inputs.hjem.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
+
       inputs.nixos-ddcci-nvidia.nixosModules.default
 
       inputs.self.nixosModules.commonModule
@@ -24,7 +26,7 @@ in
       # inputs.self.nixosModules.sddm-astronaut
       # inputs.self.nixosModules.greetd-tuigreet
       inputs.self.nixosModules.ly
-      
+
       inputs.self.nixosModules.printing
       inputs.self.nixosModules.mangowc
       inputs.self.nixosModules.stylix

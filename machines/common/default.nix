@@ -42,6 +42,12 @@
         channel.enable = false;
       };
 
+      hjem.extraModules = [
+        inputs.hjem-rum.hjemModules.default
+        inputs.self.modules.hjem.shell
+        inputs.self.modules.hjem.terminal
+      ];
+
       environment.systemPackages = with pkgs; [
         home-manager
         neovim

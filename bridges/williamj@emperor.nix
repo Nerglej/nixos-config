@@ -7,19 +7,14 @@ in
   flake.nixosModules."${username}@${hostname}" =
     { pkgs, ... }:
     {
-      imports = [ inputs.hjem.nixosModules.default ];
-
       hjem = {
-        extraModules = [
-          inputs.hjem-rum.hjemModules.default
-          inputs.self.modules.hjem.shell
-          inputs.self.modules.hjem.terminal
-        ];
-
         users.${username} = {
           enable = true;
           directory = "/home/${username}";
           user = username;
+
+          wil.terminal.enable = true;
+          wil.shell.enable = true;
         };
 
         clobberByDefault = true;
