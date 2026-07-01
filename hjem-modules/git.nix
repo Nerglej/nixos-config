@@ -1,46 +1,52 @@
 {
-  flake.homeModules.git =
-    { lib, config, ... }:
+  flake.modules.hjem.git =
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     let
-      cfg = config.wij.git;
+      inherit (lib.modules) mkIf;
+      inherit (lib.options) mkEnableOption;
+      inherit (lib) mkOption;
+
+      cfg = config.wil.git;
     in
     {
-      options.wij.git = {
-        enable = lib.mkEnableOption "enable git";
+      options.wil.git = {
+        enable = mkEnableOption "git";
 
-        name = lib.mkOption {
+        name = mkOption {
           type = lib.types.nullOr lib.types.str;
           example = "John Doe";
         };
 
-        email = lib.mkOption {
+        email = mkOption {
           type = lib.types.nullOr lib.types.str;
           example = "john@example.com";
         };
 
-        defaultBranch = lib.mkOption {
+        defaultBranch = mkOption {
           type = lib.types.str;
           default = "main";
           example = "master";
         };
       };
 
-      config = lib.mkIf cfg.enable {
-        programs.git = {
+      config = mkIf cfg.enable {
+        rum.programs.git = {
           enable = true;
+
+          ignore = ''
+            .direnv
+          '';
 
           settings = {
             user.name = lib.mkIf (cfg.name != null) cfg.name;
             user.email = lib.mkIf (cfg.email != null) cfg.email;
 
             init.defaultBranch = cfg.defaultBranch;
-
-            # Credential helper not needed when using SSH keys
-            # credential.helper = "${
-            #   pkgs.git.override {
-            #     withLibsecret = true;
-            #   }
-            # }/bin/git-credential-libsecret";
           };
         };
       };

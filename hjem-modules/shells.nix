@@ -18,7 +18,6 @@
       };
 
       config = mkIf cfg.enable {
-
         rum.programs.starship = {
           enable = true;
 

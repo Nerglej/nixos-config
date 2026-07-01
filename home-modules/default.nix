@@ -3,7 +3,6 @@
     ./bemenu
     ./compositor
     ./firefox
-    ./git
     ./gpg
     ./hyprland
     ./librewolf

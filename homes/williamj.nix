@@ -9,7 +9,6 @@ in
         inputs.self.homeModules.bemenu
         inputs.self.homeModules.claude-code
         inputs.self.homeModules.firefox
-        inputs.self.homeModules.git
         inputs.self.homeModules.gpg
         inputs.self.homeModules.librewolf
         inputs.self.homeModules.password-store
@@ -75,12 +74,6 @@ in
         "zealand" = {
           id = 1;
         };
-      };
-
-      wij.git = {
-        enable = true;
-        name = "William Jelgren";
-        email = "william@jelgren.dk";
       };
 
       stylix.targets = {

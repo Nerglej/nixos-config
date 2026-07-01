@@ -11,7 +11,6 @@ in
         inputs.self.homeModules.direnv
         inputs.self.homeModules.firefox
         inputs.self.homeModules.foot
-        inputs.self.homeModules.git
         inputs.self.homeModules.gpg
         inputs.self.homeModules.librewolf
         inputs.self.homeModules.password-store
@@ -65,12 +64,6 @@ in
           isDefault = true;
           extraExtensions = [ pkgs.nur.repos.rycee.firefox-addons.dashlane ];
         };
-      };
-
-      wij.git = {
-        enable = true;
-        name = "William Jelgren";
-        email = "wij@optoceutics.com";
       };
 
       stylix.targets = {

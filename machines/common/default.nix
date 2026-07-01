@@ -44,8 +44,9 @@
 
       hjem.extraModules = [
         inputs.hjem-rum.hjemModules.default
-        inputs.self.modules.hjem.shell
         inputs.self.modules.hjem.terminal
+        inputs.self.modules.hjem.shell
+        inputs.self.modules.hjem.git
       ];
 
       environment.systemPackages = with pkgs; [

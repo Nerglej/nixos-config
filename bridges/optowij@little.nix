@@ -11,6 +11,11 @@
 
           wil.terminal.enable = true;
           wil.shell.enable = true;
+          wil.git = {
+            enable = true;
+            name = "William Jelgren";
+            email = "wij@optoceutics.com";
+          };
         };
 
         clobberByDefault = true;
