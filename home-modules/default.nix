@@ -7,7 +7,6 @@
     ./librewolf
     ./mangowc
     ./noctalia
-    ./rmpc
     ./scripts
 
     ./claude.nix
