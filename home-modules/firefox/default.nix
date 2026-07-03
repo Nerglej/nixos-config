@@ -15,7 +15,7 @@
 
         passwordStoreIntegration = lib.mkOption {
           type = lib.types.bool;
-          default = config.wij.password-store.enable;
+          default = true;
           example = true;
         };
 

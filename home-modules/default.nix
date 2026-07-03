@@ -7,7 +7,6 @@
     ./librewolf
     ./mangowc
     ./noctalia
-    ./password-store
     ./rmpc
     ./scripts
     ./zellij

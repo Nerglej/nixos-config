@@ -12,7 +12,6 @@ in
         inputs.self.homeModules.foot
         inputs.self.homeModules.gpg
         inputs.self.homeModules.librewolf
-        inputs.self.homeModules.password-store
         inputs.self.homeModules.rmpc
         inputs.self.homeModules.zellij
         inputs.self.homeModules.zsh

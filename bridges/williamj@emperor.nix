@@ -21,6 +21,7 @@ in
             email = "william@jelgren.dk";
           };
           wil.bemenu.enable = true;
+          wil.password-store.enable = true;
         };
 
         clobberByDefault = true;

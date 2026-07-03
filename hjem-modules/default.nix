@@ -5,6 +5,7 @@
 
       ./bemenu.nix
       ./git.nix
+      ./password-store.nix
       ./shells.nix
       ./terminal.nix
     ];
