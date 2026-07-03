@@ -119,7 +119,7 @@
 
             swapfile = false;
             backup = false;
-            undodir = lib.generators.mkLuaInline "os.getenv('HOME') .. '/.vim/undodir'";
+            undodir = lib.generators.mkLuaInline "os.getenv('HOME') .. '/.local/share/vim/undodir'";
             undofile = true;
 
             hlsearch = false;
