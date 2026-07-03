@@ -10,7 +10,7 @@ in
         inputs.self.homeModules.firefox
         inputs.self.homeModules.gpg
         inputs.self.homeModules.librewolf
-        inputs.self.homeModules.rmpc
+        # inputs.self.homeModules.rmpc
       ];
 
       home.file."Pictures/Wallpapers" = {
