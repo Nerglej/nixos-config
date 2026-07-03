@@ -42,12 +42,9 @@
         channel.enable = false;
       };
 
-      hjem.extraModules = [
-        inputs.hjem-rum.hjemModules.default
-        inputs.self.modules.hjem.terminal
-        inputs.self.modules.hjem.shell
-        inputs.self.modules.hjem.git
-        inputs.self.modules.hjem.bemenu
+      imports = [
+        inputs.hjem.nixosModules.default
+        inputs.self.nixosModules.wil-hjem
       ];
 
       environment.systemPackages = with pkgs; [

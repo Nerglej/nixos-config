@@ -15,7 +15,6 @@ in
 
     modules = [
       inputs.preservation.nixosModules.default
-      inputs.hjem.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
 
       inputs.nixos-ddcci-nvidia.nixosModules.default
