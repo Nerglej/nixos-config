@@ -8,7 +8,5 @@
     ./mangowc
     ./noctalia
     ./scripts
-
-    ./claude.nix
   ];
 }

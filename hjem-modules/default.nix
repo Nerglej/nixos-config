@@ -4,6 +4,7 @@
       inputs.hjem-rum.hjemModules.default
 
       ./bemenu.nix
+      ./claude.nix
       ./git.nix
       ./mpd.nix
       ./password-store.nix

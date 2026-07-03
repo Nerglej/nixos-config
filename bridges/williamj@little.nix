@@ -21,6 +21,11 @@ in
             email = "william@jelgren.dk";
           };
           wil.bemenu.enable = true;
+          wil.password-store.enable = true;
+          wil.zellij.enable = true;
+
+          wil.rmpc.enable = true;
+          wil.claude-code.enable = true;
         };
 
         clobberByDefault = true;
@@ -50,7 +55,6 @@ in
           ".gnupg"
           ".librewolf"
           ".mozilla"
-          ".claude"
           ".password-store"
           ".ssh"
           ".steam"
@@ -66,9 +70,7 @@ in
           "Zealand"
         ];
 
-        files = [
-          ".claude.json"
-        ];
+        files = [ ];
       };
     };
 
