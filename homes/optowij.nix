@@ -7,14 +7,10 @@ in
     {
       imports = [
         inputs.self.homeModules.claude-code
-        inputs.self.homeModules.direnv
         inputs.self.homeModules.firefox
-        inputs.self.homeModules.foot
         inputs.self.homeModules.gpg
         inputs.self.homeModules.librewolf
         inputs.self.homeModules.rmpc
-        inputs.self.homeModules.zellij
-        inputs.self.homeModules.zsh
       ];
 
       home = {

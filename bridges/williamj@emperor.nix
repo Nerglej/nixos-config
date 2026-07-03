@@ -22,6 +22,7 @@ in
           };
           wil.bemenu.enable = true;
           wil.password-store.enable = true;
+          wil.zellij.enable = true;
         };
 
         clobberByDefault = true;

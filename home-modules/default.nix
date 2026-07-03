@@ -9,7 +9,6 @@
     ./noctalia
     ./rmpc
     ./scripts
-    ./zellij
 
     ./claude.nix
   ];

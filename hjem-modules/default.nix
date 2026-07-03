@@ -8,6 +8,7 @@
       ./password-store.nix
       ./shells.nix
       ./terminal.nix
+      ./zellij.nix
     ];
   };
 }

@@ -11,7 +11,6 @@ in
         inputs.self.homeModules.gpg
         inputs.self.homeModules.librewolf
         inputs.self.homeModules.rmpc
-        inputs.self.homeModules.zellij
       ];
 
       home.file."Pictures/Wallpapers" = {
