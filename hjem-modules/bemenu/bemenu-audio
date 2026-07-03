@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # Simple audio input/output switcher based on bemenu
 
 DEVICE=$1

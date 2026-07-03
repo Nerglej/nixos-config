@@ -101,8 +101,8 @@
               # App shortcuts
               "SUPER,t,spawn,foot"
               "SUPER,Return,spawn,foot"
-              "SUPER,space,spawn,bemenu-run -c -p Open -l 10"
-              "SUPER,d,spawn,bemenu-run -c -p Open -l 10"
+              "SUPER,space,spawn,bemenu-run -p Open"
+              "SUPER,d,spawn,bemenu-run -p Open"
 
               "SUPER+ALT,w,spawn,bemenu-zellij-session"
               "SUPER+ALT,e,spawn,bemenu-zellij-projects"

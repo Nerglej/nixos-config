@@ -16,6 +16,7 @@
             name = "William Jelgren";
             email = "wij@optoceutics.com";
           };
+          wil.bemenu.enable = true;
         };
 
         clobberByDefault = true;

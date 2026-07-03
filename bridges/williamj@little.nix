@@ -20,6 +20,7 @@ in
             name = "William Jelgren";
             email = "william@jelgren.dk";
           };
+          wil.bemenu.enable = true;
         };
 
         clobberByDefault = true;

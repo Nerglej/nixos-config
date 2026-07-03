@@ -6,7 +6,6 @@ in
     { inputs, pkgs, ... }:
     {
       imports = [
-        inputs.self.homeModules.bemenu
         inputs.self.homeModules.claude-code
         inputs.self.homeModules.firefox
         inputs.self.homeModules.gpg

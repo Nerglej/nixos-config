@@ -47,6 +47,7 @@
         inputs.self.modules.hjem.terminal
         inputs.self.modules.hjem.shell
         inputs.self.modules.hjem.git
+        inputs.self.modules.hjem.bemenu
       ];
 
       environment.systemPackages = with pkgs; [

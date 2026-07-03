@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 projectDirs=$(cat ~/.config/projectdirs 2>/dev/null || echo "~/Projects")
 projectDirs=$(eval echo $projectDirs)  # This expands ~ to actual home path
 

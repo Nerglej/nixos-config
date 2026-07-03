@@ -1,6 +1,5 @@
 {
   imports = [
-    ./bemenu
     ./compositor
     ./firefox
     ./gpg
