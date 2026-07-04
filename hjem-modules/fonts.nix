@@ -49,7 +49,7 @@ in
 
     serif = mkFontOption "DejaVu Serif" pkgs.dejavu_fonts;
     sansSerif = mkFontOption "DejaVu Sans" pkgs.dejavu_fonts;
-    monospace = mkFontOption "CommitMono Nerd Font" pkgs.commit-mono;
+    monospace = mkFontOption "CommitMono Nerd Font" pkgs.nerd-fonts.commit-mono;
     emoji = mkFontOption "Noto Color Emoji" pkgs.noto-fonts-color-emoji;
   };
 
