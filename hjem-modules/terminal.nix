@@ -16,6 +16,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.sessionVariables = {
+      TERMINAL = "foot";
+    };
+
     rum.programs.foot = {
       enable = true;
       settings = {
