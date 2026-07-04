@@ -18,6 +18,7 @@ in
   config = mkIf cfg.enable {
     rum.programs.starship = {
       enable = true;
+      integrations.zsh.enable = true;
 
       settings = {
         add_newline = false;
@@ -73,7 +74,6 @@ in
 
     rum.programs.zsh = {
       enable = true;
-      integrations.starship.enable = true;
 
       initConfig = ''
         autoload -U compinit -d $HOME/.cache/zsh/zcompdump && compinit -d $HOME/.cache/zsh/zcompdump
