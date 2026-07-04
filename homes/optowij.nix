@@ -15,8 +15,6 @@ in
         homeDirectory = "/home/${username}";
       };
 
-      programs.firefox.enable = true;
-
       wij.librewolf.enable = true;
       wij.librewolf.mimeAppDefault = true;
       wij.librewolf.profiles = {

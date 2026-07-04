@@ -42,6 +42,8 @@
 
     # Apps
     libreoffice
+
+    firefox
     chromium
 
     inkscape

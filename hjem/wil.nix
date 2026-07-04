@@ -45,6 +45,8 @@
     vesktop
     libreoffice
     prismlauncher # Minecraft
+
+    firefox
     chromium
 
     inkscape
