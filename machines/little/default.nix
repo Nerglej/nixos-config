@@ -26,7 +26,6 @@ in
       inputs.self.nixosModules.printing
       inputs.self.nixosModules.power
       inputs.self.nixosModules.mangowc
-      inputs.self.nixosModules.stylix
 
       inputs.self.nixosModules."williamj@little"
       inputs.self.nixosModules."optowij@little"

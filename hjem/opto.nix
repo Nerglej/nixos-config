@@ -14,6 +14,7 @@
     claude-code.enable = true;
 
     imv.enable = true;
+    icons.enable = true;
 
     wallpapers.enable = true;
 

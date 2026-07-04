@@ -28,7 +28,6 @@ in
 
       inputs.self.nixosModules.printing
       inputs.self.nixosModules.mangowc
-      inputs.self.nixosModules.stylix
 
       inputs.self.nixosModules."williamj@emperor"
 

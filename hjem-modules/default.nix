@@ -8,6 +8,7 @@
       ./cursor.nix
       ./fonts.nix
       ./git.nix
+      ./icons.nix
       ./imv.nix
       ./mpd.nix
       ./password-store.nix

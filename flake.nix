@@ -21,11 +21,6 @@
     nur.inputs.nixpkgs.follows = "nixpkgs";
     nur.inputs.flake-parts.follows = "flake-parts";
 
-    stylix.url = "github:nix-community/stylix/release-26.05";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
-    stylix.inputs.flake-parts.follows = "flake-parts";
-    stylix.inputs.nur.follows = "nur";
-
     alejandra.url = "github:kamadorueda/alejandra/3.1.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
 

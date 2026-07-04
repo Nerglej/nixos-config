@@ -28,8 +28,6 @@ in
         };
       };
 
-      gtk.enable = true;
-
       services.blueman-applet.enable = true;
 
       programs = {

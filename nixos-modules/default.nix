@@ -1,7 +1,6 @@
 {
   imports = [
     ./hardware
-    ./stylix
 
     ./hyprland.nix
     ./ly.nix

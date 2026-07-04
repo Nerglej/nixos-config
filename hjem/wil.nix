@@ -17,6 +17,7 @@
     imv.enable = true;
     cursor.enable = true;
     fonts.enable = true;
+    icons.enable = true;
 
     wallpapers.enable = true;
 
