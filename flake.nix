@@ -32,11 +32,6 @@
     mango.inputs.nixpkgs.follows = "nixpkgs-unstable";
     mango.inputs.flake-parts.follows = "flake-parts";
 
-    hyprland.url = "github:hyprwm/Hyprland";
-
-    split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";
-    split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
-
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
 
