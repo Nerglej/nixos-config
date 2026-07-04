@@ -11,48 +11,9 @@ in
         inputs.self.homeModules.librewolf
       ];
 
-      home.file."Pictures/Wallpapers" = {
-        source = ../media/Wallpapers;
-        recursive = true;
-      };
-
       home = {
         inherit username;
-
         homeDirectory = "/home/${username}";
-        sessionVariables = {
-          EDITOR = "nvim";
-          TERMINAL = "foot";
-          BROWSER = "librewolf";
-          # SPAWNEDITOR = userSettings.spawnEditor;
-          MANPAGER = "nvim +Man!";
-        };
-
-        # Custom programs and apps
-        packages = with pkgs; [
-          inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.neovim
-
-          # Apps
-          vesktop
-          # fluffychat
-          libreoffice
-          prismlauncher # Minecraft
-          inkscape
-          chromium
-          gimp
-
-          # CLI's'n'stuff
-          jq
-          nushell
-
-          # Fonts
-          nerd-fonts.jetbrains-mono
-          nerd-fonts.commit-mono
-
-          # Corner of shame (unfree)
-          spotify
-          zoom-us
-        ];
       };
 
       wij.firefox.enable = true;

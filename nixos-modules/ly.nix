@@ -15,7 +15,7 @@
           animation_timeout_sec = 0;
 
           animation = "dur_file";
-          dur_file_path = toString ./blackhole-smooth-240x67.dur;
+          dur_file_path = toString ../media/blackhole-smooth-240x67.dur;
           dur_offset_alignment = "center";
           dur_x_offset = 0;
           dur_y_offset = 0;
