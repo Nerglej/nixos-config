@@ -6,6 +6,7 @@
       ./bemenu.nix
       ./claude.nix
       ./cursor.nix
+      ./fonts.nix
       ./git.nix
       ./imv.nix
       ./mpd.nix
