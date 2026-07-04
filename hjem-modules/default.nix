@@ -5,6 +5,7 @@
 
       ./bemenu.nix
       ./claude.nix
+      ./cursor.nix
       ./git.nix
       ./imv.nix
       ./mpd.nix

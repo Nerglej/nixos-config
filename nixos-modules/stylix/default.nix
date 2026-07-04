@@ -14,8 +14,6 @@
         enable = true;
         base16Scheme = ./themes/gruvbox-dark-custom.yaml;
 
-        image = ../../media/wallpapers/fractal-flower.jpg;
-
         fonts = {
           serif = {
             package = pkgs.dejavu_fonts;
@@ -36,12 +34,6 @@
             package = pkgs.noto-fonts-color-emoji;
             name = "Noto Color Emoji";
           };
-        };
-
-        cursor = {
-          package = pkgs.bibata-cursors;
-          name = "Bibata-Modern-Classic";
-          size = 24;
         };
 
         icons = {

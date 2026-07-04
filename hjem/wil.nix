@@ -15,6 +15,7 @@
     claude-code.enable = true;
 
     imv.enable = true;
+    cursor.enable = true;
 
     wallpapers.enable = true;
 

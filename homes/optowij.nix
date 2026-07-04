@@ -25,11 +25,6 @@ in
         };
       };
 
-      stylix.targets = {
-        nvf.enable = false;
-        waybar.addCss = false;
-      };
-
       gtk.enable = true;
 
       services.blueman-applet.enable = true;
