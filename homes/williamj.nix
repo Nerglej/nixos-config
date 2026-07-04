@@ -10,14 +10,8 @@ in
         inputs.self.homeModules.librewolf
       ];
 
-      home.file."Pictures/Wallpapers" = {
-        source = ../media/wallpapers;
-        recursive = true;
-      };
-
       home = {
         inherit username;
-
         homeDirectory = "/home/${username}";
       };
 

@@ -5,31 +5,18 @@ let
 in
 {
   flake.nixosModules."${username}@${hostname}" =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
-      hjem = {
-        users.${username} = {
+      hjem.clobberByDefault = true;
+      hjem.users.${username} = lib.mkMerge [
+        {
           enable = true;
           directory = "/home/${username}";
           user = username;
+        }
 
-          wil.terminal.enable = true;
-          wil.shell.enable = true;
-          wil.git = {
-            enable = true;
-            name = "William Jelgren";
-            email = "william@jelgren.dk";
-          };
-          wil.bemenu.enable = true;
-          wil.password-store.enable = true;
-          wil.zellij.enable = true;
-
-          wil.rmpc.enable = true;
-          wil.claude-code.enable = true;
-        };
-
-        clobberByDefault = true;
-      };
+        (import ../hjem/wil.nix { inherit inputs pkgs; })
+      ];
 
       home-manager.users.${username} = inputs.self.homeConfigurations."${username}@${hostname}";
 

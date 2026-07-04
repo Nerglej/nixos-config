@@ -1,26 +1,18 @@
 { inputs, ... }:
 {
   flake.nixosModules."optowij@little" =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
-      hjem = {
-        users."optowij" = {
+      hjem.clobberByDefault = true;
+      hjem.users."optowij" = lib.mkMerge [
+        {
           enable = true;
           directory = "/home/optowij";
           user = "optowij";
+        }
 
-          wil.terminal.enable = true;
-          wil.shell.enable = true;
-          wil.git = {
-            enable = true;
-            name = "William Jelgren";
-            email = "wij@optoceutics.com";
-          };
-          wil.bemenu.enable = true;
-        };
-
-        clobberByDefault = true;
-      };
+        (import ../hjem/opto.nix { inherit inputs pkgs; })
+      ];
 
       home-manager.users."optowij" = inputs.self.homeConfigurations."optowij@little";
 
