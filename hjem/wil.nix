@@ -17,6 +17,18 @@
     imv.enable = true;
 
     wallpapers.enable = true;
+
+    xdg.enable = true;
+    xdg.mimeApps.enable = true;
+    xdg.mimeApps.defaultApplications = ''
+      default-web-browser=librewolf.desktop
+      text/html=librewolf.desktop
+
+      x-scheme-handler/about=librewolf.desktop
+      x-scheme-handler/http=librewolf.desktop
+      x-scheme-handler/https=librewolf.desktop
+      x-scheme-handler/unknown=librewolf.desktop
+    '';
   };
 
   environment.sessionVariables = {
@@ -41,10 +53,6 @@
     # CLI's'n'stuff
     jq
     nushell
-
-    # Fonts
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.commit-mono
 
     # Corner of shame (unfree)
     spotify

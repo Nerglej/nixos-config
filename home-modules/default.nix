@@ -1,7 +1,6 @@
 {
   imports = [
     ./compositor
-    ./firefox
     ./gpg
     ./hyprland
     ./librewolf

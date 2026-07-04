@@ -62,6 +62,11 @@
         podman-compose
       ];
 
+      fonts.packages = with pkgs; [
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.commit-mono
+      ];
+
       # Use zsh as default shell
       users.defaultUserShell = pkgs.zsh;
 

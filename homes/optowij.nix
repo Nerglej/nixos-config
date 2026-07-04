@@ -6,7 +6,6 @@ in
     { inputs, pkgs, ... }:
     {
       imports = [
-        inputs.self.homeModules.firefox
         inputs.self.homeModules.gpg
         inputs.self.homeModules.librewolf
       ];
@@ -37,17 +36,14 @@ in
           jq
           nushell
 
-          # Fonts
-          nerd-fonts.jetbrains-mono
-          nerd-fonts.commit-mono
-
           # Corner of shame (unfree)
           spotify
           zoom-us
         ];
       };
 
-      wij.firefox.enable = true;
+      programs.firefox.enable = true;
+
       wij.librewolf.enable = true;
       wij.librewolf.mimeAppDefault = true;
       wij.librewolf.profiles = {
@@ -64,9 +60,6 @@ in
       };
 
       gtk.enable = true;
-
-      # Used to properly update the local fonts folders
-      fonts.fontconfig.enable = true;
 
       services.blueman-applet.enable = true;
 

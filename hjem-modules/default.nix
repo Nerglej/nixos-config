@@ -13,6 +13,7 @@
       ./shells.nix
       ./terminal.nix
       ./wallpapers.nix
+      ./xdg.nix
       ./zellij.nix
     ];
   };
