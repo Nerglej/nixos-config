@@ -24,13 +24,7 @@ in
 
       services.blueman-applet.enable = true;
 
-      programs = {
-        home-manager.enable = true;
-        thunderbird = {
-          enable = true;
-          profiles = { };
-        };
-      };
+      programs.home-manager.enable = true;
 
       # NEVER CHANGE THIS. IT DOESN'T MATTER WHEN UPGRADING TO ANOTHER VERSION.
       home.stateVersion = "24.11";

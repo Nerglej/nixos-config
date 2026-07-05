@@ -18,6 +18,7 @@
 
     wallpapers.enable = true;
     screenshots.enable = true;
+    thunderbird.enable = true;
 
     gpg.enable = true;
 

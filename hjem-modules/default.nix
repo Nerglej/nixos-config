@@ -17,6 +17,7 @@
       ./screenshots.nix
       ./shells.nix
       ./terminal.nix
+      ./thunderbird.nix
       ./wallpapers.nix
       ./xdg.nix
       ./zellij.nix
