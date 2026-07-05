@@ -8,6 +8,7 @@
       ./cursor.nix
       ./fonts.nix
       ./git.nix
+      ./gpg.nix
       ./icons.nix
       ./imv.nix
       ./mpd.nix

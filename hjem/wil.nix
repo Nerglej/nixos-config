@@ -22,6 +22,8 @@
     wallpapers.enable = true;
     screenshots.enable = true;
 
+    gpg.enable = true;
+
     xdg.enable = true;
     xdg.mimeApps.enable = true;
     xdg.mimeApps.defaultApplications = ''

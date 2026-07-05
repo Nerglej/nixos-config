@@ -6,7 +6,7 @@ in
     { inputs, pkgs, ... }:
     {
       imports = [
-        inputs.self.homeModules.gpg
+        # inputs.self.homeModules.gpg
         inputs.self.homeModules.librewolf
       ];
 
