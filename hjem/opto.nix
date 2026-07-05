@@ -17,6 +17,7 @@
     icons.enable = true;
 
     wallpapers.enable = true;
+    screenshots.enable = true;
 
     xdg.enable = true;
     xdg.mimeApps.enable = true;

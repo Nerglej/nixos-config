@@ -5,6 +5,5 @@
     ./librewolf
     ./mangowc
     ./noctalia
-    ./scripts
   ];
 }

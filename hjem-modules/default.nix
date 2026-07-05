@@ -13,6 +13,7 @@
       ./mpd.nix
       ./password-store.nix
       ./rmpc.nix
+      ./screenshots.nix
       ./shells.nix
       ./terminal.nix
       ./wallpapers.nix

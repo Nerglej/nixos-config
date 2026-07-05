@@ -33,7 +33,6 @@
       imports = [
         inputs.mango.hmModules.mango
         inputs.self.homeModules.noctalia
-        inputs.self.homeModules.screenshot-scripts
       ];
 
       config = {

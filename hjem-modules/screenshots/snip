@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 IMG_PATH=~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png || exit; 
 
 selection=$(slurp) || exit
