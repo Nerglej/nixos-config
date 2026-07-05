@@ -5,10 +5,7 @@ in
   flake.homeModules.${username} =
     { inputs, pkgs, ... }:
     {
-      imports = [
-        # inputs.self.homeModules.gpg
-        inputs.self.homeModules.librewolf
-      ];
+      imports = [ inputs.self.homeModules.librewolf ];
 
       home = {
         inherit username;
