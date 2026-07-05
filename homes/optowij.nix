@@ -22,8 +22,6 @@ in
         };
       };
 
-      services.blueman-applet.enable = true;
-
       programs.home-manager.enable = true;
 
       # NEVER CHANGE THIS. IT DOESN'T MATTER WHEN UPGRADING TO ANOTHER VERSION.
