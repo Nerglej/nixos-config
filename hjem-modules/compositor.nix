@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./compositor/mangowm.nix
+  ];
+}

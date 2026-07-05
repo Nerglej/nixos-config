@@ -1,7 +1,3 @@
 {
-  imports = [
-    ./compositor
-    ./librewolf
-    ./mangowc
-  ];
+  imports = [ ./librewolf ];
 }

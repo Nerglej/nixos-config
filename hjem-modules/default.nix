@@ -5,9 +5,11 @@
     hjem.extraModules = [
       inputs.hjem-rum.hjemModules.default
       inputs.noctalia.hjemModules.default
+      inputs.mango.hjemModules.default
 
       ./bemenu.nix
       ./claude.nix
+      ./compositor.nix
       ./cursor.nix
       ./fonts.nix
       ./git.nix

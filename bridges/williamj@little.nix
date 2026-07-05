@@ -16,6 +16,33 @@ in
         }
 
         (import ../hjem/wil.nix { inherit inputs pkgs; })
+
+        {
+          wil.compositor.mango = {
+            enable = true;
+            monitors = [
+              {
+                name = "eDP-1";
+                width = 1920;
+                height = 1080;
+                refresh = 60.0;
+                x = 0.0;
+                y = 1440.0;
+                scale = 1.0;
+              }
+              {
+                # make = "GIGA-BYTE TECHNOLOGY CO., LTD.";
+                model = "Gigabyte M32U";
+                width = 2560;
+                height = 1440;
+                refresh = 120.0;
+                x = 0.0;
+                y = 0.0;
+                scale = 1.0;
+              }
+            ];
+          };
+        }
       ];
 
       home-manager.users.${username} = inputs.self.homeConfigurations."${username}@${hostname}";
@@ -64,33 +91,6 @@ in
   flake.homeConfigurations."${username}@${hostname}" =
     { inputs, ... }:
     {
-      imports = [
-        inputs.self.homeModules.compositor
-        inputs.self.homeModules.mangowc
-
-        inputs.self.homeModules.williamj
-      ];
-
-      wij.compositor.monitors = [
-        {
-          name = "eDP-1";
-          width = 1920;
-          height = 1080;
-          refresh = 60.0;
-          x = 0.0;
-          y = 1440.0;
-          scale = 1.0;
-        }
-        {
-          # make = "GIGA-BYTE TECHNOLOGY CO., LTD.";
-          model = "Gigabyte M32U";
-          width = 2560;
-          height = 1440;
-          refresh = 120.0;
-          x = 0.0;
-          y = 0.0;
-          scale = 1.0;
-        }
-      ];
+      imports = [ inputs.self.homeModules.williamj ];
     };
 }

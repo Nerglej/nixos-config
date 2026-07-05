@@ -28,7 +28,7 @@
     nvf.inputs.flake-parts.follows = "flake-parts";
     nvf.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    mango.url = "github:mangowm/mango";
+    mango.url = "github:Nerglej/mango";
     mango.inputs.nixpkgs.follows = "nixpkgs-unstable";
     mango.inputs.flake-parts.follows = "flake-parts";
 

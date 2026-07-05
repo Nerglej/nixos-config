@@ -16,6 +16,40 @@ in
         }
 
         (import ../hjem/wil.nix { inherit inputs pkgs; })
+
+        {
+          wil.compositor.mango = {
+            enable = true;
+            monitors =
+              let
+                dp-1 = {
+                  width = 3840;
+                  height = 2160;
+                  scale = 1.3333;
+                };
+              in
+              [
+                {
+                  name = "DP-1";
+                  width = dp-1.width;
+                  height = dp-1.height;
+                  refresh = 144.0;
+                  x = 0.0;
+                  y = 0.0;
+                  scale = dp-1.scale;
+                }
+                rec {
+                  name = "DP-2";
+                  width = 1920;
+                  height = 1080;
+                  refresh = 240.0;
+                  x = dp-1.width / dp-1.scale;
+                  y = dp-1.height / dp-1.scale / 2 - height / 2;
+                  scale = 1.0;
+                }
+              ];
+          };
+        }
       ];
 
       home-manager.users.${username} = inputs.self.homeConfigurations."${username}@${hostname}";
@@ -100,40 +134,6 @@ in
   flake.homeConfigurations."${username}@${hostname}" =
     { inputs, lib, ... }:
     {
-      imports = [
-        inputs.self.homeModules.compositor
-        inputs.self.homeModules.mangowc
-
-        inputs.self.homeModules.williamj
-      ];
-
-      wij.compositor.monitors =
-        let
-          dp-1 = {
-            width = 3840;
-            height = 2160;
-            scale = 1.3333;
-          };
-        in
-        [
-          {
-            name = "DP-1";
-            width = dp-1.width;
-            height = dp-1.height;
-            refresh = 144.0;
-            x = 0.0;
-            y = 0.0;
-            scale = dp-1.scale;
-          }
-          rec {
-            name = "DP-2";
-            width = 1920;
-            height = 1080;
-            refresh = 240.0;
-            x = dp-1.width / dp-1.scale;
-            y = dp-1.height / dp-1.scale / 2 - height / 2;
-            scale = 1.0;
-          }
-        ];
+      imports = [ inputs.self.homeModules.williamj ];
     };
 }
