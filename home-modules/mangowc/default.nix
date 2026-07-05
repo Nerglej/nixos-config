@@ -32,7 +32,6 @@
     {
       imports = [
         inputs.mango.hmModules.mango
-        inputs.self.homeModules.noctalia
       ];
 
       config = {

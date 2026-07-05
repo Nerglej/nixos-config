@@ -3,6 +3,5 @@
     ./compositor
     ./librewolf
     ./mangowc
-    ./noctalia
   ];
 }

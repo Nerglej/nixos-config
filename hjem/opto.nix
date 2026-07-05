@@ -19,7 +19,7 @@
     wallpapers.enable = true;
     screenshots.enable = true;
     thunderbird.enable = true;
-
+    noctalia.enable = true;
     gpg.enable = true;
 
     xdg.enable = true;
