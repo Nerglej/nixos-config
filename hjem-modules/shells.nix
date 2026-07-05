@@ -76,9 +76,9 @@ in
       enable = true;
 
       initConfig = ''
-        autoload -U compinit -d $HOME/.cache/zsh/zcompdump && compinit -d $HOME/.cache/zsh/zcompdump
+        autoload -U compinit -d ${config.xdg.cache.directory}/zsh/zcompdump && compinit -d ${config.xdg.cache.directory}/zsh/zcompdump
 
-        HISTFILE="$HOME/.cache/zsh/history"
+        HISTFILE="${config.xdg.cache.directory}/zsh/history"
         mkdir -p "$(dirname "$HISTFILE")"
 
         HISTSIZE="10000"
