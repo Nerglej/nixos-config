@@ -76,6 +76,11 @@ let
             URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
           }
         ];
+        Remove = [
+          "Google"
+          "Bing"
+          "Perplexity"
+        ];
       };
 
       Extensions.Locked = [
