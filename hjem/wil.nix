@@ -28,6 +28,18 @@
     thunderbird.enable = true;
     claude-code.enable = true;
 
+    librewolf = {
+      enable = true;
+      profiles = {
+        wij = {
+          id = 0;
+          isDefault = true;
+          extraExtensions = [ pkgs.nur.repos.rycee.firefox-addons.passff ];
+        };
+        zealand.id = 1;
+      };
+    };
+
     xdg.enable = true;
     xdg.mimeApps.enable = true;
     xdg.mimeApps.defaultApplications = ''

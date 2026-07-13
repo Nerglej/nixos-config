@@ -27,6 +27,15 @@
     thunderbird.enable = true;
     claude-code.enable = true;
 
+    librewolf = {
+      enable = true;
+      profiles.optoceutics = {
+        id = 0;
+        isDefault = true;
+        extraExtensions = [ pkgs.nur.repos.rycee.firefox-addons.dashlane ];
+      };
+    };
+
     xdg.enable = true;
     xdg.mimeApps.enable = true;
     xdg.mimeApps.defaultApplications = ''

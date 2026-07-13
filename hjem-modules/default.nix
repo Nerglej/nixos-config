@@ -16,6 +16,7 @@
       ./gpg.nix
       ./icons.nix
       ./imv.nix
+      ./librewolf.nix
       ./mpd.nix
       ./noctalia.nix
       ./password-store.nix

@@ -45,8 +45,6 @@ in
         }
       ];
 
-      home-manager.users.${username} = inputs.self.homeConfigurations."${username}@${hostname}";
-
       users.users.${username} = {
         uid = 1000;
         isNormalUser = true;
@@ -86,11 +84,5 @@ in
 
         files = [ ];
       };
-    };
-
-  flake.homeConfigurations."${username}@${hostname}" =
-    { inputs, ... }:
-    {
-      imports = [ inputs.self.homeModules.williamj ];
     };
 }

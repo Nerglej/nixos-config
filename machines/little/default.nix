@@ -15,7 +15,6 @@ in
 
     modules = [
       inputs.preservation.nixosModules.default
-      inputs.home-manager.nixosModules.home-manager
 
       inputs.self.nixosModules.commonModule
       inputs.self.nixosModules.littleModule
@@ -38,13 +37,6 @@ in
   flake.nixosModules.littleModule =
     { pkgs, ... }:
     {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-
-        extraSpecialArgs = { inherit inputs; };
-      };
-
       # Locale
       time.timeZone = systemSettings.timezone;
       i18n.defaultLocale = systemSettings.locale;

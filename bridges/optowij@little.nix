@@ -50,8 +50,6 @@
         }
       ];
 
-      home-manager.users."optowij" = inputs.self.homeConfigurations."optowij@little";
-
       users.users."optowij" = {
         uid = 1001;
         isNormalUser = true;
@@ -62,11 +60,5 @@
           "libvirtd" # Management of virtual machines
         ];
       };
-    };
-
-  flake.homeConfigurations."optowij@little" =
-    { inputs, pkgs, ... }:
-    {
-      imports = [ inputs.self.homeModules.optowij ];
     };
 }

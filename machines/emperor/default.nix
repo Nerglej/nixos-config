@@ -15,7 +15,6 @@ in
 
     modules = [
       inputs.preservation.nixosModules.default
-      inputs.home-manager.nixosModules.home-manager
 
       inputs.nixos-ddcci-nvidia.nixosModules.default
 
@@ -39,13 +38,6 @@ in
   flake.nixosModules.emperorModule =
     { pkgs, config, ... }:
     {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-
-        extraSpecialArgs = { inherit inputs; };
-      };
-
       # Locale
       time.timeZone = systemSettings.timezone;
       i18n.defaultLocale = systemSettings.locale;
