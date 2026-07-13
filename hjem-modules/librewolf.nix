@@ -11,9 +11,8 @@ let
 
   cfg = config.wil.librewolf;
 
-  # Home-relative profile root. The nixpkgs firefox wrapper forces
-  # MOZ_LEGACY_PROFILES=1, so librewolf uses ~/.librewolf. Change here to relocate.
-  profileRoot = ".librewolf";
+  # librewolf doubled since it follows mozilla/firefox pattern, but renamed.
+  profileRoot = "librewolf/librewolf";
 
   # Shared by all profiles; will not be supported by future browser versions.
   extensionPath = "extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}";
@@ -99,14 +98,12 @@ let
     in
     {
       "${profileRoot}/${name}/user.js".text = userJs;
-
       "${profileRoot}/${name}/chrome/userChrome.css".text = userChrome;
-
+      "${profileRoot}/${name}/extensions".source = "${extEnv}/share/mozilla/${extensionPath}";
       "${profileRoot}/${name}/browser-extension-data/uBlock0@raymondhill.net/storage.js".text =
         builtins.toJSON
           { selectedFilterLists = ublockFilterLists; };
 
-      "${profileRoot}/${name}/extensions".source = "${extEnv}/share/mozilla/${extensionPath}";
     };
 
   profilesIni = lib.generators.toINI { } (
@@ -167,7 +164,7 @@ in
   config = mkIf cfg.enable {
     packages = [ package ];
 
-    files = mkMerge (
+    xdg.config.files = mkMerge (
       [ { "${profileRoot}/profiles.ini".text = profilesIni; } ]
       ++ lib.mapAttrsToList mkProfileFiles cfg.profiles
     );
