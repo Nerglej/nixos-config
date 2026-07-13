@@ -7,24 +7,26 @@
       name = "William Jelgren";
       email = "william@jelgren.dk";
     };
+
+    # Compositor and co
+    noctalia.enable = true;
     bemenu.enable = true;
-    password-store.enable = true;
-    zellij.enable = true;
+    screenshots.enable = true;
 
-    rmpc.enable = true;
-    claude-code.enable = true;
-
-    imv.enable = true;
+    wallpapers.enable = true;
     cursor.enable = true;
     fonts.enable = true;
     icons.enable = true;
 
-    wallpapers.enable = true;
-    screenshots.enable = true;
-    thunderbird.enable = true;
-
-    noctalia.enable = true;
+    # Apps
+    zellij.enable = true;
+    rmpc.enable = true;
+    imv.enable = true;
+    password-store.enable = true;
     gpg.enable = true;
+
+    thunderbird.enable = true;
+    claude-code.enable = true;
 
     xdg.enable = true;
     xdg.mimeApps.enable = true;

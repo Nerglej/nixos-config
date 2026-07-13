@@ -7,20 +7,25 @@
       name = "William Jelgren";
       email = "wij@optoceutics.com";
     };
+
+    # Compositor and co
+    noctalia.enable = true;
     bemenu.enable = true;
-    zellij.enable = true;
-
-    rmpc.enable = true;
-    claude-code.enable = true;
-
-    imv.enable = true;
-    icons.enable = true;
+    screenshots.enable = true;
 
     wallpapers.enable = true;
-    screenshots.enable = true;
-    thunderbird.enable = true;
-    noctalia.enable = true;
+    cursor.enable = true;
+    icons.enable = true;
+    fonts.enable = true;
+
+    # Apps
+    zellij.enable = true;
+    rmpc.enable = true;
+    imv.enable = true;
     gpg.enable = true;
+
+    thunderbird.enable = true;
+    claude-code.enable = true;
 
     xdg.enable = true;
     xdg.mimeApps.enable = true;
