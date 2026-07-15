@@ -28,6 +28,7 @@
       ./wallpapers.nix
       ./xdg.nix
       ./zellij.nix
+      ./zsh.nix
     ];
   };
 }

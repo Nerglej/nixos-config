@@ -2,6 +2,7 @@
   wil = {
     terminal.enable = true;
     shell.enable = true;
+    zsh.enable = true;
     git = {
       enable = true;
       name = "William Jelgren";
