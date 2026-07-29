@@ -65,6 +65,7 @@ in
 
     rum.programs.direnv = {
       enable = true;
+      package = pkgs.direnv;
       integrations.nix-direnv.enable = true;
 
       # Disable logging (silent)

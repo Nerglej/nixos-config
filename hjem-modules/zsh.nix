@@ -68,6 +68,7 @@ in
       alias -- lsa='ls -lah'
 
       eval "$(${pkgs.starship}/bin/starship init zsh)"
+      eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
     '';
   };
 }
