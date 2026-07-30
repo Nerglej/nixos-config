@@ -19,6 +19,7 @@
       ./librewolf.nix
       ./mpd.nix
       ./noctalia.nix
+      ./obs.nix
       ./password-store.nix
       ./rmpc.nix
       ./screenshots.nix

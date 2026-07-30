@@ -26,6 +26,9 @@
     password-store.enable = true;
     gpg.enable = true;
 
+    obs.enable = true;
+    obs.cuda.enable = true;
+
     thunderbird.enable = true;
     claude-code.enable = true;
 
