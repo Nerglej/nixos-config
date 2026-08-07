@@ -83,6 +83,13 @@ let
         ];
       };
 
+      Cookies = {
+        Allow = [
+          "https://numela.dk"
+          "https://github.com"
+        ];
+      };
+
       Extensions.Locked = [
         "uBlock0@raymondhill.net"
         "sponsorBlocker@ajay.app"
