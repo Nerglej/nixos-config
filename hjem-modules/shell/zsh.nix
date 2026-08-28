@@ -7,12 +7,14 @@
 let
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption;
+  inherit (lib) optionalString;
 
-  cfg = config.wil.zsh;
+  cfg = config.wil.shell.zsh;
 in
 {
-  options.wil.zsh = {
+  options.wil.shell.zsh = {
     enable = mkEnableOption "zsh";
+    integrations.enable = mkEnableOption "default to zsh integrations";
   };
 
   config = mkIf cfg.enable {
@@ -66,9 +68,15 @@ in
       alias -- ll='ls -lh'
       alias -- ls='ls -G'
       alias -- lsa='ls -lah'
-
+    ''
+    + optionalString config.wil.shell.starship.zshIntegration.enable ''
       eval "$(${pkgs.starship}/bin/starship init zsh)"
+    ''
+    + optionalString config.wil.shell.direnv.zshIntegration.enable ''
       eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
+    ''
+    + optionalString config.wil.shell.devenv.zshIntegration.enable ''
+      eval "$(${pkgs.devenv}/bin/devenv hook zsh)"
     '';
   };
 }

@@ -1,8 +1,16 @@
 { inputs, pkgs, ... }: {
   wil = {
     terminal.enable = true;
-    shell.enable = true;
-    zsh.enable = true;
+
+    shell = {
+      zsh.enable = true;
+      zsh.integrations.enable = true;
+
+      starship.enable = true;
+      direnv.enable = true;
+      devenv.enable = true;
+    };
+
     git = {
       enable = true;
       name = "William Jelgren";

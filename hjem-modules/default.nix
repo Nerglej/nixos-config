@@ -23,13 +23,12 @@
       ./password-store.nix
       ./rmpc.nix
       ./screenshots.nix
-      ./shells.nix
+      ./shell.nix
       ./terminal.nix
       ./thunderbird.nix
       ./wallpapers.nix
       ./xdg.nix
       ./zellij.nix
-      ./zsh.nix
     ];
   };
 }
