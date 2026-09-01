@@ -268,7 +268,7 @@
             rust = {
               enable = true;
               lsp.enable = true;
-              lsp.package = [ "rust-analyzer" ];
+              lsp.servers = [ "rust-analyzer" ];
               extensions.crates-nvim.enable = true;
             };
 
@@ -293,6 +293,10 @@
               lsp.enable = false;
               treesitter.autotagHtml = true;
             };
+            jinja = {
+              enable = true;
+              lsp.enable = true;
+            };
             css = {
               enable = true;
               lsp.enable = false;
@@ -304,6 +308,7 @@
             svelte = {
               enable = true;
               lsp.enable = true;
+              lsp.servers = [ ];
             };
 
             markdown.enable = true;

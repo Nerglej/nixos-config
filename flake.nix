@@ -22,7 +22,6 @@
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
     nvf.url = "github:notashelf/nvf";
-    nvf.inputs.flake-parts.follows = "flake-parts";
     nvf.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     mango.url = "github:Nerglej/mango";
