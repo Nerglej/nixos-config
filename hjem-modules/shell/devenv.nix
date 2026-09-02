@@ -21,6 +21,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    packages = with pkgs; [ devenv ];
+    packages = with pkgs; [ unstable.devenv ];
   };
 }
