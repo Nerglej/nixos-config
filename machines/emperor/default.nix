@@ -27,6 +27,7 @@ in
 
       inputs.self.nixosModules.printing
       inputs.self.nixosModules.mangowc
+      inputs.self.nixosModules.plasma6
 
       inputs.self.nixosModules."williamj@emperor"
 

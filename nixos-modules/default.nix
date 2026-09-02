@@ -3,7 +3,9 @@
     ./hardware
 
     ./ly.nix
-    ./mangowc.nix
     ./sddm.nix
+
+    ./mangowc.nix
+    ./plasma6.nix
   ];
 }
