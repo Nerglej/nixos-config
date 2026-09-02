@@ -7,5 +7,7 @@
 
     ./mangowc.nix
     ./plasma6.nix
+    
+    ./tailscale.nix
   ];
 }

@@ -29,6 +29,8 @@ in
       inputs.self.nixosModules.mangowc
       inputs.self.nixosModules.plasma6
 
+      inputs.self.nixosModules.tailscale
+
       inputs.self.nixosModules."williamj@emperor"
 
       ./hardware-configuration.nix
