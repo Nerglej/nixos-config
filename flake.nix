@@ -44,7 +44,7 @@
       imports = [
         inputs.flake-parts.flakeModules.modules
 
-        ./machines
+        ./hosts
         ./bridges
 
         ./nixos-modules
