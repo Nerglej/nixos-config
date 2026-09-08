@@ -1,14 +1,29 @@
 { inputs, ... }:
+let
+  username = "optowij";
+  hostname = "little";
+in
 {
-  flake.nixosModules."optowij@little" =
+  flake.nixosModules."${username}@${hostname}" =
     { lib, pkgs, ... }:
     {
+      users.users.${username} = {
+        uid = 1001;
+        isNormalUser = true;
+        description = "William (Optoceutics)";
+        initialHashedPassword = "$6$jgX3WhhNPUW5A371$1u4EI8SW7wIngT5ZxsBw74ITviClPEt59G4ehhK2ZR8Ggak6slWeyn2eeztahUhy8JzyHCRa7y4VztACpk8o20";
+        extraGroups = [
+          "networkmanager" # Allows network management
+          "libvirtd" # Management of virtual machines
+        ];
+      };
+
       hjem.clobberByDefault = true;
-      hjem.users."optowij" = lib.mkMerge [
+      hjem.users.${username} = lib.mkMerge [
         {
           enable = true;
-          directory = "/home/optowij";
-          user = "optowij";
+          directory = "/home/${username}";
+          user = username;
         }
 
         (import ../hjem/opto.nix { inherit inputs pkgs; })
@@ -49,16 +64,5 @@
           };
         }
       ];
-
-      users.users."optowij" = {
-        uid = 1001;
-        isNormalUser = true;
-        description = "William (Optoceutics)";
-        initialHashedPassword = "$6$jgX3WhhNPUW5A371$1u4EI8SW7wIngT5ZxsBw74ITviClPEt59G4ehhK2ZR8Ggak6slWeyn2eeztahUhy8JzyHCRa7y4VztACpk8o20";
-        extraGroups = [
-          "networkmanager" # Allows network management
-          "libvirtd" # Management of virtual machines
-        ];
-      };
     };
 }

@@ -7,6 +7,23 @@ in
   flake.nixosModules."${username}@${hostname}" =
     { lib, pkgs, ... }:
     {
+      users.users.${username} = {
+        uid = 1000;
+        isNormalUser = true;
+        description = "William Jelgren";
+        initialHashedPassword = "$y$j9T$e4soPqGmnntfbeOXmNS/s.$H/4rBBNkeomWR6xN0bzBWy5cJwF3M1CAM0MgvPHboZ6";
+        extraGroups = [
+          "wheel" # Allows user to run `sudo`
+          "networkmanager" # Allows network management
+          "libvirtd" # Management of virtual machines
+          "video" # Allows access to e.g. webcams
+          "input" # Full control over `/dev/input`
+        ];
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcFiqvHVZuxrbmbE8QKk4qLhrcM3A2sRxVSlGjQVayS williamj@little"
+        ];
+      };
+
       hjem.clobberByDefault = true;
       hjem.users.${username} = lib.mkMerge [
         {
@@ -52,20 +69,30 @@ in
         }
       ];
 
-      users.users.${username} = {
-        uid = 1000;
-        isNormalUser = true;
-        description = "William Jelgren";
-        extraGroups = [
-          "wheel" # Allows user to run `sudo`
-          "networkmanager" # Allows network management
-          "libvirtd" # Management of virtual machines
-          "video" # Allows access to e.g. webcams
-          "input" # Full control over `/dev/input`
+      preservation.preserveAt."/persistent".users.${username} = {
+        directories = [
+          ".cache"
+          ".config"
+          ".local"
+
+          ".mozilla"
+          ".ssh"
+          ".steam"
+          ".thunderbird"
+          ".var" # flatpacks
+
+          "Desktop"
+          "Documents"
+          "Downloads"
+          "Music"
+          "Pictures"
+          "Projects"
+          "Public"
+          "Templates"
+          "Videos"
         ];
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcFiqvHVZuxrbmbE8QKk4qLhrcM3A2sRxVSlGjQVayS williamj@little"
-        ];
+
+        files = [ ];
       };
 
       services.borgbackup.jobs."${username}-${hostname}" =
@@ -100,32 +127,5 @@ in
 
           startAt = "weekly";
         };
-
-      preservation.preserveAt."/persistent".users.${username} = {
-        directories = [
-          ".cache"
-          ".config"
-
-          ".gnupg"
-          ".librewolf"
-          ".mozilla"
-          ".password-store"
-          ".ssh"
-          ".steam"
-          ".thunderbird"
-
-          "Desktop"
-          "Documents"
-          "Downloads"
-          "Music"
-          "Pictures"
-          "Projects"
-          "Public"
-          "Templates"
-          "Videos"
-        ];
-
-        files = [ ];
-      };
     };
 }

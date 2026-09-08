@@ -7,6 +7,21 @@ in
   flake.nixosModules."${username}@${hostname}" =
     { lib, pkgs, ... }:
     {
+      users.users.${username} = {
+        uid = 1000;
+        isNormalUser = true;
+        description = "William Jelgren";
+        initialHashedPassword = "$y$j9T$fPpXS6E5PNBovyjWxU8hL.$R.Yk8esUJuCR333nL8JmvXPiZawKizyYp8dXU9r6DD1";
+        extraGroups = [
+          "wheel" # Allows user to run `sudo`
+          "networkmanager" # Allows network management
+          "libvirtd" # Management of virtual machines
+        ];
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIElU3Z+2DyeacMQmnMsLoqciaKboKddIwv/LYrWbL2K5 williamj@emperor"
+        ];
+      };
+
       hjem.clobberByDefault = true;
       hjem.users.${username} = lib.mkMerge [
         {
@@ -44,20 +59,6 @@ in
           };
         }
       ];
-
-      users.users.${username} = {
-        uid = 1000;
-        isNormalUser = true;
-        description = "William Jelgren";
-        extraGroups = [
-          "wheel" # Allows user to run `sudo`
-          "networkmanager" # Allows network management
-          "libvirtd" # Management of virtual machines
-        ];
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIElU3Z+2DyeacMQmnMsLoqciaKboKddIwv/LYrWbL2K5 williamj@emperor"
-        ];
-      };
 
       preservation.preserveAt."/persistent".users.${username} = {
         directories = [
