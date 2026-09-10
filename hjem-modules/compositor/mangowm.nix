@@ -107,8 +107,14 @@ in
             "SUPER+ALT,h,setmfact,-0.05"
             "SUPER+ALT,l,setmfact,+0.05"
 
+            # Layouts
             "SUPER+SHIFT,o,switch_layout"
             "SUPER+SHIFT,p,switch_proportion_preset"
+
+            # Overview
+            "SUPER,o,togglejump"
+            "SUPER,Tab,overcircle,next"
+            "SUPER+SHIFT,Tab,overcircle,prev"
 
             # Brightness controls
             "SHIFT,XF86MonBrightnessUp,spawn,brightnessctl set 100%"
