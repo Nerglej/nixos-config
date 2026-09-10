@@ -19,8 +19,7 @@ in
       inputs.self.nixosModules.commonModule
       inputs.self.nixosModules.littleModule
 
-      # inputs.self.nixosModules.sddm-astronaut
-      inputs.self.nixosModules.ly
+      inputs.self.nixosModules.noctalia-greeter
 
       inputs.self.nixosModules.printing
       inputs.self.nixosModules.power
