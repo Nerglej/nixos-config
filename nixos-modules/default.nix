@@ -2,6 +2,7 @@
   imports = [
     ./hardware
 
+    ./greetd.nix
     ./ly.nix
     ./sddm.nix
 

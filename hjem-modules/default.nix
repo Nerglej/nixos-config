@@ -21,6 +21,7 @@
       ./noctalia.nix
       ./obs.nix
       ./password-store.nix
+      ./profile.nix
       ./rmpc.nix
       ./screenshots.nix
       ./shell.nix

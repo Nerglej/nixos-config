@@ -61,7 +61,7 @@ in
         };
 
         widget.workspaces = {
-          display = "none";
+          show_labels = false;
           hide_when_empty = false;
         };
 
@@ -70,9 +70,12 @@ in
         wallpaper = {
           enabled = true;
           directory = "~/Pictures/Wallpapers";
-          recursiveSearch = true;
-          setWallpaperOnAllMonitors = true;
-          transitionDuration = 1000;
+
+          transition_on_startup = false;
+          transition_duration = 1000;
+          per_monitor_directories = false;
+
+          automation.recursive = true;
         };
 
         shell.session = {
@@ -80,6 +83,7 @@ in
           actions = [
             {
               action = "lock";
+              variant = "default";
             }
             # {
             #   action = "suspend";
@@ -88,18 +92,25 @@ in
             #   action = "hibernate";
             # }
             {
-              action = "reboot";
+              action = "logout";
+              variant = "default";
+              countdown_seconds = 3;
             }
             {
-              action = "logout";
+              action = "reboot";
+              variant = "default";
+              countdown_seconds = 3;
             }
             {
               action = "shutdown";
+              variant = "destructive";
+              countdown_seconds = 5;
             }
           ];
+        };
 
-          enableCountdown = true;
-          countdownDuration = 5000;
+        shell.greeter_sync = {
+          auto_sync = true;
         };
       };
     };

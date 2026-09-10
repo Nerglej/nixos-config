@@ -28,8 +28,11 @@
     mango.inputs.nixpkgs.follows = "nixpkgs-unstable";
     mango.inputs.flake-parts.follows = "flake-parts";
 
-    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    noctalia.url = "github:noctalia-dev/noctalia?tag=v5.0.1";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
+
+    noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
+    noctalia-greeter.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-ddcci-nvidia.url = "github:poogas/nixos-ddcci-nvidia";
     nixos-ddcci-nvidia.inputs.nixpkgs.follows = "nixpkgs";
