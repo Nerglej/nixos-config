@@ -79,8 +79,10 @@
       programs.ssh.startAgent = true;
 
       programs.thunar.enable = true;
-      programs.kdeconnect.enable = true;
       programs.virt-manager.enable = true;
+
+      # programs.kdeconnect.enable = true;
+      programs.localsend.enable = true;
 
       services.atd.enable = true;
       services.timesyncd.enable = true;
