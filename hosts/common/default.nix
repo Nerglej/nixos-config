@@ -59,6 +59,9 @@
         ripgrep
         wl-clipboard
         podman-compose
+
+        pcmanfm
+        shared-mime-info
       ];
 
       # Use zsh as default shell
@@ -78,7 +81,17 @@
 
       programs.ssh.startAgent = true;
 
-      programs.thunar.enable = true;
+      programs.thunar = {
+        enable = true;
+        plugins = with pkgs; [
+          thunar-volman
+          thunar-media-tags-plugin
+          thunar-archive-plugin
+        ];
+      };
+      # For automatic thunar device disc:
+      services.gvfs.enable = true;
+
       programs.virt-manager.enable = true;
 
       # programs.kdeconnect.enable = true;

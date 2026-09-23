@@ -23,6 +23,7 @@ in
 
       inputs.self.nixosModules.printing
       inputs.self.nixosModules.power
+
       inputs.self.nixosModules.mangowc
 
       inputs.self.nixosModules.tailscale
