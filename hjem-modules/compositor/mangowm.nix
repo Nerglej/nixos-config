@@ -99,10 +99,16 @@ in
             "SUPER+SHIFT,COMMA,tagtoleft"
             "SUPER+SHIFT,PERIOD,tagtoright"
 
-            "SUPER+SHIFT,h,exchange_client,left"
-            "SUPER+SHIFT,j,exchange_client,down"
-            "SUPER+SHIFT,k,exchange_client,up"
-            "SUPER+SHIFT,l,exchange_client,right"
+            "SUPER+SHIFT,h,move_client,left"
+            "SUPER+SHIFT,j,move_client,down"
+            "SUPER+SHIFT,k,move_client,up"
+            "SUPER+SHIFT,l,move_client,right"
+
+            "SUPER+CTRL,h,exchange_client,left"
+            "SUPER+CTRL,j,exchange_client,down"
+            "SUPER+CTRL,k,exchange_client,up"
+            "SUPER+CTRL,l,exchange_client,right"
+
 
             "SUPER+ALT,h,setmfact,-0.05"
             "SUPER+ALT,l,setmfact,+0.05"
