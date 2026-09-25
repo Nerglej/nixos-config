@@ -26,8 +26,7 @@ in
       package = pkgs.direnv;
       integrations.nix-direnv.enable = true;
 
-      # Disable logging (silent)
-      settings.global.log_format = "-";
+      settings.global.log_format = "%s";
     };
   };
 }
