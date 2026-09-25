@@ -15,6 +15,7 @@ in
         extraGroups = [
           "networkmanager" # Allows network management
           "libvirtd" # Management of virtual machines
+          "adbusers" # ADB access for non-privileged users
         ];
       };
 
