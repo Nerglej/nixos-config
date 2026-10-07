@@ -90,6 +90,9 @@
     jq
     nushell
 
+    # Corner of kinda shame
+    teams-for-linux
+
     # Corner of shame (unfree)
     spotify
     zoom-us
