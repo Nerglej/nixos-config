@@ -86,6 +86,7 @@ let
       Cookies = {
         Allow = [
           "https://numela.dk"
+          "https://jw.org"
           "https://github.com"
         ];
       };
