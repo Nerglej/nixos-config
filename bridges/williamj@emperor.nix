@@ -18,6 +18,7 @@ in
           "libvirtd" # Management of virtual machines
           "video" # Allows access to e.g. webcams
           "input" # Full control over `/dev/input`
+          "kvm" # To read windows disk image
         ];
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcFiqvHVZuxrbmbE8QKk4qLhrcM3A2sRxVSlGjQVayS williamj@little"

@@ -10,5 +10,6 @@
     ./plasma6.nix
     
     ./tailscale.nix
+    ./windows-vm.nix
   ];
 }

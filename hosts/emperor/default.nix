@@ -29,6 +29,7 @@ in
 
       inputs.self.nixosModules.tailscale
 
+      inputs.self.nixosModules.windows-vm
       inputs.self.nixosModules."williamj@emperor"
 
       ./hardware-configuration.nix
