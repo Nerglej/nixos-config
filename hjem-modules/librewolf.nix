@@ -87,6 +87,7 @@ let
         Allow = [
           "https://numela.dk"
           "https://jw.org"
+          "https://microsoftonline.com"
           "https://github.com"
         ];
       };
