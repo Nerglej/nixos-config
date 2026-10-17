@@ -31,7 +31,6 @@
     zellij.enable = true;
     rmpc.enable = true;
     imv.enable = true;
-    password-store.enable = true;
     gpg.enable = true;
 
     obs.enable = true;
@@ -43,10 +42,10 @@
     librewolf = {
       enable = true;
       profiles = {
-        wij = {
+        wil = {
           id = 0;
           isDefault = true;
-          extraExtensions = [ pkgs.nur.repos.rycee.firefox-addons.passff ];
+          extraExtensions = [ pkgs.nur.repos.rycee.firefox-addons.bitwarden ];
         };
         zealand.id = 1;
       };
