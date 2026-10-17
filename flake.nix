@@ -21,8 +21,8 @@
     alejandra.url = "github:kamadorueda/alejandra/3.1.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
-    nvf.url = "github:notashelf/nvf";
-    nvf.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    nvf.url = "github:notashelf/nvf/v26.07";
+    nvf.inputs.nixpkgs.follows = "nixpkgs";
 
     mango.url = "github:Nerglej/mango";
     mango.inputs.nixpkgs.follows = "nixpkgs-unstable";
