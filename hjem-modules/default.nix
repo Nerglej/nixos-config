@@ -27,6 +27,7 @@
       ./shell.nix
       ./terminal.nix
       ./thunderbird.nix
+      ./vlc.nix
       ./wallpapers.nix
       ./xdg.nix
       ./zellij.nix

@@ -31,6 +31,7 @@
     zellij.enable = true;
     rmpc.enable = true;
     imv.enable = true;
+    vlc.enable = true;
     gpg.enable = true;
 
     thunderbird.enable = true;
