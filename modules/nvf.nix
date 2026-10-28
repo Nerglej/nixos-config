@@ -102,6 +102,13 @@
               key = "-";
               action = "<Cmd>Oil<CR>";
             }
+            {
+              mode = "n";
+              key = "<leader>u";
+              action = "vim.cmd.UndotreeToggle";
+              lua = true;
+              desc = "Toggle undotree [Undotree]";
+            }
           ];
 
           # Vim options
@@ -312,6 +319,7 @@
             };
 
             markdown.enable = true;
+
             typst.enable = true;
             typst.extensions.typst-preview-nvim.enable = true;
           };
@@ -331,30 +339,8 @@
                 view_options.show_hidden = true;
               };
             };
-          };
 
-          lazy.plugins = {
-            undotree = {
-              package = pkgs.vimPlugins.undotree;
-
-              cmd = [ "UndotreeToggle" ];
-
-              keys = [
-                {
-                  mode = "n";
-                  key = "<leader>u";
-                  action = "vim.cmd.UndotreeToggle";
-                  lua = true;
-                  desc = "Toggle undotree [Undotree]";
-                }
-              ];
-            };
-          };
-
-          extraPlugins = with pkgs.vimPlugins; {
-            markview-nvim = {
-              package = markview-nvim;
-            };
+            undotree.enable = true;
           };
         };
       };
