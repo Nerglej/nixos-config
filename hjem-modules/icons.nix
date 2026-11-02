@@ -15,26 +15,39 @@ in
   options.wil.icons = {
     enable = mkEnableOption "icons";
 
-    package = mkOption {
+    packages = mkOption {
+      type = types.listOf types.package;
+      default = [ ];
+    };
+
+    icon-theme-package = mkOption {
       type = types.package;
       default = pkgs.dracula-icon-theme;
     };
-
-    name = mkOption {
+    icon-theme-name = mkOption {
       type = types.str;
       default = "Dracula";
+    };
+
+    prefer-dark-theme = mkOption {
+      type = types.bool;
+      default = true;
     };
   };
 
   config = mkIf cfg.enable {
-    xdg.data.files."icons/${cfg.name}".source = "${cfg.package}/share/icons/${cfg.name}";
+    xdg.data.files."icons/${cfg.icon-theme-name}".source =
+      "${cfg.icon-theme-package}/share/icons/${cfg.icon-theme-name}";
 
     rum.misc.gtk = {
       enable = true;
-      packages = [ cfg.package ];
+      packages = cfg.packages ++ [ cfg.icon-theme-package ];
+
+      gtk2Location = ".config/gtk-2.0/gtkrc";
+
       settings = {
-        icon-theme-name = cfg.name;
-        application-prefer-dark-theme = true;
+        inherit (cfg) icon-theme-name;
+        application-prefer-dark-theme = cfg.prefer-dark-theme;
       };
     };
   };

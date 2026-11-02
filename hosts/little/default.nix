@@ -70,6 +70,8 @@ in
         remotePlay.openFirewall = true;
       };
 
+      programs.wayvnc.enable = true;
+
       # Enable pipewire for sound
       services.pipewire = {
         enable = true;
