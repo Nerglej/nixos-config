@@ -21,6 +21,9 @@
           "spotify"
           "zoom"
 
+          # HP Printers
+          "hplip"
+
           # required for nvidia driver
           "nvidia-x11"
           "nvidia-settings"
@@ -91,6 +94,9 @@
       };
       # For automatic thunar device disc:
       services.gvfs.enable = true;
+
+      programs.xfconf.enable = true;
+      programs.dconf.enable = true;
 
       programs.virt-manager.enable = true;
 
