@@ -34,6 +34,9 @@
     noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
     noctalia-greeter.inputs.nixpkgs.follows = "nixpkgs";
 
+    msga.url = "github:punarinta/make-slack-great-again";
+    msga.inputs.nixpkgs.follows = "nixpkgs";
+
     nixos-ddcci-nvidia.url = "github:poogas/nixos-ddcci-nvidia";
     nixos-ddcci-nvidia.inputs.nixpkgs.follows = "nixpkgs";
   };

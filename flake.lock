@@ -203,6 +203,26 @@
         "type": "github"
       }
     },
+    "msga": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793466564,
+        "narHash": "sha256-xUG81VTLUuA2AMOXJRAsAf3YL0+sup/V6ull0PPqPpk=",
+        "owner": "punarinta",
+        "repo": "make-slack-great-again",
+        "rev": "4249b0f799a06fbc1ba7c0414f344dbbaef4570d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "punarinta",
+        "repo": "make-slack-great-again",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -402,6 +422,7 @@
         ],
         "hjem-rum": "hjem-rum",
         "mango": "mango",
+        "msga": "msga",
         "nixos-ddcci-nvidia": "nixos-ddcci-nvidia",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",

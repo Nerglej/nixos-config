@@ -33,6 +33,7 @@
     imv.enable = true;
     vlc.enable = true;
     gpg.enable = true;
+    slack.msga.enable = true;
 
     thunderbird.enable = true;
     claude-code.enable = true;

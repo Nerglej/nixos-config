@@ -25,6 +25,7 @@
       ./rmpc.nix
       ./screenshots.nix
       ./shell.nix
+      ./slack.nix
       ./terminal.nix
       ./thunderbird.nix
       ./vlc.nix
