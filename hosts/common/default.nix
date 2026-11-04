@@ -118,6 +118,20 @@
         };
       };
 
+      fonts = {
+        enableDefaultPackages = true;
+        fontDir.enable = true;
+        packages = with pkgs; [
+          # Mono
+          nerd-fonts.jetbrains-mono
+          nerd-fonts.commit-mono
+
+          # Nice ones
+          dejavu_fonts
+          noto-fonts-color-emoji
+        ];
+      };
+
       virtualisation = {
         libvirtd.enable = true;
         spiceUSBRedirection.enable = true;
