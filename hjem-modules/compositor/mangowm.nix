@@ -109,7 +109,6 @@ in
             "SUPER+CTRL,k,exchange_client,up"
             "SUPER+CTRL,l,exchange_client,right"
 
-
             "SUPER+ALT,h,setmfact,-0.05"
             "SUPER+ALT,l,setmfact,+0.05"
 
@@ -171,7 +170,9 @@ in
 
           exec-once = [ "noctalia" ];
 
-          circle_layout = "tile,scroller";
+          circle_layout = "tile,center_tile,scroller";
+          new_is_master = 0;
+
           scroller_proportion_preset = "0.5,0.8,1.0";
           scroller_focus_center = 0;
           scroller_prefer_center = 1;
