@@ -100,9 +100,6 @@
 
       programs.virt-manager.enable = true;
 
-      # programs.kdeconnect.enable = true;
-      programs.localsend.enable = true;
-
       services.atd.enable = true;
       services.timesyncd.enable = true;
       services.blueman.enable = true;
