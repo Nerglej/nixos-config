@@ -144,7 +144,7 @@ in
 
     passwordStoreIntegration = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
       description = "Add passff-host as a native-messaging host for pass integration.";
     };
 
