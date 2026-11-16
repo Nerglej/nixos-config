@@ -35,6 +35,11 @@ in
         (import ../hjem/wil.nix { inherit inputs pkgs; })
 
         {
+          obs.enable = true;
+          obs.cuda.enable = true;
+        }
+
+        {
           wil.compositor.mango = {
             enable = true;
             monitors =

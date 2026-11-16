@@ -21,7 +21,6 @@
     noctalia.enable = true;
     bemenu.enable = true;
     screenshots.enable = true;
-
     wallpapers.enable = true;
     cursor.enable = true;
     fonts.enable = true;
@@ -30,16 +29,13 @@
     # Apps
     zellij.enable = true;
     rmpc.enable = true;
-    imv.enable = true;
-    vlc.enable = true;
     gpg.enable = true;
-    slack.msga.enable = true;
-
-    obs.enable = true;
-    obs.cuda.enable = true;
+    imv.enable = true;
 
     thunderbird.enable = true;
     claude-code.enable = true;
+    vlc.enable = true;
+    slack.msga.enable = true;
 
     librewolf = {
       enable = true;
