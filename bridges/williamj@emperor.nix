@@ -35,8 +35,8 @@ in
         (import ../hjem/wil.nix { inherit inputs pkgs; })
 
         {
-          obs.enable = true;
-          obs.cuda.enable = true;
+          wil.obs.enable = true;
+          wil.obs.cuda.enable = true;
         }
 
         {
