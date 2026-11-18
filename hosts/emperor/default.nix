@@ -29,6 +29,7 @@ in
       inputs.self.nixosModules.tailscale
 
       inputs.self.nixosModules."williamj@emperor"
+      inputs.self.nixosModules."opto@emperor"
 
       ./hardware-configuration.nix
       ./preservation.nix
