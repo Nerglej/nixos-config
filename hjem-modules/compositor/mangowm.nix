@@ -62,7 +62,7 @@ in
             "SUPER,Escape,reload_config,"
 
             "SUPER+SHIFT,q,killclient"
-            "SUPER,q,minimized"
+            "SUPER,e,minimized"
             "SUPER,r,restore_minimized"
             "SUPER,s,toggle_scratchpad"
             "SUPER,f,togglefloating"
